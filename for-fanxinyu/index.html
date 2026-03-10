@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>给范鑫雨的专属网站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .box {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      height: 80vh;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      position: absolute;
+      opacity: 0;
+      animation: fade 4s forwards;
+      /* 图片加载失败保底样式 */
+      background: #f8f8f8;
+    }
+
+    .text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: #333;
+      font-size: 28px;
+      text-align: center;
+      line-height: 2;
+      opacity: 0;
+      animation: showText 3s 20s forwards;
+      white-space: pre-line;
+      background: rgba(255,255,255,0.8);
+      padding: 20px 40px;
+      border-radius: 8px;
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes showText {
+      to { opacity: 1; }
+    }
+
+    .img1 { animation-delay: 0s; }
+    .img2 { animation-delay: 4s; }
+    .img3 { animation-delay: 8s; }
+    .img4 { animation-delay: 12s; }
+    .img5 { animation-delay: 16s; }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <!-- 本地图片版（你确认能用）：确保1.jpg-5.jpg和html同文件夹 -->
+    <img class="img1" src="1.jpg" onError="this.src='https://picsum.photos/800/600?random=1'">
+    <img class="img2" src="2.jpg" onError="this.src='https://picsum.photos/800/600?random=2'">
+    <img class="img3" src="3.jpg" onError="this.src='https://picsum.photos/800/600?random=3'">
+    <img class="img4" src="4.jpg" onError="this.src='https://picsum.photos/800/600?random=4'">
+    <img class="img5" src="5.jpg" onError="this.src='https://picsum.photos/800/600?random=5'">
+
+    <div class="text">
+范鑫雨
+这是我为你做的专属网站
+兄弟祝你越来越帅，加油
+——Prime
+✨
+    </div>
+  </div>
+</body>
+</html>
