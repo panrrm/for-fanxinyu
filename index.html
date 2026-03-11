@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>范鑫雨牛逼克拉斯</title>
   <style>
     * {
@@ -11,89 +12,374 @@
     }
 
     body {
-      background: #f5f5f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      /* 高级渐变背景+装饰纹理 */
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255,126,95,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(254,180,123,0.05) 0%, transparent 50%),
+        linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
       min-height: 100vh;
-      padding: 20px;
-    }
-
-    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      /* 背景装饰元素 */
       position: relative;
-      width: 90%;
-      max-width: 800px;
-      height: 80vh;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      overflow-x: hidden;
     }
 
-    img {
+    /* 背景漂浮装饰（动态+静态结合） */
+    .decor-dot {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(255,126,95,0.03);
+      z-index: -1;
+    }
+    .dot1 { top: 15%; left: 5%; animation: float 8s ease-in-out infinite; }
+    .dot2 { bottom: 15%; right: 5%; animation: float 10s ease-in-out infinite reverse; }
+    .dot3 { top: 60%; right: 15%; animation: float 12s ease-in-out infinite; }
+
+    /* 顶部标题文字（美化+装饰） */
+    .head-title {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+      line-height: 1.8;
+      white-space: pre-line;
+      /* 文字渐变+阴影 */
+      text-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      /* 标题装饰线 */
+      position: relative;
+      padding: 0 20px 15px;
+    }
+    .head-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
+      border-radius: 3px;
+    }
+
+    /* 图片轮播容器（增强质感） */
+    .carousel-box {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      height: 75vh;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      /* 多层阴影+边框，更立体 */
+      box-shadow: 
+        0 10px 30px rgba(0,0,0,0.08),
+        0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      /* 容器装饰边框 */
+      border: 1px solid rgba(255,255,255,0.9);
+    }
+
+    /* 轮播图片样式（加内边距，更精致） */
+    .carousel-img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       position: absolute;
       opacity: 0;
-      animation: fade 4s forwards;
-      /* 图片加载失败保底样式 */
-      background: #f8f8f8;
+      animation: fade 4s ease-in-out forwards;
+      background: #fafafa;
+      padding: 15px;
     }
 
-    .text {
+    /* 图片计数（新增功能：显示当前播放第几张） */
+    .img-counter {
       position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      color: #333;
-      font-size: 28px;
-      text-align: center;
-      line-height: 2;
-      opacity: 0;
-      animation: showText 3s 20s forwards;
-      white-space: pre-line;
+      top: 15px;
+      right: 15px;
       background: rgba(255,255,255,0.8);
-      padding: 20px 40px;
-      border-radius: 8px;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 14px;
+      color: #666;
+      z-index: 5;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
+    /* 按钮区域（美化+布局优化） */
+    .btn-group {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .func-btn {
+      padding: 12px 28px;
+      border-radius: 30px;
+      border: none;
+      /* 渐变按钮背景 */
+      background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      /* 按钮立体阴影 */
+      box-shadow: 
+        0 4px 15px rgba(0,0,0,0.05),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+      color: #333;
+    }
+
+    .func-btn:hover {
+      /* hover渐变反转+变色 */
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255,126,95,0.2);
+    }
+
+    /* 底部版权/签名装饰 */
+    .footer-signature {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #999;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* 弹窗样式（新增：更美观的弹窗） */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      animation: fadeIn 0.3s ease;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      animation: popUp 0.3s ease;
+    }
+    .modal-title {
+      font-size: 22px;
+      color: #ff7e5f;
+      margin-bottom: 15px;
+    }
+    .modal-text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .modal-close {
+      padding: 8px 25px;
+      border: none;
+      border-radius: 20px;
+      background: #ff7e5f;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .modal-close:hover {
+      background: #feb47b;
+    }
+
+    /* 动画定义 */
     @keyframes fade {
-      0% { opacity: 0; }
-      20% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { opacity: 0; }
+      0% { opacity: 0; transform: scale(0.98); }
+      20% { opacity: 1; transform: scale(1); }
+      80% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.98); }
     }
-
-    @keyframes showText {
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
       to { opacity: 1; }
     }
+    @keyframes popUp {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
 
-    .img1 { animation-delay: 0s; }
-    .img2 { animation-delay: 4s; }
-    .img3 { animation-delay: 8s; }
-    .img4 { animation-delay: 12s; }
-    .img5 { animation-delay: 16s; }
+    /* 10张图轮播延迟（无BUG） */
+    .img1  { animation-delay: 0s; }
+    .img2  { animation-delay: 4s; }
+    .img3  { animation-delay: 8s; }
+    .img4  { animation-delay: 12s; }
+    .img5  { animation-delay: 16s; }
+    .img6  { animation-delay: 20s; }
+    .img7  { animation-delay: 24s; }
+    .img8  { animation-delay: 28s; }
+    .img9  { animation-delay: 32s; }
+    .img10 { animation-delay: 36s; }
+
+    /* 响应式适配（手机端） */
+    @media (max-width: 768px) {
+      .head-title {
+        font-size: 22px;
+      }
+      .func-btn {
+        padding: 10px 22px;
+        font-size: 14px;
+      }
+      .carousel-box {
+        height: 70vh;
+      }
+      .modal-content {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
-
 <body>
-  <div class="box">
-    <!-- 本地图片版（你确认能用）：确保1.jpg-5.jpg和html同文件夹 -->
-    <img class="img1" src="1.jpg" onError="this.src='https://picsum.photos/800/600?random=1'">
-    <img class="img2" src="2.jpg" onError="this.src='https://picsum.photos/800/600?random=2'">
-    <img class="img3" src="3.jpg" onError="this.src='https://picsum.photos/800/600?random=3'">
-    <img class="img4" src="4.jpg" onError="this.src='https://picsum.photos/800/600?random=4'">
-    <img class="img5" src="5.jpg" onError="this.src='https://picsum.photos/800/600?random=5'">
+  <!-- 背景装饰元素 -->
+  <div class="decor-dot dot1"></div>
+  <div class="decor-dot dot2"></div>
+  <div class="decor-dot dot3"></div>
 
-    <div class="text">
+  <!-- 顶部文字（你要的祝福内容） -->
+  <div class="head-title">
 范鑫雨
 这是我为你做的专属网站
-兄弟祝你越来越帅，你真的是个很厉害的人
-相信自己，加油
 ——Prime
-✨
+  </div>
+
+  <!-- 图片轮播区域（10张图正常播放） -->
+  <div class="carousel-box">
+    <!-- 图片计数（新增功能） -->
+    <div class="img-counter" id="counter">1/10</div>
+    
+    <img class="carousel-img img1" src="1.jpg" onError="this.src='https://picsum.photos/800/600?random=1'">
+    <img class="carousel-img img2" src="2.jpg" onError="this.src='https://picsum.photos/800/600?random=2'">
+    <img class="carousel-img img3" src="3.jpg" onError="this.src='https://picsum.photos/800/600?random=3'">
+    <img class="carousel-img img4" src="4.jpg" onError="this.src='https://picsum.photos/800/600?random=4'">
+    <img class="carousel-img img5" src="5.jpg" onError="this.src='https://picsum.photos/800/600?random=5'">
+    <img class="carousel-img img6" src="6.jpg" onError="this.src='https://picsum.photos/800/600?random=6'">
+    <img class="carousel-img img7" src="7.jpg" onError="this.src='https://picsum.photos/800/600?random=7'">
+    <img class="carousel-img img8" src="8.jpg" onError="this.src='https://picsum.photos/800/600?random=8'">
+    <img class="carousel-img img9" src="9.jpg" onError="this.src='https://picsum.photos/800/600?random=9'">
+    <img class="carousel-img img10" src="10.jpg" onError="this.src='https://picsum.photos/800/600?random=10'">
+  </div>
+
+  <!-- 功能按钮（在图片外面，不重叠） -->
+  <div class="btn-group">
+    <button class="func-btn" onclick="openModal('words')">我想对你说的话</button>
+    <button class="func-btn" onclick="openModal('encourage')">给你的鼓励</button>
+    <button class="func-btn" onclick="restart()">重新播放</button>
+    <button class="func-btn" onclick="showTips()">使用说明</button> <!-- 新增功能 -->
+  </div>
+
+  <!-- 底部签名装饰 -->
+  <div class="footer-signature">
+    专属定制 · 友谊长存 ❤️
+  </div>
+
+  <!-- 弹窗（新增：美观的弹窗替代alert） -->
+  <div class="modal" id="wordsModal">
+    <div class="modal-content">
+      <h3 class="modal-title">想对你说的心里话</h3>
+      <div class="modal-text">
+        鑫雨，认识你这么久，一直觉得你是超靠谱、超有能力的人！<br><br>
+        不管是生活还是做事，你都有自己的坚持和态度，<br>
+        希望你永远保持这份热血和自信，前路浩浩荡荡，万事皆可期待！<br><br>
+        永远的兄弟，顶峰相见！
+      </div>
+      <button class="modal-close" onclick="closeModal()">关闭</button>
     </div>
   </div>
-</body>
 
+  <div class="modal" id="encourageModal">
+    <div class="modal-content">
+      <h3 class="modal-title">专属鼓励</h3>
+      <div class="modal-text">
+        ✨ 你超棒的，不用怀疑自己！<br>
+        🚀 所有努力都会开花结果！<br>
+        💪 大胆往前走，兄弟永远在身后！<br>
+        🎈 愿你永远开心，永远闪闪发光！
+      </div>
+      <button class="modal-close" onclick="closeModal()">关闭</button>
+    </div>
+  </div>
+
+  <div class="modal" id="tipsModal">
+    <div class="modal-content">
+      <h3 class="modal-title">使用说明</h3>
+      <div class="modal-text">
+        1. 页面会自动播放10张图片，每张展示4秒<br>
+        2. 点击按钮可查看专属祝福和鼓励<br>
+        3. 点击「重新播放」可从头开始轮播<br>
+        4. 适配手机和电脑，体验流畅～
+      </div>
+      <button class="modal-close" onclick="closeModal()">我知道了</button>
+    </div>
+  </div>
+
+  <script>
+    // 图片计数功能（新增）
+    let currentImg = 1;
+    const counter = document.getElementById('counter');
+    setInterval(() => {
+      currentImg++;
+      if (currentImg > 10) currentImg = 1;
+      counter.textContent = `${currentImg}/10`;
+    }, 4000);
+
+    // 弹窗功能（替代alert，更美观）
+    function openModal(type) {
+      document.getElementById(`${type}Modal`).style.display = 'flex';
+    }
+    function closeModal() {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        modal.style.display = 'none';
+      });
+    }
+    function showTips() {
+      openModal('tips');
+    }
+
+    // 原有功能保留
+    function sayWords() { // 兼容旧调用，实际用新弹窗
+      openModal('words');
+    }
+    function encourage() { // 兼容旧调用，实际用新弹窗
+      openModal('encourage');
+    }
+    function restart() {
+      location.reload();
+    }
+
+    // 点击弹窗外区域关闭
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
 </html>
