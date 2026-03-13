@@ -3,73 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>祝范鑫雨20岁生日快乐</title>
+    <title>🎂 范鑫雨 · 二十而丽 🎂</title>
     <style>
-        /* 基础样式重置 */
+        /* ===== 基础重置 ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", "华文楷体", cursive;
         }
+        
         body {
-            background: linear-gradient(135deg, #fff5f7 0%, #ffe6ef 100%);
-            text-align: center;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fff0f8 0%, #ffe2f0 30%, #fff5fd 100%);
+            background-size: 300% 300%;
+            animation: galaxyBreath 25s ease infinite;
             overflow-x: hidden;
             position: relative;
-            min-height: 100vh;
-            cursor: default;
+        }
+        
+        @keyframes galaxyBreath {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            inset: -100%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 200, 230, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 220, 180, 0.15) 0%, transparent 60%);
+            animation: spinGlow 40s linear infinite;
+            pointer-events: none;
+            z-index: -2;
+        }
+        
+        @keyframes spinGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        /* 全局粒子背景 */
         #particles {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             pointer-events: none;
             z-index: 0;
         }
 
-        /* 特效容器 */
-        #confetti, #hearts, #fireworks, #sparkles {
+        .fx-layer {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             pointer-events: none;
             z-index: 9999;
             display: none;
         }
 
-        /* 密码页 */
+        /* ===== 密码页 ===== */
         #pwdPage {
             position: relative;
-            z-index: 10;
+            z-index: 100;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             padding: 20px;
-            animation: pageFadeIn 1.2s ease-out;
-        }
-        @keyframes pageFadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            animation: entryZoom 1s ease;
         }
         
-        /* 密码页卡片 */
+        @keyframes entryZoom {
+            0% { opacity: 0; transform: scale(0.95); filter: blur(8px); }
+            100% { opacity: 1; transform: scale(1); filter: blur(0); }
+        }
+        
         .pwd-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 24px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            max-width: 420px;
+            background: rgba(255, 248, 250, 0.92);
+            backdrop-filter: blur(25px);
+            border-radius: 60px;
+            padding: 45px 40px;
+            box-shadow: 0 40px 80px rgba(255, 100, 150, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            max-width: 440px;
             width: 100%;
             position: relative;
             overflow: hidden;
@@ -79,12 +93,14 @@
             content: '';
             position: absolute;
             top: -50%;
-            right: -50%;
+            left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 107, 157, 0.05) 0%, transparent 70%);
-            animation: rotateBg 8s linear infinite;
+            background: radial-gradient(circle, rgba(255, 180, 210, 0.25) 0%, transparent 60%);
+            animation: rotateBg 20s linear infinite;
+            pointer-events: none;
         }
+        
         @keyframes rotateBg {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -92,510 +108,566 @@
         
         .pwd-card h1 {
             color: #ff6b9d;
-            font-size: 32px;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.2);
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 8px 20px rgba(255, 130, 170, 0.4);
             position: relative;
+            z-index: 2;
         }
         
         .pwd-card h1::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b9d, #ffc107);
-            border-radius: 2px;
-            margin: 15px auto 0;
-            animation: lineGrow 1.5s ease-out;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff85b3, #ffbc7a, #ffd966, #ff85b3);
+            background-size: 300% auto;
+            border-radius: 3px;
+            margin: 15px auto 8px;
+            animation: shimmer 4s linear infinite;
         }
-        @keyframes lineGrow {
-            from { width: 0; }
-            to { width: 80px; }
+        
+        @keyframes shimmer {
+            to { background-position: 300% center; }
         }
         
         .pwd-subtitle {
-            color: #999;
+            color: #b36b87;
             font-size: 16px;
-            margin-bottom: 20px;
-            animation: fadeInUp 1.5s ease;
+            margin-bottom: 30px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
         }
-
-        /* 账号密码输入框组 */
+        
         .input-group {
-            width: 100%;
-            margin-bottom: 15px;
             text-align: left;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 101;
         }
+        
         .input-group label {
             display: block;
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 8px;
-            padding-left: 5px;
+            color: #b35f80;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            padding-left: 18px;
         }
+        
         .form-input {
             width: 100%;
-            height: 56px;
+            height: 55px;
             font-size: 20px;
-            padding: 0 20px;
-            border: 2px solid #ffccd5;
-            border-radius: 30px;
+            padding: 0 25px;
+            border: 2px solid #ffbfd5;
+            border-radius: 40px;
             outline: none;
-            transition: all 0.4s ease;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: inset 0 2px 8px rgba(255, 107, 157, 0.05);
-            z-index: 11;
+            background: rgba(255, 255, 255, 0.95);
+            transition: 0.3s;
+            box-shadow: inset 0 5px 12px #ffdbe8;
             position: relative;
+            z-index: 102;
+            cursor: text;
         }
         
         .form-input:focus {
             border-color: #ff6b9d;
-            box-shadow: 0 0 20px rgba(255, 107, 157, 0.2);
+            box-shadow: 0 0 0 8px rgba(255, 130, 170, 0.15), inset 0 5px 12px #ffc0d0;
             transform: translateY(-2px);
         }
         
-        .form-input::placeholder {
-            color: #d9b3bc;
-            font-size: 18px;
-        }
-
         #pwdPage button {
             width: 100%;
             height: 60px;
-            font-size: 18px;
-            background: linear-gradient(90deg, #ff6b9d, #ff9a76);
-            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ff7aa8, #ffaa77);
             border: none;
-            border-radius: 30px;
+            border-radius: 40px;
+            color: white;
+            margin-top: 20px;
+            box-shadow: 0 20px 35px rgba(255, 110, 140, 0.5);
             cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+            transition: 0.3s;
             position: relative;
             overflow: hidden;
-            font-weight: 600;
-            z-index: 11;
-            margin-top: 10px;
-        }
-        
-        #pwdPage button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.8s ease;
+            letter-spacing: 2px;
+            z-index: 102;
         }
         
         #pwdPage button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.4);
-            background: linear-gradient(90deg, #ff5588, #ff8a65);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 30px 45px #ff9eb5;
         }
         
-        #pwdPage button:hover::before {
-            left: 100%;
-        }
-        
-        #pwdPage button:active {
-            transform: translateY(0);
-            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
-        }
-
         .error {
-            color: #ff4757;
+            color: #e03a5e;
+            background: rgba(255, 220, 230, 0.9);
+            border-radius: 40px;
+            padding: 12px;
+            margin-top: 18px;
+            font-size: 16px;
             display: none;
-            margin-top: 20px;
-            font-size: 15px;
-            animation: shake 0.6s ease, fadeIn 0.3s ease;
-            padding: 10px;
-            border-radius: 8px;
-            background: rgba(255, 71, 87, 0.05);
-            border: 1px solid rgba(255, 71, 87, 0.2);
-            z-index: 11;
-            position: relative;
-        }
-        @keyframes shake {
-            0%,100% { transform: translateX(0); }
-            25% { transform: translateX(-6px); }
-            75% { transform: translateX(6px); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            border: 1px solid #ffa0b0;
         }
 
-        /* 蛋糕页（全新升级） */
+        /* ===== 蛋糕页 ===== */
         #cakePage {
             display: none;
-            padding: 60px 20px;
-            animation: pageFadeIn 1.2s ease-out;
-            position: relative;
-            z-index: 10;
-            min-height: 100vh;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
-        
-        /* 蛋糕页标题 */
-        #cakePage h1 {
-            color: #ff6b9d;
-            font-size: 42px;
-            margin-bottom: 30px;
-            text-shadow: 0 4px 15px rgba(255, 107, 157, 0.25);
+            min-height: 100vh;
+            padding: 15px 20px 25px;
             position: relative;
-            padding: 0 20px;
-            letter-spacing: 2px;
+            z-index: 10;
+            background: radial-gradient(circle at 20% 30%, #ffeef7, #fffaff 90%);
+            animation: bloomIn 1.2s ease;
         }
         
-        #cakePage h1::before, #cakePage h1::after {
+        @keyframes bloomIn {
+            0% { opacity: 0; filter: blur(10px) brightness(1.2); }
+            100% { opacity: 1; filter: blur(0) brightness(1); }
+        }
+        
+        #cakePage h1 {
+            font-size: 38px;
+            margin: 0 0 8px 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(145deg, #ff6b9d, #ff9f7a, #ffd966, #ff9f7a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(255, 150, 200, 0.5);
+            animation: titleGlow 3s infinite alternate;
+            position: relative;
+            line-height: 1.3;
+            width: 100%;
+        }
+        
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 12px #ffb8d0); }
+            to { filter: drop-shadow(0 0 30px #ff9ec0); }
+        }
+        
+        #cakePage h1::before,
+        #cakePage h1::after {
             content: '🎀';
-            font-size: 32px;
-            margin: 0 20px;
-            animation: bowFloat 2s ease-in-out infinite alternate;
-        }
-        @keyframes bowFloat {
-            from { transform: translateY(0) rotate(0deg); }
-            to { transform: translateY(-10px) rotate(5deg); }
+            font-size: 28px;
+            margin: 0 10px;
+            animation: bowWave 2.5s infinite alternate;
+            display: inline-block;
+            -webkit-text-fill-color: initial;
+            color: #ff8da1;
+            filter: drop-shadow(0 3px 8px #ffb0c0);
         }
         
-        /* 蛋糕副标题 */
+        @keyframes bowWave {
+            0% { transform: translateY(0) rotate(-6deg); }
+            100% { transform: translateY(-10px) rotate(8deg); }
+        }
+        
         .cake-subtitle {
-            color: #999;
+            color: #b35f80;
             font-size: 18px;
-            margin-bottom: 40px;
-            animation: fadeInUp 2s ease;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px #ffe2ed;
+            font-weight: 400;
+            text-align: center;
+            width: 100%;
         }
         
-        /* 蛋糕容器（核心美化） */
         .cake-container {
             position: relative;
-            margin-bottom: 50px;
+            margin: 0 0 20px;
             transform: scale(1.1);
-            animation: cakeAppear 1.5s ease-out;
+            filter: drop-shadow(0 25px 30px rgba(255, 100, 150, 0.35));
+            transition: 0.5s;
         }
         
-        @keyframes cakeAppear {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1.1); }
+        .cake-container:hover {
+            filter: drop-shadow(0 35px 40px #ffa5c0);
+            transform: scale(1.12);
         }
         
-        /* 蛋糕光晕背景 */
-        .cake-container::before {
+        #cake {
+            width: 340px;
+            height: auto;
+            display: block;
+            animation: majesticFloat 3.2s infinite alternate ease-in-out;
+            transition: 0.5s;
+            filter: brightness(1.02) contrast(1.02);
+        }
+        
+        @keyframes majesticFloat {
+            0% { transform: translateY(0) rotate(-0.5deg); }
+            100% { transform: translateY(-16px) rotate(1deg); }
+        }
+        
+        /* ===== 蜡烛区域 - 向下移动并添加特效 ===== */
+        .velas {
+            display: flex;
+            gap: 22px;
+            justify-content: center;
+            position: absolute;
+            top: 8%;  /* 向下移动到蛋糕主体上 */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+            filter: drop-shadow(0 10px 15px rgba(255, 100, 50, 0.3));
+        }
+        
+        .vela {
+            width: 14px;
+            height: 52px;
+            background: linear-gradient(145deg, #f8f8f8, #e0e0e0, #f0f0f0);
+            border-radius: 6px 6px 3px 3px;
+            box-shadow: inset 0 -8px 8px #b8b8b8, 0 10px 15px rgba(0,0,0,0.15);
+            position: relative;
+            animation: candleSway 3s infinite alternate;
+            transform-origin: bottom center;
+            transition: all 0.3s ease;
+        }
+        
+        /* 蜡烛发光特效 */
+        .vela::after {
             content: '';
             position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            background: radial-gradient(circle, rgba(255,204,213,0.3) 0%, transparent 70%);
+            top: -10px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 220, 150, 0.4), transparent 70%);
             border-radius: 50%;
-            filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
             z-index: -1;
         }
         
-        /* 蛋糕SVG */
-        #cake {
-            width: 350px;
-            height: auto;
-            margin: 0 auto;
-            animation: cakeFloat 3s ease-in-out infinite alternate;
-            filter: drop-shadow(0 20px 25px rgba(255, 107, 157, 0.25));
-            transition: all 0.8s ease;
+        .vela:hover::after {
+            opacity: 1;
         }
         
-        /* 蛋糕切换动画 */
-        #cake.cake-style-2 {
-            filter: drop-shadow(0 20px 25px rgba(255, 193, 7, 0.25));
-        }
-        
-        @keyframes cakeFloat {
-            from { transform: translateY(0) rotate(0deg); }
-            to { transform: translateY(-25px) rotate(1deg); }
-        }
-        
-        /* 蜡烛容器（顶部位置） */
-        .velas {
-            display: flex;
-            gap: 18px;
-            justify-content: center;
-            position: absolute;
-            top: 2%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-            transition: all 0.8s ease;
-        }
-        
-        /* 蜡烛熄灭状态 */
-        .velas.blown {
-            opacity: 0.8;
-        }
-        
-        /* 蜡烛样式 */
-        .vela {
-            width: 12px;
-            height: 35px;
-            background: linear-gradient(90deg, #f0f0f0, #e0e0e0);
-            border-radius: 2px 2px 0 0;
-            box-shadow: inset 0 -5px 5px rgba(0,0,0,0.1);
-            position: relative;
-            animation: candleSway 3s ease-in-out infinite alternate;
-        }
-        
-        /* 蜡烛熄灭时停止摆动 */
-        .velas.blown .vela {
-            animation: none;
+        .vela:hover {
+            transform: scale(1.1);
+            filter: brightness(1.1);
         }
         
         @keyframes candleSway {
             0% { transform: rotate(-2deg); }
-            100% { transform: rotate(2deg); }
+            100% { transform: rotate(2.5deg); }
         }
         
         .vela::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #ff9a76, #ff6b9d);
-            border-radius: 2px 2px 0 0;
+            top: -2px;
+            left: 2px;
+            right: 2px;
+            height: 8px;
+            background: linear-gradient(90deg, #ffaa7a, #ff6b9d, #ffd966, #ffaa7a);
+            background-size: 300% auto;
+            border-radius: 4px 4px 0 0;
+            animation: candleShine 3s linear infinite;
+            box-shadow: 0 0 15px #ffaa7a;
         }
         
-        /* 火焰样式 */
+        @keyframes candleShine {
+            to { background-position: 300% center; }
+        }
+        
+        /* 火焰 - 增强特效 */
         .fuego {
-            width: 18px;
-            height: 35px;
-            background: radial-gradient(circle at 50% 90%, #fff, #fffb96, #ff9b05);
-            border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 25px rgba(255, 155, 5, 0.8), 0 0 15px rgba(255, 155, 5, 0.5);
-            animation: flame 1.2s infinite alternate ease-in-out;
+            width: 26px;
+            height: 48px;
+            background: radial-gradient(circle at 50% 80%, #fffef0, #ffb84d, #ff6b4a);
+            border-radius: 50% 50% 30% 30%;
             position: relative;
-            margin: -10px auto 0;
-            filter: blur(0.5px);
-            transition: all 0.5s ease;
+            top: -36px;
+            left: -6px;
+            filter: blur(1.5px);
+            box-shadow: 0 0 40px #ffb347, 0 0 70px #ff8c5a, 0 0 100px #ff6b4a;
+            animation: flameDance 0.8s infinite alternate ease-in-out;
+            transition: all 0.3s ease;
+            transform-origin: center bottom;
         }
         
-        /* 火焰熄灭状态 */
+        /* 火焰光晕特效 */
+        .fuego::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            background: radial-gradient(circle, rgba(255, 200, 100, 0.3), transparent 70%);
+            border-radius: 50%;
+            animation: flameGlow 1.5s infinite alternate;
+            pointer-events: none;
+        }
+        
+        @keyframes flameGlow {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.2); }
+        }
+        
+        @keyframes flameDance {
+            0% { 
+                transform: scale(1) translateY(0) rotate(-2deg); 
+                opacity: 0.95; 
+                filter: blur(1.2px);
+            }
+            100% { 
+                transform: scale(1.3) translateY(-15px) rotate(3deg); 
+                opacity: 1; 
+                filter: blur(2px);
+            }
+        }
+        
         .fuego.blown {
             opacity: 0;
             transform: scale(0);
+            animation: none;
+            box-shadow: none;
         }
         
-        @keyframes flame {
-            0% { transform: scale(1) translateY(0); }
-            100% { transform: scale(1.1) translateY(-6px); }
+        .fuego.blown::before {
+            display: none;
         }
         
-        /* 蛋糕装饰光点 */
+        .velas.blown .vela {
+            animation: none;
+        }
+        
+        .velas.blown .vela::after {
+            opacity: 0;
+        }
+        
+        /* 蜡烛熄灭时的烟雾特效 */
+        .smoke-effect {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8), rgba(200,200,200,0.3), transparent);
+            border-radius: 50%;
+            filter: blur(8px);
+            animation: smokeRise 2s ease-out forwards;
+            pointer-events: none;
+            z-index: 20;
+        }
+        
+        @keyframes smokeRise {
+            0% {
+                opacity: 0.8;
+                transform: translateY(0) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(2);
+            }
+        }
+        
         .cake-decoration {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             pointer-events: none;
         }
         
         .cake-sparkle {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #fff;
+            width: 16px;
+            height: 16px;
+            background: #fffdf0;
             border-radius: 50%;
-            box-shadow: 0 0 15px #fff, 0 0 25px #ff6b9d;
-            animation: sparkle 2s infinite alternate;
+            box-shadow: 0 0 20px #ffd9e5, 0 0 40px #ffa8c5;
+            animation: sparkleDance 1.8s infinite alternate;
         }
         
-        @keyframes sparkle {
-            from { opacity: 0.7; transform: scale(1); }
-            to { opacity: 1; transform: scale(1.3); }
+        @keyframes sparkleDance {
+            0% { opacity: 0.4; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.4); }
         }
         
-        /* 许愿文字提示 */
+        .cake-container::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 260px;
+            height: 70px;
+            background: radial-gradient(circle, rgba(255, 140, 180, 0.5) 0%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(20px);
+            z-index: -1;
+            animation: glowPulse 3s infinite alternate;
+        }
+        
+        @keyframes glowPulse {
+            from { opacity: 0.5; width: 240px; }
+            to { opacity: 1; width: 300px; }
+        }
+        
         .wish-text {
             position: absolute;
-            top: 50%;
+            top: 55%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: #ff6b9d;
-            font-size: 24px;
-            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: 600;
+            color: #d44e78;
+            box-shadow: 0 15px 30px rgba(255, 130, 170, 0.35);
+            border: 2px solid #ffd9e5;
             opacity: 0;
-            transition: all 1s ease;
-            z-index: 10;
-            pointer-events: none;
-            animation: wishFloat 3s ease-in-out infinite alternate;
-        }
-        
-        @keyframes wishFloat {
-            from { transform: translate(-50%, -50%) translateY(0); }
-            to { transform: translate(-50%, -50%) translateY(-15px); }
+            transition: 0.5s;
+            white-space: nowrap;
+            z-index: 20;
+            letter-spacing: 1px;
         }
         
         .wish-text.show {
             opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 20px 40px #ffa5c0;
         }
         
-        /* 蛋糕页功能按钮组 */
         .cake-btn-group {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 30px;
-            margin-bottom: 40px;
+            margin: 15px 0 10px;
+            position: relative;
+            z-index: 20;
         }
         
-        /* 蛋糕页按钮样式 */
         .cake-func-btn {
-            padding: 15px 40px;
+            padding: 12px 30px;
             font-size: 18px;
-            background: linear-gradient(90deg, #ff6b9d, #ff9a76);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
             font-weight: 600;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cake-func-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.8s ease;
-        }
-        
-        .cake-func-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.4);
-            background: linear-gradient(90deg, #ff5588, #ff8a65);
-        }
-        
-        .cake-func-btn:hover::before {
-            left: 100%;
-        }
-        
-        .cake-func-btn:active {
-            transform: translateY(0);
-        }
-        
-        /* 蛋糕页主按钮 */
-        #cakePage .main-btn {
-            padding: 20px 60px;
-            font-size: 22px;
-            background: linear-gradient(90deg, #ff6b9d, #ff9a76);
-            color: white;
-            border: none;
+            background: rgba(255, 255, 255, 0.92);
+            border: 2px solid #ffbfd5;
             border-radius: 40px;
+            color: #b34e71;
+            box-shadow: 0 12px 25px #ffc0d0;
             cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.4);
-            font-weight: 600;
+            transition: 0.3s;
+            backdrop-filter: blur(8px);
             position: relative;
-            overflow: hidden;
-            margin-top: 20px;
+            z-index: 21;
             letter-spacing: 1px;
         }
         
-        #cakePage .main-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.8s ease;
+        .cake-func-btn:hover {
+            background: #ffe2ed;
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 20px 35px #ff9eb5;
+            border-color: #ff8fb0;
+            color: #d4316a;
         }
         
-        #cakePage .main-btn:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 45px rgba(255, 107, 157, 0.5);
-            background: linear-gradient(90deg, #ff5588, #ff8a65);
+        .main-btn {
+            padding: 16px 60px;
+            font-size: 22px;
+            background: linear-gradient(135deg, #ff77a8, #ffaa77);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 25px 40px #ff90b0;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 21;
         }
         
-        #cakePage .main-btn:hover::before {
-            left: 100%;
-        }
-        
-        #cakePage .main-btn:active {
-            transform: translateY(-3px);
+        .main-btn:hover {
+            transform: scale(1.03) translateY(-8px);
+            box-shadow: 0 35px 55px #ff80a8;
         }
 
-        /* 主页面 */
+        /* ===== 主页面 ===== */
         #mainPage {
             display: none;
-            padding: 30px 20px;
-            animation: pageFadeIn 1.2s ease-out;
+            padding: 25px 20px 40px;
             position: relative;
             z-index: 10;
-        }
-        #mainPage h1 {
-            color: #ff6b9d;
-            font-size: 30px;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.2);
+            animation: fadeReveal 1s;
         }
         
-        /* 照片轮播 */
+        @keyframes fadeReveal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        #mainPage h1 {
+            color: #c45a7a;
+            font-size: 32px;
+            margin-bottom: 25px;
+            text-shadow: 0 5px 15px #ffc0d0;
+            text-align: center;
+            line-height: 1.4;
+        }
+        
         .carousel-box {
             position: relative;
-            width: 100%;
-            max-width: 750px;
-            height: 70vh;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
+            width: 90%;
+            max-width: 850px;
+            height: 62vh;
+            margin: 0 auto 20px;
+            border-radius: 40px;
+            background: #fffafc;
+            box-shadow: 0 25px 40px #ffbfcf;
+            border: 3px solid transparent;
+            background: linear-gradient(#fff, #fff) padding-box,
+                        linear-gradient(135deg, #ff99bb, #ffc090, #ffe085, #ff99bb) border-box;
+            background-size: 300% 300%;
+            animation: borderGlow 8s ease infinite;
             overflow: hidden;
-            margin: 0 auto 30px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            animation: carouselShadow 6s ease infinite alternate;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: 0.4s;
         }
-        @keyframes carouselShadow {
-            from { box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
-            to { box-shadow: 0 20px 50px rgba(255,107,157,0.2); }
+        
+        @keyframes borderGlow {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
+        
+        .carousel-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 35px 55px #ffa5ba;
+        }
+        
         .carousel-img {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: auto;
-            height: auto;
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 92%;
+            max-height: 92%;
             object-fit: contain;
+            border-radius: 28px;
             opacity: 0;
-            animation: fade 4s ease-in-out forwards;
-            transition: all 0.5s ease;
+            animation: crossFadeCycle 40s linear infinite;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
         }
-        @keyframes fade {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.98) rotate(0deg); }
-            20% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-            80% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.02) rotate(1deg); }
+        
+        @keyframes crossFadeCycle {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.98); }
+            4% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            10% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            14% { opacity: 0; transform: translate(-50%, -50%) scale(1.02); }
+            100% { opacity: 0; }
         }
+        
         .img1 { animation-delay: 0s; }
         .img2 { animation-delay: 4s; }
         .img3 { animation-delay: 8s; }
@@ -607,435 +679,351 @@
         .img9 { animation-delay: 32s; }
         .img10 { animation-delay: 36s; }
 
-        /* 打字机效果 */
         .typewriter-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 90%;
-            padding: 30px;
-            background: rgba(255,255,255,0.95);
-            border-radius: 16px;
-            z-index: 10;
+            width: 80%;
+            max-width: 650px;
+            background: rgba(255, 245, 250, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 25px 35px;
+            border-radius: 50px;
+            box-shadow: 0 25px 45px rgba(255, 100, 150, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.8) inset;
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0.95);
-            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: 0 15px 40px rgba(255,107,157,0.25);
-            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            z-index: 30;
+            pointer-events: none;
+            max-height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        
         .typewriter-container.show {
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
         }
+        
         .typewriter-text {
-            font-size: 20px;
-            line-height: 2;
-            color: #ff6b9d;
-            border-right: 3px solid #ff6b9d;
-            animation: blink 0.8s step-end infinite;
-            white-space: pre-line;
-            padding-right: 8px;
-            text-shadow: 0 1px 2px rgba(255, 107, 157, 0.1);
+            font-size: 18px;
+            line-height: 1.7;
+            color: #b33b66;
+            text-align: center;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border-right: 3px solid #ff88b0;
+            animation: cursorBlink 1s step-end infinite;
+            padding: 5px 10px;
+            font-weight: 500;
+            text-shadow: 0 2px 6px #ffd0e0;
+            width: 100%;
+            max-height: 55vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #ff99bb #ffe2ed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
         }
-        @keyframes blink {
+        
+        .typewriter-text::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .typewriter-text::-webkit-scrollbar-track {
+            background: #ffe2ed;
+            border-radius: 10px;
+        }
+        
+        .typewriter-text::-webkit-scrollbar-thumb {
+            background: #ff99bb;
+            border-radius: 10px;
+        }
+        
+        @keyframes cursorBlink {
             50% { border-color: transparent; }
         }
 
-        /* 功能按钮组 */
         .btn-group {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
             margin: 30px 0;
-        }
-        .func-btn {
-            padding: 12px 30px;
-            border-radius: 25px;
-            border: none;
-            background: rgba(255, 255, 255, 0.9);
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
             position: relative;
-            overflow: hidden;
+            z-index: 20;
+        }
+        
+        .func-btn {
+            padding: 14px 35px;
+            font-size: 18px;
+            background: white;
+            border: 2px solid #ffbfd0;
+            border-radius: 40px;
+            color: #b34b70;
             font-weight: 600;
-            color: #666;
+            box-shadow: 0 15px 28px #ffc0d0;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            z-index: 21;
+            letter-spacing: 1px;
         }
-        .func-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: all 0.8s ease;
-        }
+        
         .func-btn:hover {
-            background: linear-gradient(90deg, #ff6b9d, #ff9a76);
-            color: #fff;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(255,107,157,0.4);
+            background: #ffecf2;
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 25px 38px #ffa0b8;
+            border-color: #ff8fb2;
         }
-        .func-btn:hover::before {
-            left: 100%;
+        
+        .footer-signature {
+            font-size: 18px;
+            color: #bc5277;
+            margin-top: 30px;
+            animation: gentleGlow 3s infinite alternate;
+            text-align: center;
+            font-weight: 500;
+            letter-spacing: 1.5px;
         }
-        .func-btn:active {
-            transform: translateY(-2px);
+        
+        @keyframes gentleGlow {
+            from { text-shadow: 0 0 8px #ffbfd5; }
+            to { text-shadow: 0 0 22px #ff96b8, 0 0 10px #ffb0c0; }
         }
 
-        /* 弹窗样式 */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
+            inset: 0;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(8px);
             align-items: center;
             justify-content: center;
-            z-index: 999;
-            backdrop-filter: blur(8px);
+            z-index: 10000;
         }
+        
         .modal.show {
             display: flex;
-            animation: modalFadeIn 0.6s ease;
+            animation: modalFade 0.4s;
         }
-        @keyframes modalFadeIn {
+        
+        @keyframes modalFade {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        
         .modal-content {
-            background: rgba(255, 255, 255, 0.98);
+            background: #fffefe;
+            max-width: 440px;
+            width: 85%;
             padding: 35px;
-            border-radius: 20px;
-            max-width: 400px;
-            width: 90%;
+            border-radius: 50px;
+            box-shadow: 0 35px 60px #d98fa8;
+            text-align: center;
             transform: scale(0.9);
-            animation: modalPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255, 255, 255, 0.9);
+            animation: modalPop 0.5s forwards;
+            border: 2px solid #ffe2ed;
         }
+        
         @keyframes modalPop {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            to { transform: scale(1); }
         }
+        
         .modal-title {
-            font-size: 24px;
-            color: #ff6b9d;
+            font-size: 28px;
+            color: #d43b70;
             margin-bottom: 20px;
-            text-shadow: 0 1px 3px rgba(255,107,157,0.2);
         }
+        
         .modal-text {
-            font-size: 17px;
+            color: #784b5e;
             line-height: 1.8;
-            color: #555;
+            font-size: 17px;
             margin-bottom: 25px;
+            white-space: pre-line;
         }
+        
         .modal-close {
-            padding: 10px 30px;
+            background: linear-gradient(135deg, #ff7caa, #ffac7c);
             border: none;
-            border-radius: 25px;
-            background: linear-gradient(90deg, #ff6b9d, #ff9a76);
-            color: #fff;
+            padding: 14px 45px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
             cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 6px 15px rgba(255,107,157,0.2);
-            font-size: 16px;
-            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 18px 28px #ffa0b5;
         }
+        
         .modal-close:hover {
-            background: linear-gradient(90deg, #ff5588, #ff8a65);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255,107,157,0.3);
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 25px 38px #ff87aa;
         }
 
-        .footer-signature {
-            color: #999;
-            margin-top: 30px;
-            font-size: 16px;
-            animation: signatureFade 4s ease infinite alternate;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        .birthday-float {
+            position: fixed;
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff77aa, #ffb07a, #ffd966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+            z-index: 9997;
+            pointer-events: none;
+            animation: riseUp 8s linear forwards;
+            filter: drop-shadow(0 0 15px #ffa5c0);
         }
-        @keyframes signatureFade {
-            from { color: #999; }
-            to { color: #ff6b9d; }
+        
+        @keyframes riseUp {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 1; transform: translateY(80vh) rotate(5deg) scale(1); }
+            50% { opacity: 1; transform: translateY(40vh) rotate(-5deg) scale(1.1); }
+            90% { opacity: 1; transform: translateY(10vh) rotate(5deg) scale(1); }
+            100% { transform: translateY(-20vh) rotate(-10deg) scale(0.8); opacity: 0; }
         }
 
-        /* 响应式优化 */
-        @media (max-width: 768px) {
-            .pwd-card {
-                padding: 40px 25px;
-            }
-            .pwd-card h1 {
-                font-size: 28px;
-            }
-            #cake {
-                width: 280px;
-            }
-            .typewriter-text {
-                font-size: 18px;
-                line-height: 1.8;
-            }
-            .carousel-img {
-                max-width: 95%;
-                max-height: 95%;
-            }
-            .velas {
-                gap: 15px;
-            }
-            .vela {
-                width: 10px;
-                height: 30px;
-            }
-            .fuego {
-                width: 16px;
-                height: 30px;
-            }
-            .cake-func-btn {
-                padding: 12px 30px;
-                font-size: 16px;
-            }
-            #cakePage h1 {
-                font-size: 32px;
-            }
-            .wish-text {
-                font-size: 20px;
-            }
+        @media (max-width: 700px) {
+            #cake { width: 280px; }
+            .cake-container { transform: scale(1); }
+            .cake-container:hover { transform: scale(1.05); }
+            #cakePage h1 { font-size: 30px; }
+            #cakePage h1::before, #cakePage h1::after { font-size: 22px; margin: 0 5px; }
+            .typewriter-text { font-size: 16px; }
+            .main-btn { padding: 14px 45px; font-size: 20px; }
+            .velas { top: 6%; gap: 18px; }
+            .vela { width: 12px; height: 45px; }
+            .fuego { width: 22px; height: 42px; top: -32px; left: -5px; }
         }
-/* 生日飘字 */
-.birthday-text {
-    position: fixed;
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff6b9d;
-    text-shadow: 0 0 10px #ff6b9d, 0 0 20px #ff9a76;
-    pointer-events: none;
-    z-index: 9998;
-    opacity: 0;
-    animation: birthdayFloat 8s ease-in-out forwards;
-}
-@keyframes birthdayFloat {
-    0% { opacity: 0; transform: translateY(100vh) rotate(0deg) scale(0.8); }
-    10% { opacity: 1; transform: translateY(80vh) rotate(5deg) scale(1); }
-    50% { opacity: 1; transform: translateY(40vh) rotate(-5deg) scale(1.1); }
-    90% { opacity: 1; transform: translateY(10vh) rotate(5deg) scale(1); }
-    100% { opacity: 0; transform: translateY(-20vh) rotate(-5deg) scale(0.8); }
-}
-
-/* 蜡烛hover */
-.vela:hover {
-    transform: scale(1.1) rotate(0deg);
-    transition: all 0.3s ease;
-}
-.vela:hover .fuego {
-    transform: scale(1.2) translateY(-8px);
-    box-shadow: 0 0 30px rgba(255, 155, 5, 1), 0 0 20px rgba(255, 155, 5, 0.8);
-}
-
-/* 蛋糕标题呼吸动画 + 文字渐变 */
-#cakePage h1 {
-    color: #ff6b9d;
-    font-size: 42px;
-    margin-bottom: 30px;
-    text-shadow: 0 4px 15px rgba(255, 107, 157, 0.25);
-    position: relative;
-    padding: 0 20px;
-    letter-spacing: 2px;
-    background: linear-gradient(90deg, #ff6b9d, #ff9a76, #ffc107);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: breath 3s ease-in-out infinite alternate;
-}
-@keyframes breath {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); }
-}
-
-/* 输入框聚焦霓虹效果 */
-.form-input:focus {
-    border-color: #ff6b9d;
-    box-shadow: 0 0 25px rgba(255, 107, 157, 0.3), 0 0 10px rgba(255, 107, 157, 0.2) inset;
-    transform: translateY(-2px) rotate(0.5deg);
-}
-
-/* 轮播图渐变边框 + 悬浮 */
-.carousel-box {
-    position: relative;
-    width: 100%;
-    max-width: 750px;
-    height: 70vh;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    overflow: hidden;
-    margin: 0 auto 30px;
-    animation: carouselShadow 6s ease infinite alternate, carouselFloat 6s ease-in-out infinite alternate;
-    border: none;
-    background: linear-gradient(#fff, #fff) padding-box,
-                linear-gradient(135deg, #ff6b9d, #ff9a76, #ffc107) border-box;
-    border: 3px solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-@keyframes carouselFloat {
-    from { transform: translateY(0px); }
-    to { transform: translateY(-10px); }
-}
     </style>
 </head>
 <body>
-    <!-- 特效容器 -->
+    <!-- 特效层 -->
     <div id="particles"></div>
-    <div id="confetti"></div>
-    <div id="hearts"></div>
-    <div id="fireworks"></div>
-    <div id="sparkles"></div>
+    <div class="fx-layer" id="confetti"></div>
+    <div class="fx-layer" id="hearts"></div>
+    <div class="fx-layer" id="fireworks"></div>
+    <div class="fx-layer" id="sparkles"></div>
 
-    <!-- 背景音乐 -->
-    <audio id="bgmCake" loop>
-        <source src="music1.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="bgmMain" loop>
-        <source src="music2.mp3" type="audio/mpeg">
-    </audio>
-    
-    <!-- 音效 -->
-    <audio id="blowSound">
-        <source src="blow.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="wishSound">
-        <source src="wish.mp3" type="audio/mpeg">
-    </audio>
+    <!-- 音频 -->
+    <audio id="bgmCake" loop src="music1.mp3" preload="auto"></audio>
+    <audio id="bgmMain" loop src="music2.mp3" preload="auto"></audio>
+    <audio id="blowSound" src="blow.mp3" preload="auto"></audio>
+    <audio id="wishSound" src="wish.mp3" preload="auto"></audio>
 
     <!-- 密码页 -->
     <div id="pwdPage">
         <div class="pwd-card">
-            <h1>🎂 生日惊喜解锁</h1>
-            <p class="pwd-subtitle">输入账号密码开启专属祝福</p>
+            <h1>🎂 二十而丽 · 鑫雨</h1>
+            <p class="pwd-subtitle">输入我们的专属密码 ✨</p>
             
             <div class="input-group">
                 <label for="userInput">账号</label>
-                <input type="text" id="userInput" class="form-input" placeholder="账号">
+                <input type="text" id="userInput" class="form-input" placeholder="fanxinyu" value="">
             </div>
             
             <div class="input-group">
                 <label for="pwdInput">密码</label>
-                <input type="password" id="pwdInput" class="form-input" placeholder="密码">
+                <input type="password" id="pwdInput" class="form-input" placeholder="生日八位" value="">
             </div>
             
-            <button onclick="checkPwd()">解锁惊喜 ✨</button>
-            <div class="error" id="errorTip">账号或密码错误！</div>
+            <button onclick="checkPwd()">💫 开启生日惊喜</button>
+            <div class="error" id="errorTip">不对哦，再试试看～</div>
         </div>
     </div>
 
-    <!-- 蛋糕页 -->
+    <!-- 蛋糕页（蜡烛已向下移动并添加特效） -->
     <div id="cakePage">
         <h1>🎂 祝范鑫雨生日快乐！</h1>
         <p class="cake-subtitle">愿你岁岁常欢愉，年年皆胜意</p>
         
-        <!-- 蛋糕容器 -->
         <div class="cake-container">
-            <!-- 精美蛋糕SVG -->
-            <svg id="cake" version="1.1" viewBox="0 0 200 400">
-                <!-- 底座 -->
-                <path fill="#a88679" d="M170,390 C120,400 80,400 30,390 C26,388 26,372 30,370 C80,380 120,380 170,370 C174,372 174,388 170,390Z"></path>
-                <!-- 第一层蛋糕 -->
-                <path fill="#ffccd5" d="M160,320 C110,330 90,330 40,320 C36,318 36,302 40,300 C90,310 110,310 160,300 C164,302 164,318 160,320Z"></path>
-                <!-- 第二层蛋糕 -->
-                <path fill="#ffd6dc" d="M150,250 C100,260 100,260 50,250 C46,248 46,232 50,230 C100,240 100,240 150,230 C154,232 154,248 150,250Z"></path>
-                <!-- 第三层蛋糕 -->
-                <path fill="#ffe0e5" d="M140,180 C90,190 110,190 60,180 C56,178 56,162 60,160 C110,170 90,170 140,160 C144,162 144,178 140,180Z"></path>
-                <!-- 顶部奶油 -->
-                <path fill="#fefae9" d="M130,120 C80,130 120,130 70,120 C66,118 66,102 70,100 C120,110 80,110 130,100 C134,102 134,118 130,120Z"></path>
-                <!-- 顶部装饰 -->
-                <circle cx="100" cy="95" r="10" fill="#ffc107"></circle>
-                <circle cx="80" cy="110" r="8" fill="#ff6b9d"></circle>
-                <circle cx="120" cy="110" r="8" fill="#ff9a76"></circle>
+            <svg id="cake" viewBox="0 0 200 400">
+                <path fill="#b28b7d" d="M170,390 C120,400 80,400 30,390 C26,388 26,372 30,370 C80,380 120,380 170,370 C174,372 174,388 170,390Z"/>
+                <path fill="#ffb7c5" d="M160,320 C110,330 90,330 40,320 C36,318 36,302 40,300 C90,310 110,310 160,300 C164,302 164,318 160,320Z"/>
+                <path fill="#ffc2d0" d="M150,250 C100,260 100,260 50,250 C46,248 46,232 50,230 C100,240 100,240 150,230 C154,232 154,248 150,250Z"/>
+                <path fill="#ffcdda" d="M140,180 C90,190 110,190 60,180 C56,178 56,162 60,160 C110,170 90,170 140,160 C144,162 144,178 140,180Z"/>
+                <path fill="#fff2e0" d="M130,120 C80,130 120,130 70,120 C66,118 66,102 70,100 C120,110 80,110 130,100 C134,102 134,118 130,120Z"/>
+                <circle cx="100" cy="95" r="12" fill="#ffdb7c"/>
+                <circle cx="76" cy="110" r="9" fill="#ff8da1"/>
+                <circle cx="124" cy="110" r="9" fill="#ffaa7a"/>
+                <circle cx="60" cy="140" r="5" fill="#ffb08a"/>
+                <circle cx="140" cy="140" r="5" fill="#ffb08a"/>
+                <circle cx="50" cy="210" r="6" fill="#ffdb7c"/>
+                <circle cx="150" cy="210" r="6" fill="#ffdb7c"/>
+                <circle cx="85" cy="260" r="5" fill="#ff8da1"/>
+                <circle cx="115" cy="260" r="5" fill="#ff8da1"/>
             </svg>
             
-            <!-- 蜡烛 -->
+            <!-- 蜡烛 - 向下移动到蛋糕主体上 (top: 8%) -->
             <div class="velas" id="velas">
-                <div class="vela">
-                    <div class="fuego" id="fuego1"></div>
-                </div>
-                <div class="vela">
-                    <div class="fuego" id="fuego2"></div>
-                </div>
-                <div class="vela">
-                    <div class="fuego" id="fuego3"></div>
-                </div>
-                <div class="vela">
-                    <div class="fuego" id="fuego4"></div>
-                </div>
-                <div class="vela">
-                    <div class="fuego" id="fuego5"></div>
-                </div>
+                <div class="vela"><div class="fuego" id="fuego1"></div></div>
+                <div class="vela"><div class="fuego" id="fuego2"></div></div>
+                <div class="vela"><div class="fuego" id="fuego3"></div></div>
+                <div class="vela"><div class="fuego" id="fuego4"></div></div>
+                <div class="vela"><div class="fuego" id="fuego5"></div></div>
             </div>
             
-            <!-- 蛋糕装饰 -->
             <div class="cake-decoration">
-                <div class="cake-sparkle" style="top: 30%; left: 20%; animation-delay: 0s;"></div>
-                <div class="cake-sparkle" style="top: 40%; left: 80%; animation-delay: 0.5s;"></div>
-                <div class="cake-sparkle" style="top: 60%; left: 30%; animation-delay: 1s;"></div>
-                <div class="cake-sparkle" style="top: 20%; left: 70%; animation-delay: 1.5s;"></div>
-                <div class="cake-sparkle" style="top: 70%; left: 60%; animation-delay: 0.8s;"></div>
+                <div class="cake-sparkle" style="top:20%; left:8%;"></div>
+                <div class="cake-sparkle" style="top:40%; left:88%;"></div>
+                <div class="cake-sparkle" style="top:60%; left:20%;"></div>
+                <div class="cake-sparkle" style="top:30%; left:78%;"></div>
+                <div class="cake-sparkle" style="top:70%; left:50%;"></div>
+                <div class="cake-sparkle" style="top:45%; left:35%;"></div>
             </div>
             
-            <!-- 许愿文字 -->
-            <div class="wish-text" id="wishText">🎋 许下你的生日愿望吧～</div>
+            <div class="wish-text" id="wishText">🎋 许个愿吧～</div>
         </div>
         
-        <!-- 蛋糕页功能按钮 -->
         <div class="cake-btn-group">
-            <button class="cake-func-btn" onclick="blowCandle()">吹灭蜡烛 🎈</button>
-            <button class="cake-func-btn" onclick="makeWish()">许下愿望 ✨</button>
-            <button class="cake-func-btn" onclick="changeCakeStyle()">切换蛋糕 🎂</button>
-            <button class="cake-func-btn" onclick="createFireworks()">放烟花 🎆</button>
+            <button class="cake-func-btn" onclick="blowCandle()">🎈 吹蜡烛</button>
+            <button class="cake-func-btn" onclick="makeWish()">✨ 许愿</button>
+            <button class="cake-func-btn" onclick="changeCakeStyle()">🍰 换蛋糕</button>
+            <button class="cake-func-btn" onclick="createFireworks()">🎆 烟花</button>
         </div>
         
-        <button class="main-btn" onclick="goToMain()">开启惊喜 🎉</button>
+        <button class="main-btn" onclick="goToMain()">🎁 开启专属惊喜</button>
     </div>
 
     <!-- 主页面 -->
     <div id="mainPage">
-        <h1>🎂 专属范鑫雨的生日网站</h1>
-        <!-- 照片轮播 -->
+        <h1>✨ 范鑫雨 · 二十岁生日快乐 ✨</h1>
+        
         <div class="carousel-box">
-            <img class="carousel-img img1" src="1.jpg">
-            <img class="carousel-img img2" src="2.jpg">
-            <img class="carousel-img img3" src="3.jpg">
-            <img class="carousel-img img4" src="4.jpg">
-            <img class="carousel-img img5" src="5.jpg">
-            <img class="carousel-img img6" src="6.jpg">
-            <img class="carousel-img img7" src="7.jpg">
-            <img class="carousel-img img8" src="8.jpg">
-            <img class="carousel-img img9" src="9.jpg">
-            <img class="carousel-img img10" src="10.jpg">
+            <img class="carousel-img img1" src="1.jpg" alt="">
+            <img class="carousel-img img2" src="2.jpg" alt="">
+            <img class="carousel-img img3" src="3.jpg" alt="">
+            <img class="carousel-img img4" src="4.jpg" alt="">
+            <img class="carousel-img img5" src="5.jpg" alt="">
+            <img class="carousel-img img6" src="6.jpg" alt="">
+            <img class="carousel-img img7" src="7.jpg" alt="">
+            <img class="carousel-img img8" src="8.jpg" alt="">
+            <img class="carousel-img img9" src="9.jpg" alt="">
+            <img class="carousel-img img10" src="10.jpg" alt="">
             
-            <!-- 打字机文字 -->
             <div class="typewriter-container" id="typeContainer">
                 <div class="typewriter-text" id="typeText"></div>
             </div>
         </div>
 
-        <!-- 功能按钮 -->
         <div class="btn-group">
-            <button class="func-btn" onclick="openModal('birthday')">生日祝福</button>
-            <button class="func-btn" onclick="openModal('wish')">未来期许</button>
-            <button class="func-btn" onclick="restartCarousel()">重新播放</button>
-            <button class="func-btn" onclick="createFireworks()">🎆 放烟花</button>
+            <button class="func-btn" onclick="openModal('birthday')">💌 生日祝福</button>
+            <button class="func-btn" onclick="openModal('wish')">🌟 未来期许</button>
+            <button class="func-btn" onclick="restartCarousel()">🔄 重温照片</button>
+            <button class="func-btn" onclick="createFireworks()">🎇 浪漫烟花</button>
         </div>
 
-        <div class="footer-signature">愿你岁岁常欢愉，年年皆胜意</div>
+        <div class="footer-signature">💖 愿你永远做那个自由又耀眼的大魚 💖</div>
     </div>
 
-    <!-- 弹窗 -->
+    <!-- 弹窗（原话一字未改） -->
     <div class="modal" id="birthdayModal">
         <div class="modal-content">
             <h3 class="modal-title">🎂 范鑫雨生日快乐</h3>
@@ -1054,14 +1042,13 @@
                 愿你奔赴热爱，前程似锦<br>
                 愿你永远勇敢，永远被温柔以待<br>
                 愿你每一岁都奔走在自己的热爱里<br>
-		愿你永远做那个自由又耀眼的大魚
+                愿你永远做那个自由又耀眼的大魚
             </div>
             <button class="modal-close" onclick="closeModal()">收到期许</button>
         </div>
     </div>
 
     <script>
-        // 核心元素
         const bgmCake = document.getElementById('bgmCake');
         const bgmMain = document.getElementById('bgmMain');
         const blowSound = document.getElementById('blowSound');
@@ -1072,18 +1059,9 @@
         const velas = document.getElementById('velas');
         const cake = document.getElementById('cake');
         
-        // 特效定时器
-        let typeTimer;
-        let confettiInterval;
-        let heartsInterval;
-        let fireworksInterval;
-        let particlesInterval;
-        let sparklesInterval;
-        
-        // 蛋糕样式切换标记
+        let typeTimer, confettiInterval, heartsInterval, fireworksInterval, particlesInterval, sparklesInterval;
         let cakeStyle = 1;
         
-        // 生日文字
         const birthdayWords = `
 大魚，祝你20岁生日快乐！真的特别开心能成为你的朋友，也很荣幸可以陪你一起度过这个重要的生日。
 你身上有太多闪光点，聪明、帅气、优秀，这些大家都看在眼里。但我最欣赏、最心疼的，还是你的坚强与善良——很多不开心你都习惯自己扛、自己消化，总怕麻烦别人。
@@ -1093,230 +1071,149 @@
 PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一次做网站可能不太完美，希望你能喜欢——Prime
         `;
 
-        // 粒子背景特效
-function createParticles() {
-    clearInterval(particlesInterval);
-    const particlesContainer = document.getElementById('particles');
-    particlesInterval = setInterval(() => {
-        const particle = document.createElement('div');
-        const size = Math.random() * 8 + 2;
-        const color1 = 255;
-        const color2 = 107 + Math.random() * 50;
-        const color3 = 157 + Math.random() * 50;
-        
-        particle.style.position = 'absolute';
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        // 新增渐变背景
-        particle.style.background = `radial-gradient(circle, rgb(${color1}, ${color2}, ${color3}), rgb(${color1}, ${color2-20}, ${color3-20}))`;
-        particle.style.borderRadius = '50%';
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        particle.style.opacity = Math.random() * 0.7 + 0.3;
-        // 新增轨迹动画
-        particle.style.transition = `all ${Math.random() * 15 + 5}s cubic-bezier(0.2, 0.8, 0.2, 1)`;
-        // 新增光晕
-        particle.style.boxShadow = `0 0 ${size*2}px rgba(${color1}, ${color2}, ${color3}, 0.4)`;
-        
-        particlesContainer.appendChild(particle);
-        
-        setTimeout(() => {
-            // 随机轨迹，而非简单位移
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = `${Math.random() * 100}%`;
-            particle.style.opacity = '0';
-            particle.style.transform = `scale(${Math.random() * 2 + 0.5}) rotate(${Math.random() * 360}deg)`;
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 1500);
-        }, 100);
-    }, 200); // 提高粒子生成频率
-}
-        // 彩带特效
-        function createConfetti() {
-            document.getElementById('confetti').style.display = 'block';
-            clearInterval(confettiInterval);
-            
-            confettiInterval = setInterval(() => {
-                const confetti = document.createElement('div');
-                const colors = ['#ff6b9d', '#ffc107', '#4CAF50', '#2196F3', '#9C27B0', '#ff8a65'];
-                const size = Math.random() * 12 + 6;
-                
-                confetti.style.position = 'absolute';
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size * (Math.random() > 0.5 ? 1 : 3)}px`;
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                confetti.style.left = `${Math.random() * 100}%`;
-                confetti.style.top = '-20px';
-                confetti.style.opacity = Math.random() * 0.9 + 0.1;
-                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                confetti.style.transition = `all ${Math.random() * 5 + 3}s linear`;
-                
-                document.getElementById('confetti').appendChild(confetti);
-                
-                setTimeout(() => {
-                    confetti.style.top = '100vh';
-                    confetti.style.left = `${Math.random() * 100}%`;
-                    confetti.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        confetti.remove();
-                    }, 6000);
-                }, 100);
-            }, 80);
-        }
-
-        // 爱心特效
-        function createHearts() {
-            document.getElementById('hearts').style.display = 'block';
-            clearInterval(heartsInterval);
-            
-            heartsInterval = setInterval(() => {
-                const heart = document.createElement('div');
-                const size = Math.random() * 20 + 12;
-                
-                heart.style.position = 'absolute';
-                heart.style.fontSize = `${size}px`;
-                heart.style.color = `rgb(${255}, ${107 + Math.random() * 30}, ${157 + Math.random() * 30})`;
-                heart.style.opacity = Math.random() * 0.9 + 0.1;
-                heart.style.left = `${Math.random() * 100}%`;
-                heart.style.bottom = '-20px';
-                heart.style.transition = `all ${Math.random() * 8 + 4}s ease-in-out`;
-                heart.textContent = Math.random() > 0.7 ? '💖' : '❤️';
-                
-                document.getElementById('hearts').appendChild(heart);
-                
-                setTimeout(() => {
-                    heart.style.bottom = '100vh';
-                    heart.style.left = `${Math.random() * 100}%`;
-                    heart.style.opacity = '0';
-                    heart.style.transform = `rotate(${Math.random() * 1080}deg) scale(${Math.random() * 1.5 + 0.5})`;
-                    
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 9000);
-                }, 100);
-            }, 250);
-        }
-
-        // 烟花特效
-        function createFireworks() {
-            document.getElementById('fireworks').style.display = 'block';
-            clearInterval(fireworksInterval);
-            
-            function launchFirework() {
-                const firework = document.createElement('div');
-                const xPos = Math.random() * 80 + 10;
-                const colors = ['#ff6b9d', '#ffc107', '#4CAF50', '#2196F3', '#9C27B0', '#ff8a65', '#ffffff'];
-                
-                firework.style.position = 'absolute';
-                firework.style.width = '6px';
-                firework.style.height = '25px';
-                firework.style.background = 'white';
-                firework.style.borderRadius = '3px';
-                firework.style.left = `${xPos}%`;
-                firework.style.bottom = '0';
-                firework.style.opacity = '1';
-                firework.style.transition = `all ${Math.random() * 2 + 1}s ease-in-out`;
-                
-                document.getElementById('fireworks').appendChild(firework);
-                
-                setTimeout(() => {
-                    firework.style.bottom = `${Math.random() * 40 + 30}%`;
-                    firework.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        firework.remove();
-                        
-                        for (let i = 0; i < 100; i++) {
-                            const particle = document.createElement('div');
-                            const angle = (i / 100) * Math.PI * 2;
-                            const distance = Math.random() * 80 + 50;
-                            const color = colors[Math.floor(Math.random() * colors.length)];
-                            
-                            particle.style.position = 'absolute';
-                            particle.style.width = `${Math.random() * 8 + 4}px`;
-                            particle.style.height = `${Math.random() * 8 + 4}px`;
-                            particle.style.background = color;
-                            particle.style.borderRadius = '50%';
-                            particle.style.left = `${xPos}%`;
-                            particle.style.bottom = `${Math.random() * 40 + 30}%`;
-                            particle.style.opacity = '1';
-                            particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${-Math.sin(angle) * distance}px)`;
-                            particle.style.transition = `all ${Math.random() * 2 + 1}s ease-out`;
-                            particle.style.boxShadow = `0 0 15px ${color}`;
-                            
-                            document.getElementById('fireworks').appendChild(particle);
-                            
-                            setTimeout(() => {
-                                particle.style.opacity = '0';
-                                setTimeout(() => {
-                                    particle.remove();
-                                }, 2000);
-                            }, 100);
-                        }
-                    }, 100);
-                }, 100);
-            }
-            
-            launchFirework();
-            fireworksInterval = setInterval(launchFirework, 1500);
-            
-            setTimeout(() => {
-                clearInterval(fireworksInterval);
-                setTimeout(() => {
-                    document.getElementById('fireworks').style.display = 'none';
-                    document.getElementById('fireworks').innerHTML = '';
-                }, 3000);
-            }, 8000);
-        }
-
-        // 停止所有特效
-        function stopAllEffects() {
-            clearInterval(confettiInterval);
-            clearInterval(heartsInterval);
-            clearInterval(fireworksInterval);
+        function createParticles() {
             clearInterval(particlesInterval);
-            clearInterval(sparklesInterval);
-            
-            document.getElementById('confetti').style.display = 'none';
-            document.getElementById('hearts').style.display = 'none';
-            document.getElementById('fireworks').style.display = 'none';
-            document.getElementById('sparkles').style.display = 'none';
-            
-            document.getElementById('confetti').innerHTML = '';
-            document.getElementById('hearts').innerHTML = '';
-            document.getElementById('fireworks').innerHTML = '';
-            document.getElementById('sparkles').innerHTML = '';
-            document.getElementById('particles').innerHTML = '';
-            
-            bgmCake.pause();
-            bgmMain.pause();
+            const container = document.getElementById('particles');
+            particlesInterval = setInterval(() => {
+                for (let i = 0; i < 2; i++) {
+                    const p = document.createElement('div');
+                    const size = Math.random() * 10 + 3;
+                    const hue = 340 + Math.random() * 40;
+                    p.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        background: radial-gradient(circle, hsl(${hue}, 85%, 80%), hsl(${hue}, 85%, 60%));
+                        border-radius: 50%;
+                        left: ${Math.random() * 100}%;
+                        top: ${Math.random() * 100}%;
+                        opacity: ${Math.random() * 0.5 + 0.2};
+                        box-shadow: 0 0 ${size * 3}px hsl(${hue}, 85%, 70%);
+                        transition: all ${Math.random() * 18 + 12}s linear;
+                        pointer-events: none;
+                    `;
+                    container.appendChild(p);
+                    setTimeout(() => {
+                        p.style.left = Math.random() * 100 + '%';
+                        p.style.top = Math.random() * 100 + '%';
+                        p.style.opacity = '0.1';
+                    }, 100);
+                    setTimeout(() => p.remove(), 20000);
+                }
+            }, 500);
         }
 
-        // 播放音乐（音量渐变）
-        function playMusic(audioElement) {
-            audioElement.volume = 0;
-            audioElement.play().then(() => {
-                let volume = 0;
-                const volumeTimer = setInterval(() => {
-                    volume += 0.05;
-                    audioElement.volume = Math.min(volume, 1);
-                    if (audioElement.volume >= 1) clearInterval(volumeTimer);
-                }, 100);
-            }).catch(() => {
-                alert('请手动点击页面任意位置开启音乐🎵');
-            });
+        function createConfetti(duration = 5000) {
+            const layer = document.getElementById('confetti');
+            layer.style.display = 'block';
+            layer.innerHTML = '';
+            const colors = ['#ff8daf', '#ffbc7a', '#ffe07a', '#b2e0b2', '#b2b2ff', '#ffb2d9'];
+            let count = 0;
+            const interval = setInterval(() => {
+                if (count++ > 50) {
+                    clearInterval(interval);
+                    setTimeout(() => { layer.style.display = 'none'; layer.innerHTML = ''; }, 2000);
+                    return;
+                }
+                const c = document.createElement('div');
+                const size = Math.random() * 15 + 6;
+                c.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size * (Math.random() > 0.5 ? 2 : 1)}px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    left: ${Math.random() * 100}%;
+                    top: -30px;
+                    opacity: ${Math.random() * 0.9 + 0.1};
+                    border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+                    transform: rotate(${Math.random() * 360}deg);
+                    transition: top ${Math.random() * 5 + 4}s linear, left 4s;
+                    pointer-events: none;
+                `;
+                layer.appendChild(c);
+                setTimeout(() => { c.style.top = '110%'; c.style.left = Math.random() * 80 + 10 + '%'; }, 20);
+                setTimeout(() => c.remove(), 8000);
+            }, 80);
+            confettiInterval = interval;
         }
 
-        // 账号密码验证
-        function checkPwd() {
+        function createHearts() {
+            const layer = document.getElementById('hearts');
+            layer.style.display = 'block';
+            layer.innerHTML = '';
+            const interval = setInterval(() => {
+                const h = document.createElement('div');
+                h.innerText = Math.random() > 0.5 ? '💖' : '❤️';
+                h.style.cssText = `
+                    position: absolute;
+                    font-size: ${Math.random() * 25 + 18}px;
+                    left: ${Math.random() * 100}%;
+                    bottom: -20px;
+                    color: #ff98b9;
+                    filter: drop-shadow(0 0 12px #ffa8c5);
+                    opacity: 0.9;
+                    transition: bottom ${Math.random() * 7 + 5}s linear, left 4s;
+                    pointer-events: none;
+                `;
+                layer.appendChild(h);
+                setTimeout(() => { h.style.bottom = '110%'; h.style.left = Math.random() * 100 + '%'; }, 50);
+                setTimeout(() => h.remove(), 10000);
+            }, 350);
+            heartsInterval = interval;
+        }
+
+        window.createFireworks = function() {
+            const layer = document.getElementById('fireworks');
+            layer.style.display = 'block';
+            layer.innerHTML = '';
+            const colors = ['#ff7ca8', '#ffb077', '#ffdb77', '#a0d8a0', '#a0a0ff', '#ffb2d9'];
+            
+            for (let burst = 0; burst < 6; burst++) {
+                setTimeout(() => {
+                    const x = Math.random() * 70 + 15;
+                    const y = Math.random() * 30 + 40;
+                    for (let s = 0; s < 24; s++) {
+                        const p = document.createElement('div');
+                        const angle = (s / 24) * Math.PI * 2;
+                        const dist = Math.random() * 80 + 35;
+                        p.style.cssText = `
+                            position: absolute;
+                            width: 7px;
+                            height: 7px;
+                            background: ${colors[Math.floor(Math.random() * colors.length)]};
+                            border-radius: 50%;
+                            left: ${x}%;
+                            top: ${y}%;
+                            box-shadow: 0 0 20px currentColor;
+                            transition: all 1.5s cubic-bezier(0.2,0.8,0.4,1);
+                            pointer-events: none;
+                        `;
+                        layer.appendChild(p);
+                        setTimeout(() => {
+                            p.style.transform = `translate(${Math.cos(angle) * dist}px, ${-Math.sin(angle) * dist}px)`;
+                            p.style.opacity = '0';
+                        }, 20);
+                        setTimeout(() => p.remove(), 1800);
+                    }
+                }, burst * 300);
+            }
+            setTimeout(() => { layer.style.display = 'none'; layer.innerHTML = ''; }, 5000);
+        };
+
+        function playMusic(audio) {
+            audio.volume = 0;
+            audio.play().then(() => {
+                let vol = 0;
+                const timer = setInterval(() => {
+                    if (audio.volume < 1) audio.volume = Math.min(1, vol += 0.05);
+                    else clearInterval(timer);
+                }, 80);
+            }).catch(() => {});
+        }
+
+        window.checkPwd = function() {
             const user = document.getElementById('userInput').value.trim();
             const pwd = document.getElementById('pwdInput').value.trim();
-            const errorTip = document.getElementById('errorTip');
-            
             if (user === 'fanxinyu' && pwd === '20060329') {
                 document.getElementById('pwdPage').style.display = 'none';
                 document.getElementById('cakePage').style.display = 'flex';
@@ -1325,252 +1222,201 @@ function createParticles() {
                 createHearts();
                 createParticles();
             } else {
-                errorTip.style.display = 'block';
-                setTimeout(() => errorTip.style.display = 'none', 3000);
+                document.getElementById('errorTip').style.display = 'block';
+                setTimeout(() => document.getElementById('errorTip').style.display = 'none', 2000);
             }
+        };
+
+        // 创建烟雾特效
+        function createSmoke(x, y) {
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke-effect';
+            smoke.style.left = x + '%';
+            smoke.style.top = y + '%';
+            document.getElementById('cakePage').appendChild(smoke);
+            setTimeout(() => smoke.remove(), 2000);
         }
 
-        // 吹蜡烛功能
-        function blowCandle() {
-            // 播放吹蜡烛音效
+        window.blowCandle = function() {
             blowSound.currentTime = 0;
             blowSound.play();
             
-            // 熄灭所有火焰
-            document.getElementById('fuego1').classList.add('blown');
-            document.getElementById('fuego2').classList.add('blown');
-            document.getElementById('fuego3').classList.add('blown');
-            document.getElementById('fuego4').classList.add('blown');
-            document.getElementById('fuego5').classList.add('blown');
+            // 获取所有蜡烛位置并添加烟雾
+            const velas = document.querySelectorAll('.vela');
+            velas.forEach((vela, index) => {
+                const rect = vela.getBoundingClientRect();
+                const x = (rect.left / window.innerWidth) * 100;
+                const y = (rect.top / window.innerHeight) * 100;
+                setTimeout(() => {
+                    createSmoke(x, y);
+                }, index * 100);
+            });
             
-            // 蜡烛样式变化
+            document.querySelectorAll('.fuego').forEach(f => f.classList.add('blown'));
             velas.classList.add('blown');
-            
-            // 显示许愿提示
-            setTimeout(() => {
-                wishText.classList.add('show');
-            }, 1000);
-            
-            // 5秒后隐藏许愿提示
-            setTimeout(() => {
-                wishText.classList.remove('show');
-            }, 6000);
-        }
+            wishText.textContent = '🎋 愿望会实现的！';
+            wishText.classList.add('show');
+            setTimeout(() => wishText.classList.remove('show'), 4000);
+        };
 
-        // 许愿功能
-        function makeWish() {
-            // 播放许愿音效
+        window.makeWish = function() {
             wishSound.currentTime = 0;
             wishSound.play();
-            
-            // 显示许愿文字
-            wishText.textContent = '🎋 愿所有美好如期而至～';
+            wishText.textContent = '✨ 愿所有美好如期而至';
             wishText.classList.add('show');
             
-            // 创建闪烁光点特效
-            document.getElementById('sparkles').style.display = 'block';
-            clearInterval(sparklesInterval);
-            
-            sparklesInterval = setInterval(() => {
-                const sparkle = document.createElement('div');
-                const size = Math.random() * 15 + 5;
-                
-                sparkle.style.position = 'absolute';
-                sparkle.style.width = `${size}px`;
-                sparkle.style.height = `${size}px`;
-                sparkle.style.background = '#fff';
-                sparkle.style.borderRadius = '50%';
-                sparkle.style.left = `${Math.random() * 100}%`;
-                sparkle.style.top = `${Math.random() * 100}%`;
-                sparkle.style.opacity = Math.random() * 0.8 + 0.2;
-                sparkle.style.boxShadow = '0 0 20px #fff, 0 0 30px #ff6b9d';
-                sparkle.style.transition = `all ${Math.random() * 3 + 1}s ease`;
-                
-                document.getElementById('sparkles').appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.style.opacity = '0';
-                    sparkle.style.transform = `scale(2)`;
-                    
-                    setTimeout(() => {
-                        sparkle.remove();
-                    }, 3000);
-                }, 100);
-            }, 200);
-            
-            // 3秒后隐藏许愿文字，停止光点特效
-            setTimeout(() => {
-                wishText.classList.remove('show');
-                clearInterval(sparklesInterval);
-                
-                setTimeout(() => {
-                    document.getElementById('sparkles').style.display = 'none';
-                    document.getElementById('sparkles').innerHTML = '';
-                }, 3000);
-            }, 3000);
-        }
-
-        // 切换蛋糕样式
-        function changeCakeStyle() {
-            if (cakeStyle === 1) {
-                // 样式2：黄色系蛋糕
-                cake.innerHTML = `
-                    <!-- 底座 -->
-                    <path fill="#8b5a2b" d="M170,390 C120,400 80,400 30,390 C26,388 26,372 30,370 C80,380 120,380 170,370 C174,372 174,388 170,390Z"></path>
-                    <!-- 第一层蛋糕 -->
-                    <path fill="#ffec99" d="M160,320 C110,330 90,330 40,320 C36,318 36,302 40,300 C90,310 110,310 160,300 C164,302 164,318 160,320Z"></path>
-                    <!-- 第二层蛋糕 -->
-                    <path fill="#fff3bf" d="M150,250 C100,260 100,260 50,250 C46,248 46,232 50,230 C100,240 100,240 150,230 C154,232 154,248 150,250Z"></path>
-                    <!-- 第三层蛋糕 -->
-                    <path fill="#fff9e6" d="M140,180 C90,190 110,190 60,180 C56,178 56,162 60,160 C110,170 90,170 140,160 C144,162 144,178 140,180Z"></path>
-                    <!-- 顶部奶油 -->
-                    <path fill="#ffffff" d="M130,120 C80,130 120,130 70,120 C66,118 66,102 70,100 C120,110 80,110 130,100 C134,102 134,118 130,120Z"></path>
-                    <!-- 顶部装饰 -->
-                    <circle cx="100" cy="95" r="10" fill="#ff6b9d"></circle>
-                    <circle cx="80" cy="110" r="8" fill="#ff9a76"></circle>
-                    <circle cx="120" cy="110" r="8" fill="#ffc107"></circle>
+            const layer = document.getElementById('sparkles');
+            layer.style.display = 'block';
+            let sc = setInterval(() => {
+                const s = document.createElement('div');
+                s.style.cssText = `
+                    position: absolute;
+                    width: 12px;
+                    height: 12px;
+                    background: #fffdeb;
+                    border-radius: 50%;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    box-shadow: 0 0 30px #ffb8d0, 0 0 50px #ff8fb0;
+                    opacity: 0.9;
+                    transition: 1.2s;
+                    pointer-events: none;
                 `;
-                cake.classList.add('cake-style-2');
+                layer.appendChild(s);
+                setTimeout(() => { s.style.opacity = '0'; s.style.transform = 'scale(3)'; }, 30);
+                setTimeout(() => s.remove(), 1300);
+            }, 150);
+            
+            setTimeout(() => {
+                clearInterval(sc);
+                layer.style.display = 'none';
+                wishText.classList.remove('show');
+            }, 2500);
+        };
+
+        window.changeCakeStyle = function() {
+            if (cakeStyle === 1) {
+                cake.innerHTML = `
+                    <path fill="#9d6b4a" d="M170,390 C120,400 80,400 30,390 C26,388 26,372 30,370 C80,380 120,380 170,370 C174,372 174,388 170,390Z"/>
+                    <path fill="#ffe68f" d="M160,320 C110,330 90,330 40,320 C36,318 36,302 40,300 C90,310 110,310 160,300 C164,302 164,318 160,320Z"/>
+                    <path fill="#ffedb0" d="M150,250 C100,260 100,260 50,250 C46,248 46,232 50,230 C100,240 100,240 150,230 C154,232 154,248 150,250Z"/>
+                    <path fill="#fff5d0" d="M140,180 C90,190 110,190 60,180 C56,178 56,162 60,160 C110,170 90,170 140,160 C144,162 144,178 140,180Z"/>
+                    <path fill="#ffffff" d="M130,120 C80,130 120,130 70,120 C66,118 66,102 70,100 C120,110 80,110 130,100 C134,102 134,118 130,120Z"/>
+                    <circle cx="100" cy="95" r="12" fill="#ff80ab"/>
+                    <circle cx="76" cy="110" r="9" fill="#ffaa7a"/>
+                    <circle cx="124" cy="110" r="9" fill="#ffdb7c"/>
+                    <circle cx="60" cy="140" r="5" fill="#ffb08a"/>
+                    <circle cx="140" cy="140" r="5" fill="#ffb08a"/>
+                    <circle cx="85" cy="260" r="5" fill="#ffaa7a"/>
+                    <circle cx="115" cy="260" r="5" fill="#ffaa7a"/>
+                `;
                 cakeStyle = 2;
             } else {
-                // 样式1：粉色系蛋糕（默认）
                 cake.innerHTML = `
-                    <!-- 底座 -->
-                    <path fill="#a88679" d="M170,390 C120,400 80,400 30,390 C26,388 26,372 30,370 C80,380 120,380 170,370 C174,372 174,388 170,390Z"></path>
-                    <!-- 第一层蛋糕 -->
-                    <path fill="#ffccd5" d="M160,320 C110,330 90,330 40,320 C36,318 36,302 40,300 C90,310 110,310 160,300 C164,302 164,318 160,320Z"></path>
-                    <!-- 第二层蛋糕 -->
-                    <path fill="#ffd6dc" d="M150,250 C100,260 100,260 50,250 C46,248 46,232 50,230 C100,240 100,240 150,230 C154,232 154,248 150,250Z"></path>
-                    <!-- 第三层蛋糕 -->
-                    <path fill="#ffe0e5" d="M140,180 C90,190 110,190 60,180 C56,178 56,162 60,160 C110,170 90,170 140,160 C144,162 144,178 140,180Z"></path>
-                    <!-- 顶部奶油 -->
-                    <path fill="#fefae9" d="M130,120 C80,130 120,130 70,120 C66,118 66,102 70,100 C120,110 80,110 130,100 C134,102 134,118 130,120Z"></path>
-                    <!-- 顶部装饰 -->
-                    <circle cx="100" cy="95" r="10" fill="#ffc107"></circle>
-                    <circle cx="80" cy="110" r="8" fill="#ff6b9d"></circle>
-                    <circle cx="120" cy="110" r="8" fill="#ff9a76"></circle>
+                    <path fill="#b28b7d" d="M170,390 C120,400 80,400 30,390 C26,388 26,372 30,370 C80,380 120,380 170,370 C174,372 174,388 170,390Z"/>
+                    <path fill="#ffb7c5" d="M160,320 C110,330 90,330 40,320 C36,318 36,302 40,300 C90,310 110,310 160,300 C164,302 164,318 160,320Z"/>
+                    <path fill="#ffc2d0" d="M150,250 C100,260 100,260 50,250 C46,248 46,232 50,230 C100,240 100,240 150,230 C154,232 154,248 150,250Z"/>
+                    <path fill="#ffcdda" d="M140,180 C90,190 110,190 60,180 C56,178 56,162 60,160 C110,170 90,170 140,160 C144,162 144,178 140,180Z"/>
+                    <path fill="#fff2e0" d="M130,120 C80,130 120,130 70,120 C66,118 66,102 70,100 C120,110 80,110 130,100 C134,102 134,118 130,120Z"/>
+                    <circle cx="100" cy="95" r="12" fill="#ffdb7c"/>
+                    <circle cx="76" cy="110" r="9" fill="#ff8da1"/>
+                    <circle cx="124" cy="110" r="9" fill="#ffaa7a"/>
+                    <circle cx="60" cy="140" r="5" fill="#ffb08a"/>
+                    <circle cx="140" cy="140" r="5" fill="#ffb08a"/>
+                    <circle cx="85" cy="260" r="5" fill="#ff8da1"/>
+                    <circle cx="115" cy="260" r="5" fill="#ff8da1"/>
                 `;
-                cake.classList.remove('cake-style-2');
                 cakeStyle = 1;
             }
-            
-            // 重新点亮蜡烛（如果之前熄灭了）
-            document.getElementById('fuego1').classList.remove('blown');
-            document.getElementById('fuego2').classList.remove('blown');
-            document.getElementById('fuego3').classList.remove('blown');
-            document.getElementById('fuego4').classList.remove('blown');
-            document.getElementById('fuego5').classList.remove('blown');
+            document.querySelectorAll('.fuego').forEach(f => f.classList.remove('blown'));
             velas.classList.remove('blown');
-        }
+        };
 
-        // 跳转到主页面
-        function goToMain() {
+        window.goToMain = function() {
             document.getElementById('cakePage').style.display = 'none';
             document.getElementById('mainPage').style.display = 'block';
             bgmCake.pause();
             playMusic(bgmMain);
             clearInterval(heartsInterval);
-            createConfetti();
-            createBirthdayText(); // 新增这一行
+            createConfetti(5000);
+            
+            setInterval(() => {
+                const span = document.createElement('div');
+                span.className = 'birthday-float';
+                span.innerText = ['20岁快乐 ✨','平安顺遂 🎈','万事胜意 🎂','永远开心 ❤️','前程似锦 🌟'][Math.floor(Math.random() * 5)];
+                span.style.left = Math.random() * 70 + 15 + '%';
+                document.body.appendChild(span);
+                setTimeout(() => span.remove(), 8000);
+            }, 2200);
+            
             setTimeout(() => {
                 typeContainer.classList.add('show');
                 typeWrite(birthdayWords);
             }, 40000);
-        }
+        };
 
-        // 打字机效果
         function typeWrite(str, i = 0) {
             clearTimeout(typeTimer);
             typeText.textContent = '';
-            const cleanStr = str.trim();
+            typeText.style.textAlign = 'center';
             
+            const cleanStr = str.trim();
             function run() {
                 if (i < cleanStr.length) {
-                    const char = cleanStr.charAt(i);
-                    typeText.textContent += char;
+                    typeText.textContent += cleanStr[i];
                     i++;
-                    const delay = (char === '\n' || char === '  ') ? 300 : 
-                                  (char === '，' || char === '。' || char === '！') ? 150 : 80;
-                    typeTimer = setTimeout(run, delay);
+                    const char = cleanStr[i-1];
+                    let delay = 60;
+                    if (char === '\n') delay = 250;
+                    else if (char === '，' || char === '。' || char === '！' || char === '？') delay = 150;
+                    else if (char === ' ') delay = 30;
+                    
+                    typeTimer = setTimeout(() => run(), delay);
+                    
+                    setTimeout(() => {
+                        typeText.scrollTop = typeText.scrollHeight;
+                    }, 10);
                 }
             }
             run();
         }
 
-        // 重新播放轮播
-        function restartCarousel() {
+        window.restartCarousel = function() {
             typeContainer.classList.remove('show');
             clearTimeout(typeTimer);
             typeText.textContent = '';
             
-            const carouselImages = document.querySelectorAll('.carousel-img');
-            carouselImages.forEach(img => {
+            document.querySelectorAll('.carousel-img').forEach(img => {
                 img.style.animation = 'none';
-                setTimeout(() => {
-                    img.style.animation = '';
-                }, 10);
+                setTimeout(() => img.style.animation = '', 10);
             });
             
             setTimeout(() => {
-                const delays = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36];
-                carouselImages.forEach((img, index) => {
-                    img.style.animationDelay = `${delays[index]}s`;
+                document.querySelectorAll('.carousel-img').forEach((img, idx) => {
+                    img.style.animationDelay = idx * 4 + 's';
                 });
-                
                 setTimeout(() => {
                     typeContainer.classList.add('show');
                     typeWrite(birthdayWords);
                 }, 40000);
             }, 100);
+        };
+
+        window.openModal = (id) => document.getElementById(id + 'Modal').classList.add('show');
+        window.closeModal = () => document.querySelectorAll('.modal').forEach(m => m.classList.remove('show'));
+
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('userInput').focus();
+            }, 300);
+            createParticles();
             
-            alert('图片轮播已重新开始！');
-        }
-
-        // 弹窗功能
-        function openModal(which) {
-            document.getElementById(which + 'Modal').classList.add('show');
-        }
-
-        function closeModal() {
-            document.querySelectorAll('.modal').forEach(m => {
-                m.classList.remove('show');
-                const content = m.querySelector('.modal-content');
-                content.style.animation = 'none';
-                setTimeout(() => {
-                    content.style.animation = '';
-                }, 10);
+            document.querySelectorAll('.form-input').forEach(input => {
+                input.addEventListener('click', function(e) {
+                    this.focus();
+                    e.stopPropagation();
+                });
             });
-        }
-
-        // 页面初始化
-window.onload = function() {
-    setTimeout(() => {
-        const userInput = document.getElementById('userInput');
-        userInput.focus();
-        userInput.addEventListener('click', function() {
-            this.focus();
-        });
-        document.getElementById('pwdInput').addEventListener('click', function() {
-            this.focus();
-        });
-    }, 500);
-    createParticles();
-};
-// 生日飘字
-function createBirthdayText() {
-    const texts = ['20岁快乐✨','平安顺遂🎈','万事胜意🎂','永远开心❤️','前程似锦🌟'];
-    setInterval(() => {
-        const text = document.createElement('div');
-        text.classList.add('birthday-text');
-        text.textContent = texts[Math.floor(Math.random() * texts.length)];
-        text.style.left = `${Math.random() * 80 + 10}%`;
-        document.body.appendChild(text);
-        setTimeout(()=>text.remove(), 8000);
-    }, 2000);
-}
-        // 页面卸载清理
-        window.onbeforeunload = function() {
-            stopAllEffects();
         };
     </script>
 </body>
