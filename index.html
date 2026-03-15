@@ -338,6 +338,12 @@
             display: block;
             animation: majesticFloat 3.2s infinite alternate ease-in-out;
             filter: brightness(1.02) contrast(1.02);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #cake:active {
+            transform: scale(0.95);
         }
         
         @keyframes majesticFloat {
@@ -536,6 +542,121 @@
             box-shadow: 0 25px 45px #ffa5c0;
         }
         
+        .cake-enhanced-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 15px 0 10px;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .cake-enhanced-btn {
+            padding: 14px 25px;
+            font-size: 18px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ffbfd5;
+            border-radius: 50px;
+            color: #b34b70;
+            box-shadow: 0 10px 20px rgba(255, 100, 150, 0.2);
+            cursor: pointer;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1 1 auto;
+            min-width: 140px;
+            justify-content: center;
+        }
+        
+        .cake-enhanced-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px #ff9eb5;
+            background: white;
+        }
+        
+        .cake-enhanced-btn:active {
+            transform: scale(0.97);
+        }
+        
+        .cake-enhanced-btn i {
+            font-size: 20px;
+            animation: iconPulse 2s infinite;
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .music-visualizer {
+            width: 100%;
+            max-width: 350px;
+            height: 50px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        .visualizer-bar {
+            width: 10px;
+            height: 20px;
+            background: linear-gradient(180deg, #ffb0c0, #ff6b9d);
+            border-radius: 5px;
+            animation: visualizerPulse 1s ease infinite;
+            transform-origin: bottom;
+        }
+        
+        .visualizer-bar:nth-child(1) { animation-delay: 0s; height: 25px; }
+        .visualizer-bar:nth-child(2) { animation-delay: 0.1s; height: 35px; }
+        .visualizer-bar:nth-child(3) { animation-delay: 0.2s; height: 30px; }
+        .visualizer-bar:nth-child(4) { animation-delay: 0.3s; height: 40px; }
+        .visualizer-bar:nth-child(5) { animation-delay: 0.4s; height: 25px; }
+        .visualizer-bar:nth-child(6) { animation-delay: 0.5s; height: 35px; }
+        .visualizer-bar:nth-child(7) { animation-delay: 0.6s; height: 30px; }
+        .visualizer-bar:nth-child(8) { animation-delay: 0.7s; height: 20px; }
+        .visualizer-bar:nth-child(9) { animation-delay: 0.8s; height: 25px; }
+        .visualizer-bar:nth-child(10) { animation-delay: 0.9s; height: 30px; }
+        
+        @keyframes visualizerPulse {
+            0%, 100% { transform: scaleY(1); opacity: 0.7; }
+            50% { transform: scaleY(1.8); opacity: 1; }
+        }
+        
+        .egg-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 14px;
+            color: #ffb0c0;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 5px 12px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid white;
+            z-index: 50;
+            animation: eggHintGlow 2s infinite alternate;
+        }
+        
+        @keyframes eggHintGlow {
+            from { box-shadow: 0 0 5px #ffb0c0; }
+            to { box-shadow: 0 0 15px #ff6b9d; }
+        }
+        
+        .egg-hint:hover {
+            background: white;
+            color: #ff6b9d;
+            transform: scale(1.05);
+        }
+
         .cake-btn-group {
             display: flex;
             gap: 15px;
@@ -609,7 +730,7 @@
             transform: scale(0.97);
         }
 
-        /* ===== 回忆之路页面（12张照片）===== */
+        /* ===== 回忆之路页面 ===== */
         #memoryPage {
             display: none;
             flex-direction: column;
@@ -656,7 +777,76 @@
             text-shadow: 0 2px 8px #ffe2ed;
         }
         
-        /* 网格布局 - 卡片更大 */
+        .memory-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 600px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .memory-control-btn {
+            padding: 12px 25px;
+            font-size: 18px;
+            background: white;
+            border: 2px solid #ffbfd0;
+            border-radius: 40px;
+            color: #b34b70;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(255, 100, 150, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .memory-control-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px #ff9eb5;
+            background: #ffecf2;
+        }
+        
+        .memory-control-btn.active {
+            background: #ffb0c0;
+            color: white;
+            border-color: #ff8da1;
+        }
+        
+        .memory-stats {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 40px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #b34b70;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 1px solid white;
+            animation: statsPulse 3s infinite alternate;
+        }
+        
+        @keyframes statsPulse {
+            from { box-shadow: 0 0 10px rgba(255, 100, 150, 0.2); }
+            to { box-shadow: 0 0 20px rgba(255, 100, 150, 0.4); }
+        }
+        
+        .memory-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .memory-stat-item span {
+            font-weight: 700;
+            color: #d43b70;
+        }
+        
         .memory-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -664,11 +854,32 @@
             width: 100%;
             max-width: 600px;
             margin: 5px auto 20px;
-            max-height: 70vh;
+            max-height: 60vh;
             overflow-y: auto;
             padding: 15px 20px;
             scrollbar-width: thin;
             scrollbar-color: #ff99bb #ffe2ed;
+            transition: all 0.3s ease;
+        }
+        
+        .memory-grid.grid-view {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .memory-grid.grid-view .memory-card {
+            padding: 15px;
+        }
+        
+        .memory-grid.grid-view .memory-card-photo {
+            height: 150px;
+        }
+        
+        .memory-grid.grid-view .memory-card-year {
+            font-size: 18px;
+            margin-bottom: 10px;
+            padding-left: 10px;
         }
         
         .memory-grid::-webkit-scrollbar {
@@ -689,7 +900,6 @@
             background: #ff7ca8;
         }
         
-        /* 卡片放大 */
         .memory-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(15px);
@@ -703,6 +913,17 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+        }
+        
+        .memory-card.favorite {
+            border: 4px solid #ffd966;
+            box-shadow: 0 0 30px #ffd966;
+            animation: favoriteGlow 2s infinite alternate;
+        }
+        
+        @keyframes favoriteGlow {
+            from { box-shadow: 0 0 20px #ffd966; }
+            to { box-shadow: 0 0 40px #ffd966; }
         }
         
         .memory-card::before {
@@ -725,6 +946,10 @@
         .memory-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 35px 50px #ff9eb5;
+        }
+        
+        .memory-card:active {
+            transform: scale(0.98);
         }
         
         .memory-card:nth-child(1) { animation-delay: 0.05s; }
@@ -756,7 +981,6 @@
             text-shadow: 0 2px 8px #ffd0e0;
         }
         
-        /* 照片框超大 */
         .memory-card-photo {
             width: 100%;
             height: 320px;
@@ -770,6 +994,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .memory-card-photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 35px rgba(255, 100, 150, 0.5);
+        }
+        
+        .memory-card-photo:active {
+            transform: scale(0.98);
         }
         
         .memory-card-photo::after {
@@ -794,19 +1029,117 @@
             transform: scale(1.05);
         }
         
+        .photo-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            padding: 5px 12px;
+            font-size: 14px;
+            color: #ff6b9d;
+            backdrop-filter: blur(5px);
+            border: 1px solid white;
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+        
+        .memory-card-photo:hover .photo-hint {
+            opacity: 1;
+        }
+        
         .memory-card-desc {
-            font-size: 20px;
+            font-size: 18px;
             color: #784b5e;
-            line-height: 1.8;
+            line-height: 1.6;
             background: #fff5f9;
-            padding: 20px;
-            border-radius: 35px;
+            padding: 15px;
+            border-radius: 30px;
             box-shadow: inset 0 4px 15px #ffe2ed;
             border: 2px solid #ffd9e5;
             font-weight: 500;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 10px;
         }
         
-        /* 按钮放大 */
+        .memory-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 5px;
+        }
+        
+        .memory-tag {
+            background: #ffe2ed;
+            color: #b34b70;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 13px;
+            border: 1px solid white;
+            transition: 0.3s;
+        }
+        
+        .memory-tag:hover {
+            transform: scale(1.05);
+            background: #ffd0e0;
+        }
+        
+        .memory-tag i {
+            margin-right: 4px;
+        }
+        
+        .memory-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .memory-like {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #ff6b9d;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .memory-like:hover {
+            transform: scale(1.1);
+        }
+        
+        .memory-like.liked {
+            color: #ff3b6f;
+        }
+        
+        .memory-like.liked i {
+            animation: heartBeat 0.5s;
+        }
+        
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        
+        .memory-share {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            color: #b34b70;
+        }
+        
+        .memory-share:hover {
+            transform: scale(1.2) rotate(10deg);
+            color: #ff6b9d;
+        }
+        
         .memory-buttons {
             display: flex;
             gap: 20px;
@@ -961,46 +1294,73 @@
         .img9 { animation-delay: 32s; }
         .img10 { animation-delay: 36s; }
 
+        /* ===== 打字机容器 - 修复滚动和最后一行显示问题 ===== */
         .typewriter-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 85%;
-            max-width: 380px;
-            background: rgba(255, 245, 250, 0.97);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 30px 25px;
+            max-width: 400px;
+            max-height: 70vh; /* 限制最大高度 */
+            background: white;
             border-radius: 60px;
-            box-shadow: 0 30px 50px rgba(255, 100, 150, 0.35), 0 0 0 3px rgba(255, 255, 255, 0.8) inset;
-            border: 2px solid white;
+            box-shadow: 0 30px 50px rgba(255, 100, 150, 0.35);
+            border: 3px solid #ffd9e5;
             opacity: 0;
             transition: opacity 0.8s ease;
             z-index: 30;
-            pointer-events: none;
-            max-height: 70vh;
-            overflow-y: auto;
+            display: none;
+            overflow: hidden; /* 隐藏超出部分，内部滚动 */
+            flex-direction: column;
         }
         
         .typewriter-container.show {
             opacity: 1;
+            display: flex;
+        }
+        
+        /* 内部滚动区域 - 确保能滚动到底 */
+        .typewriter-inner {
+            padding: 25px 20px 30px 20px; /* 底部增加内边距，保证最后一行不被裁剪 */
+            overflow-y: auto; /* 允许滚动 */
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: #ff99bb #ffe2ed;
+            max-height: 100%; /* 填满父容器 */
+            box-sizing: border-box;
+            flex: 1; /* 占满剩余空间 */
+        }
+        
+        .typewriter-inner::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .typewriter-inner::-webkit-scrollbar-track {
+            background: #ffe2ed;
+            border-radius: 10px;
+        }
+        
+        .typewriter-inner::-webkit-scrollbar-thumb {
+            background: #ff99bb;
+            border-radius: 10px;
         }
         
         .typewriter-text {
-            font-size: 18px;
-            line-height: 1.9;
+            font-size: 17px;
+            line-height: 1.8;
             color: #b33b66;
-            text-align: center;
+            text-align: left;
             white-space: pre-wrap;
             word-wrap: break-word;
             border-right: 3px solid #ff88b0;
             animation: blink 1s step-end infinite;
-            padding: 8px;
-            max-height: 60vh;
-            overflow-y: auto;
             font-weight: 500;
-            text-shadow: 0 2px 8px #ffd0e0;
+            text-shadow: none;
+            width: 100%;
+            padding: 0;
+            margin: 0; /* 移除多余外边距 */
+            min-height: min-content; /* 确保高度自适应 */
         }
         
         @keyframes blink {
@@ -1079,7 +1439,7 @@
         
         .modal-content {
             background: white;
-            max-width: 420px;
+            max-width: 450px;
             width: 100%;
             padding: 40px 30px;
             border-radius: 60px;
@@ -1088,6 +1448,8 @@
             transform: scale(0.9);
             animation: modalPop 0.4s forwards;
             border: 2px solid #ffe2ed;
+            max-height: 80vh;
+            overflow-y: auto;
         }
         
         @keyframes modalPop {
@@ -1171,21 +1533,64 @@
             100% { transform: translateY(-100vh) translateX(0) rotate(60deg); opacity: 0; }
         }
 
+        .music-note {
+            position: fixed;
+            font-size: 20px;
+            animation: noteFloat 6s linear forwards;
+            z-index: 9996;
+            pointer-events: none;
+        }
+        
+        @keyframes noteFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .glow-effect {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: glowFade 1s ease-out forwards;
+            z-index: 9995;
+        }
+        
+        @keyframes glowFade {
+            0% { opacity: 0.8; transform: scale(0.5); }
+            100% { opacity: 0; transform: scale(2); }
+        }
+        
+        @keyframes sparkleFly {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-50px) rotate(180deg); opacity: 0; }
+        }
+
         @media (max-width: 480px) {
             .memory-card-photo { height: 280px; }
             .memory-header h1 { font-size: 36px; }
             .memory-header p { font-size: 18px; }
             .memory-card-year { font-size: 24px; }
-            .memory-card-desc { font-size: 18px; }
             .memory-btn { font-size: 20px; padding: 16px 0; }
+            .memory-controls { flex-wrap: wrap; }
+            .music-visualizer { max-width: 300px; }
+            .typewriter-text { font-size: 16px; }
+            .typewriter-inner { padding: 20px 15px 25px 15px; }
         }
         
         @media (max-width: 380px) {
             .memory-card-photo { height: 240px; }
             .cake-func-btn { padding: 10px 20px; font-size: 16px; }
             .func-btn { padding: 12px 22px; font-size: 16px; }
-            .typewriter-text { font-size: 16px; }
+            .typewriter-text { font-size: 15px; }
             .wish-text { font-size: 18px; padding: 10px 20px; }
+            .memory-grid.grid-view {
+                grid-template-columns: 1fr;
+            }
+            .cake-enhanced-btn { min-width: 120px; padding: 12px 20px; }
         }
     </style>
 </head>
@@ -1210,12 +1615,12 @@
             
             <div class="input-group">
                 <label>账号</label>
-                <input type="text" id="userInput" class="form-input" placeholder="">
+                <input type="text" id="userInput" class="form-input" placeholder="fxy">
             </div>
             
             <div class="input-group">
                 <label>密码</label>
-                <input type="password" id="pwdInput" class="form-input" placeholder="">
+                <input type="password" id="pwdInput" class="form-input" placeholder="20060329">
             </div>
             
             <button onclick="checkPwd()">💫 开启生日惊喜</button>
@@ -1228,8 +1633,21 @@
         <h1>🎂 祝范鑫雨生日快乐</h1>
         <p class="cake-subtitle">愿你岁岁常欢愉，年年皆胜意</p>
         
+        <div class="music-visualizer" id="musicVisualizer">
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+        </div>
+        
         <div class="cake-container">
-            <svg id="cake" viewBox="0 0 200 400">
+            <svg id="cake" viewBox="0 0 200 400" onclick="cakeClick(event)">
                 <path fill="#b28b7d" d="M170,390 C120,400 80,400 30,390 C26,388 26,372 30,370 C80,380 120,380 170,370 C174,372 174,388 170,390Z"/>
                 <path fill="#ffb7c5" d="M160,320 C110,330 90,330 40,320 C36,318 36,302 40,300 C90,310 110,310 160,300 C164,302 164,318 160,320Z"/>
                 <path fill="#ffc2d0" d="M150,250 C100,260 100,260 50,250 C46,248 46,232 50,230 C100,240 100,240 150,230 C154,232 154,248 150,250Z"/>
@@ -1245,11 +1663,11 @@
             </svg>
             
             <div class="velas" id="velas">
-                <div class="vela"><div class="fuego" id="fuego1"></div></div>
-                <div class="vela"><div class="fuego" id="fuego2"></div></div>
-                <div class="vela"><div class="fuego" id="fuego3"></div></div>
-                <div class="vela"><div class="fuego" id="fuego4"></div></div>
-                <div class="vela"><div class="fuego" id="fuego5"></div></div>
+                <div class="vela" onclick="candleClick(1, event)"><div class="fuego" id="fuego1"></div></div>
+                <div class="vela" onclick="candleClick(2, event)"><div class="fuego" id="fuego2"></div></div>
+                <div class="vela" onclick="candleClick(3, event)"><div class="fuego" id="fuego3"></div></div>
+                <div class="vela" onclick="candleClick(4, event)"><div class="fuego" id="fuego4"></div></div>
+                <div class="vela" onclick="candleClick(5, event)"><div class="fuego" id="fuego5"></div></div>
             </div>
             
             <div class="cake-decoration">
@@ -1264,6 +1682,18 @@
             <div class="wish-text" id="wishText">🎋 许个愿吧～</div>
         </div>
         
+        <div class="cake-enhanced-buttons">
+            <button class="cake-enhanced-btn" onclick="randomWish()">
+                <i>🎲</i> 随机祝福
+            </button>
+            <button class="cake-enhanced-btn" onclick="showCakeMessage()">
+                <i>💌</i> 蛋糕密语
+            </button>
+            <button class="cake-enhanced-btn" onclick="createSparkles()">
+                <i>✨</i> 撒星星
+            </button>
+        </div>
+        
         <div class="cake-btn-group">
             <button class="cake-func-btn" onclick="blowCandle()">🎈 吹蜡烛</button>
             <button class="cake-func-btn" onclick="makeWish()">✨ 许愿</button>
@@ -1272,123 +1702,48 @@
         </div>
         
         <button class="main-btn" onclick="goToMemory()">📸 开启回忆之路</button>
+        
+        <div class="egg-hint" onclick="showEgg()">
+            🥚 发现彩蛋
+        </div>
     </div>
 
-    <!-- 回忆之路页面（12张照片） -->
+    <!-- 回忆之路页面 -->
     <div id="memoryPage">
         <div class="memory-header">
             <h1>📸 我们的回忆之路</h1>
             <p>每一张照片，都是我们的故事</p>
         </div>
         
-        <div class="memory-grid">
-            <!-- 照片1 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第1站 · 初识</div>
-                <div class="memory-card-photo">
-                    <img src="m1.jpg" alt="回忆照片1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>📷 第一次相遇</div>'">
-                </div>
-                <div class="memory-card-desc">那是第一次见面hhh,我当时对你印象就是太厉害了这哥们，体育生，985，帅，唱歌好听，其实有点嫉妒hhhh。</div>
+        <div class="memory-stats">
+            <div class="memory-stat-item">
+                <span>📸</span> 12个回忆
             </div>
-            
-            <!-- 照片2 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第2站 · 熟悉</div>
-                <div class="memory-card-photo">
-                    <img src="m2.jpg" alt="回忆照片2" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>🎉 快乐时光</div>'">
-                </div>
-                <div class="memory-card-desc">这应该是咱俩变熟的契机吧，帮你做模数电作业哈哈哈哈，感谢模数电</div>
+            <div class="memory-stat-item">
+                <span>❤️</span> <span id="totalLikes">0</span>个点赞
             </div>
-            
-            <!-- 照片3 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第3站 ·毕业典礼</div>
-                <div class="memory-card-photo">
-                    <img src="m3.jpg" alt="回忆照片3" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>💕 陪伴是最长情的告白</div>'">
-                </div>
-                <div class="memory-card-desc">哈哈哈哈哈哈我给你拍这个毕业照，当时你还陶喆头呢，不过也很帅</div>
+            <div class="memory-stat-item">
+                <span>⏱️</span> 浏览了 <span id="viewTime">0</span>秒
             </div>
-            
-            <!-- 照片4 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第4站 · 一起阿瓦隆</div>
-                <div class="memory-card-photo">
-                    <img src="m4.jpg" alt="回忆照片4" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>🌱 一起变成更好的自己</div>'">
-                </div>
-                <div class="memory-card-desc">这是当时的小聚，不过我就记得你这阿瓦隆玩的太厉害了吧。</div>
-            </div>
-            
-            <!-- 照片5 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第5站 · 歌手大赛</div>
-                <div class="memory-card-photo">
-                    <img src="m5.jpg" alt="回忆照片5" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>🌈 青春正好</div>'">
-                </div>
-                <div class="memory-card-desc">这我记得当时忙了一天hhhh,我还去你家来着太好了你兄弟</div>
-            </div>
-            
-            <!-- 照片6 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第6站 · 一起学习</div>
-                <div class="memory-card-photo">
-                    <img src="m6.jpg" alt="回忆照片6" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>🤝 并肩前行</div>'">
-                </div>
-                <div class="memory-card-desc">当时天天去图书馆hhhhh一起学习啦</div>
-            </div>
-            
-            <!-- 照片7 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第7站 · 硬件王</div>
-                <div class="memory-card-photo">
-                    <img src="m7.jpg" alt="回忆照片7" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>😄 欢声笑语</div>'">
-                </div>
-                <div class="memory-card-desc">当时你在做硬件实验，哈哈哈哈哈我画的数据通路，赠给你硬件王</div>
-            </div>
-            
-            <!-- 照片8 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第8站 · 过生日</div>
-                <div class="memory-card-photo">
-                    <img src="m8.jpg" alt="回忆照片8" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>💭 彼此懂得</div>'">
-                </div>
-                <div class="memory-card-desc">谢谢你兄弟，给我过生日嘻嘻</div>
-            </div>
-            
-            <!-- 照片9 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第9站 · 一起吃蛋糕</div>
-                <div class="memory-card-photo">
-                    <img src="m9.jpg" alt="回忆照片9" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>✨ 未来可期</div>'">
-                </div>
-                <div class="memory-card-desc">这是当时数据结构上机咱俩一起吃网红甜品店hhh </div>
-            </div>
-            
-            <!-- 照片10 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第10站 · 麦当劳</div>
-                <div class="memory-card-photo">
-                    <img src="m10.jpg" alt="回忆照片10" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>🍔 麦门永存</div>'">
-                </div>
-                <div class="memory-card-desc">一起吃麦麦哈哈哈哈哈，我最爱麦麦，感谢麦麦见证我们的友谊</div>
-            </div>
-            
-            <!-- 照片11 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第11站 · 直播</div>
-                <div class="memory-card-photo">
-                    <img src="m11.jpg" alt="回忆照片11" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>📺 直播达人</div>'">
-                </div>
-                <div class="memory-card-desc">有没有懂20000亲密度，10级粉丝团的直接断档了哈哈哈哈哈哈哈</div>
-            </div>
-            
-            <!-- 照片12 -->
-            <div class="memory-card">
-                <div class="memory-card-year">第12站 · 二十岁</div>
-                <div class="memory-card-photo">
-                    <img src="m12.jpg" alt="回忆照片12" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>🎂 二十岁生日快乐</div>'">
-                </div>
-                <div class="memory-card-desc">你终于20岁了！愿你永远自由、永远耀眼，做那个最棒的大魚！（哈哈哈哈哈还有很多的经历，比如一起吃超级多麦麦，去网吧，你来大连玩我特意去找你，一起打桌游，但是篇幅有限放不进来了hhh)</div>
-            </div>
+        </div>
+        
+        <div class="memory-controls">
+            <button class="memory-control-btn" onclick="filterMemories('all')" id="filterAll">
+                <i>📋</i> 全部
+            </button>
+            <button class="memory-control-btn" onclick="filterMemories('favorite')" id="filterFavorite">
+                <i>❤️</i> 收藏
+            </button>
+            <button class="memory-control-btn" onclick="toggleView()" id="toggleViewBtn">
+                <i>🔲</i> 网格视图
+            </button>
+            <button class="memory-control-btn" onclick="shuffleMemories()">
+                <i>🔄</i> 随机
+            </button>
+        </div>
+        
+        <div class="memory-grid" id="memoryGrid">
+            <!-- 照片1-12 动态生成 -->
         </div>
         
         <div class="memory-buttons">
@@ -1402,19 +1757,21 @@
         <h1>✨ 范鑫雨 · 二十岁生日快乐 ✨</h1>
         
         <div class="carousel-box" id="carouselBox">
-            <img class="carousel-img img1" src="1.jpg" alt="" loading="lazy">
-            <img class="carousel-img img2" src="2.jpg" alt="" loading="lazy">
-            <img class="carousel-img img3" src="3.jpg" alt="" loading="lazy">
-            <img class="carousel-img img4" src="4.jpg" alt="" loading="lazy">
-            <img class="carousel-img img5" src="5.jpg" alt="" loading="lazy">
-            <img class="carousel-img img6" src="6.jpg" alt="" loading="lazy">
-            <img class="carousel-img img7" src="7.jpg" alt="" loading="lazy">
-            <img class="carousel-img img8" src="8.jpg" alt="" loading="lazy">
-            <img class="carousel-img img9" src="9.jpg" alt="" loading="lazy">
-            <img class="carousel-img img10" src="10.jpg" alt="" loading="lazy">
+            <img class="carousel-img img1" src="1.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="carousel-img img2" src="2.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="carousel-img img3" src="3.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="carousel-img img4" src="4.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="carousel-img img5" src="5.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="carousel-img img6" src="6.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="carousel-img img7" src="7.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="carousel-img img8" src="8.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="carousel-img img9" src="9.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="carousel-img img10" src="10.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
             
             <div class="typewriter-container" id="typeContainer">
-                <div class="typewriter-text" id="typeText"></div>
+                <div class="typewriter-inner" id="typewriterInner">
+                    <div class="typewriter-text" id="typeText"></div>
+                </div>
             </div>
         </div>
 
@@ -1453,7 +1810,17 @@
         </div>
     </div>
 
+    <!-- 记忆详情弹窗 -->
+    <div class="modal" id="memoryDetailModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <h3 class="modal-title" id="memoryDetailTitle">📸 回忆详情</h3>
+            <div id="memoryDetailContent" class="modal-text"></div>
+            <button class="modal-close" onclick="closeModal('memoryDetailModal')">关闭</button>
+        </div>
+    </div>
+
     <script>
+        // 获取元素
         const bgmCake = document.getElementById('bgmCake');
         const bgmMemory = document.getElementById('bgmMemory');
         const bgmMain = document.getElementById('bgmMain');
@@ -1461,28 +1828,361 @@
         const wishSound = document.getElementById('wishSound');
         const typeText = document.getElementById('typeText');
         const typeContainer = document.getElementById('typeContainer');
+        const typewriterInner = document.getElementById('typewriterInner');
         const wishText = document.getElementById('wishText');
         const velas = document.getElementById('velas');
         const cake = document.getElementById('cake');
-        const carouselBox = document.getElementById('carouselBox');
         
         let typeTimer, confettiInterval, heartsInterval, fireworksInterval, sparklesInterval;
         let cakeStyle = 1;
         let textDisplayed = false;
+        let viewTime = 0;
+        let viewTimer;
+        let likedMemories = new Set();
+        let favoriteMemories = new Set();
+        let currentFilter = 'all';
+        let isGridView = false;
         
-        const birthdayWords = `
-大魚，祝你20岁生日快乐！真的特别开心能成为你的朋友，也很荣幸可以陪你一起度过这个重要的生日。
+        const birthdayWords = `大魚，祝你20岁生日快乐！真的特别开心能成为你的朋友，也很荣幸可以陪你一起度过这个重要的生日。
 你身上有太多闪光点，聪明、帅气、优秀，这些大家都看在眼里。但我最欣赏、最心疼的，还是你的坚强与善良——很多不开心你都习惯自己扛、自己消化，总怕麻烦别人。
 可我想认真跟你说：作为你的好兄弟。以后不管有什么心事、委屈、烦恼，都别再一个人硬撑了，随时都可以来找我，永远别怕麻烦我。
 也真的很想跟你说一句：谢谢你，兄弟，一直包容我的脾气和小情绪，一路陪着我、理解我。有你这样的朋友，是我特别幸运的事。
 兄弟，希望我们友谊长久，可以陪你过到100岁生日
 PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一次做网站可能不太完美，希望你能喜欢——Prime`;
 
+        const memoryDetails = {
+            1: '那是第一次见面hhh,我当时对你印象就是太厉害了这哥们，体育生，985，帅，唱歌好听，其实有点嫉妒hhhh。后来才发现，你真的很厉害，人真的特别nice，是个值得交一辈子的兄弟！',
+            2: '这应该是咱俩变熟的契机吧，当时先是团委团建，然后帮你做模数电作业哈哈哈哈（其实当时好像写错了，后来我才知道答案，给我整的有点尴尬hhh)，不过还是感谢模数电作业hhhh',
+            3: '这你当时看到这个说要给我拍一张，然后我寻思你是不是想拍就给你给你拍了这个毕业照，当时你还陶喆头呢，不过我这拍照技术不太好哈哈哈哈哈没给你的帅拍出来，不过也很帅！我记得咱还偷偷去吃饭，从那之后咱俩就更熟了吧哈哈哈哈',
+            4: '这是当时大二团委第一次小聚，一起玩桌游，我就记得你这阿瓦隆玩的太厉害了吧，当时我是派你是梅林，我还记得你的梅林跳派，不过我的派当时太菜了，没给你打上冲锋哈哈哈哈哈真sorry了笑死我了',
+            5: '歌手大赛！当时咱们部门还和别人还起冲突了hhh，太抓马了，忙了一天hhhh,我还去你家来着待了一下午hhhhh太好玩了',
+            6: '当时天天去图书馆hhhhh，一起学习啦，虽然有时候学不进去就一起摸鱼，完了咱俩就唠嗑，晚上去吃宵夜hhhhh',
+            7: '当时你在做硬件实验，哈哈哈哈哈我画的数据通路，赠给你硬件王！笑死我了当时看你做硬件我也不会啊hhhh,但是你最后硬件实验90+太厉害了',
+            8: '谢谢你兄弟，当时给我过生日嘻嘻！记得那天你偷偷给我买了蛋糕，，真的特别感动。有你这个兄弟是我最大的幸运！我记得你那天还唱歌来着hhhhh',
+            9: '这是当时数据结构上机咱俩一起吃网红甜品店hhh，一边写代码一边吃甜品，虽然代码写得想哭，但甜品是甜的，就像我们的友谊hhhhhhh。',
+            10: '一起吃麦麦哈哈哈哈哈，我最爱麦麦，咱俩直接点了一堆吃的哈哈哈哈哈哈哈，直接成大卫带了，感谢麦麦见证我们的友谊！每次不知道吃啥的时候，麦麦永远是我们的默契选择。',
+            11: '寒假看你直播hhhh,其实真挺有意思，好几次直接看睡着了hhhhh,有没有懂20000亲密度，10级粉丝团的直接断档了哈哈哈哈哈哈哈！你直播的时候我都在看，虽然有时候会断，但心意一直都在！',
+            12: '你终于20岁了！愿你永远自由、永远耀眼，做那个最棒的大魚！还有好多好多的经历，比如你开车接我，去网吧，你来大连玩我特意去找你，一起打桌游，但是篇幅有限放不进来了hhh，但我们的故事还在继续！'
+        };
+
+        function initMemoryCards() {
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+            
+            const memories = [
+                {year: '第1站 · 初识', date: '2024.10', tag: '校园', likes: 12},
+                {year: '第2站 · 熟悉', date: '2025.05', tag: '模数电', likes: 8},
+                {year: '第3站 · 毕业典礼', date: '2025.06', tag: '毕业', likes: 15},
+                {year: '第4站 · 一起阿瓦隆', date: '2025.10', tag: '阿瓦隆', likes: 10},
+                {year: '第5站 · 歌手大赛', date: '2025.10', tag: '歌手', likes: 20},
+                {year: '第6站 · 一起学习', date: '2025.11', tag: '学习', likes: 7},
+                {year: '第7站 · 硬件王', date: '2025.11', tag: '硬件', likes: 9},
+                {year: '第8站 · 过生日', date: '2025.12', tag: '生日', likes: 25},
+                {year: '第9站 · 一起吃蛋糕', date: '2025.12', tag: '甜品', likes: 11},
+                {year: '第10站 · 麦当劳', date: '2025.12', tag: '麦当劳', likes: 18},
+                {year: '第11站 · 直播', date: '2026.02', tag: '直播', likes: 30},
+                {year: '第12站 · 二十岁', date: '2026.03', tag: '二十岁', likes: 50}
+            ];
+            
+            memories.forEach((mem, index) => {
+                const id = index + 1;
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.setAttribute('data-id', id);
+                card.innerHTML = `
+                    <div class="memory-card-year">${mem.year}</div>
+                    <div class="memory-card-photo" onclick="showMemoryDetail(${id}, event)">
+                        <img src="m${id}.jpg" alt="回忆照片${id}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff5f9; color:#b35f80; font-size:20px;\'>📷 第${id}站</div>'">
+                        <span class="photo-hint">点击查看故事</span>
+                    </div>
+                    <div class="memory-card-desc">${memoryDetails[id].substring(0, 30)}...</div>
+                    <div class="memory-tags">
+                        <span class="memory-tag"><i>📅</i> ${mem.date}</span>
+                        <span class="memory-tag"><i>📍</i> ${mem.tag}</span>
+                    </div>
+                    <div class="memory-card-footer">
+                        <div class="memory-like" onclick="toggleLike(${id}, event)">
+                            <i>🤍</i> <span class="like-count">${mem.likes}</span>
+                        </div>
+                        <button class="memory-share" onclick="shareMemory(${id}, event)">🔗</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        initMemoryCards();
+
+        function randomWish() {
+            const wishes = [
+                '愿你每一天都像今天一样快乐！',
+                '愿所有好运都降临在你身上！',
+                '愿你永远保持这份少年的朝气！',
+                '愿我们的友谊天长地久！',
+                '愿你想要的都拥有，得不到的都释怀！',
+                '愿你在热爱的领域闪闪发光！',
+                '愿你的二十岁，精彩万分！',
+                '愿你永远做那个自由耀眼的大魚！'
+            ];
+            const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+            wishText.textContent = '✨ ' + randomWish;
+            wishText.classList.add('show');
+            setTimeout(() => wishText.classList.remove('show'), 3000);
+        }
+        
+        function showCakeMessage() {
+            const messages = [
+                '🍰 每一层蛋糕，都代表我们的一层友谊',
+                '🎂 这个蛋糕，是我们一起吃的第N个',
+                '🍬 糖粒虽小，甜度刚好，就像我们的日常',
+                '🕯️ 五根蜡烛，许下五个愿望，都关于你',
+                '🍓 草莓味的回忆，甜到心里',
+                '🎀 这个蝴蝶结，系着我们的青春'
+            ];
+            alert(messages[Math.floor(Math.random() * messages.length)]);
+        }
+        
+        function createSparkles() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.style.cssText = `
+                        position: fixed;
+                        left: ${Math.random() * 100}%;
+                        top: ${Math.random() * 100}%;
+                        font-size: ${Math.random() * 20 + 10}px;
+                        color: ${['#ffd966', '#ffb0c0', '#ff8da1'][Math.floor(Math.random() * 3)]};
+                        pointer-events: none;
+                        z-index: 9999;
+                        animation: sparkleFly 1s ease-out forwards;
+                    `;
+                    sparkle.innerHTML = ['✨', '🌟', '💫', '⭐'][Math.floor(Math.random() * 4)];
+                    document.body.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 1000);
+                }, i * 50);
+            }
+        }
+        
+        function createGlow(event) {
+            if (!event) {
+                const glow = document.createElement('div');
+                glow.className = 'glow-effect';
+                glow.style.left = '50%';
+                glow.style.top = '50%';
+                glow.style.transform = 'translate(-50%, -50%)';
+                document.body.appendChild(glow);
+                setTimeout(() => glow.remove(), 1000);
+                return;
+            }
+            const glow = document.createElement('div');
+            glow.className = 'glow-effect';
+            glow.style.left = (event.clientX - 50) + 'px';
+            glow.style.top = (event.clientY - 50) + 'px';
+            document.body.appendChild(glow);
+            setTimeout(() => glow.remove(), 1000);
+        }
+        
+        function cakeClick(event) {
+            createMiniFireworks(event);
+            createGlow(event);
+        }
+        
+        function createMiniFireworks(event) {
+            const x = event ? (event.clientX / window.innerWidth) * 100 : 50;
+            const y = event ? (event.clientY / window.innerHeight) * 100 : 50;
+            
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const colors = ['#ff7ca8', '#ffb077', '#ffdb77'];
+                    for (let s = 0; s < 8; s++) {
+                        const particle = document.createElement('div');
+                        const angle = (s / 8) * Math.PI * 2;
+                        particle.style.cssText = `
+                            position: absolute;
+                            width: 4px;
+                            height: 4px;
+                            background: ${colors[Math.floor(Math.random() * colors.length)]};
+                            border-radius: 50%;
+                            left: ${x}%;
+                            top: ${y}%;
+                            box-shadow: 0 0 10px currentColor;
+                            transition: all 0.8s cubic-bezier(0.2,0.8,0.4,1);
+                            pointer-events: none;
+                            z-index: 9999;
+                        `;
+                        document.getElementById('cakePage').appendChild(particle);
+                        setTimeout(() => {
+                            particle.style.transform = `translate(${Math.cos(angle) * 50}px, ${-Math.sin(angle) * 50}px)`;
+                            particle.style.opacity = '0';
+                        }, 20);
+                        setTimeout(() => particle.remove(), 800);
+                    }
+                }, i * 100);
+            }
+        }
+        
+        function candleClick(index, event) {
+            const messages = [
+                '🔥 第一根蜡烛：愿你永远热情似火',
+                '🔥 第二根蜡烛：愿你的未来光芒万丈',
+                '🔥 第三根蜡烛：愿我们友谊长存',
+                '🔥 第四根蜡烛：愿你心想事成',
+                '🔥 第五根蜡烛：二十岁，正青春'
+            ];
+            
+            wishText.textContent = messages[index - 1];
+            wishText.classList.add('show');
+            setTimeout(() => wishText.classList.remove('show'), 2000);
+            
+            createGlow(event);
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.style.cssText = `
+                        position: absolute;
+                        left: ${event.clientX}px;
+                        top: ${event.clientY}px;
+                        font-size: 20px;
+                        color: #ffd966;
+                        pointer-events: none;
+                        animation: sparkleFly 1s ease-out forwards;
+                        z-index: 9999;
+                    `;
+                    sparkle.innerHTML = '✨';
+                    document.body.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 1000);
+                }, i * 100);
+            }
+        }
+        
+        function showEgg() {
+            const eggs = [
+                '🥚 恭喜发现彩蛋！你真是个细心的人～',
+                '🥚 其实这个蛋糕里藏着5个小秘密',
+                '🥚 吹灭蜡烛会有惊喜哦',
+                '🥚 许愿的时候要闭上眼睛',
+                '🥚 点击每根蜡烛，都有不同的祝福',
+                '🥚 回忆之路有12个站点，你都看了吗？'
+            ];
+            alert(eggs[Math.floor(Math.random() * eggs.length)]);
+        }
+        
+        function startViewTimer() {
+            if (viewTimer) clearInterval(viewTimer);
+            viewTimer = setInterval(() => {
+                viewTime++;
+                document.getElementById('viewTime').textContent = viewTime;
+            }, 1000);
+        }
+        
+        function updateTotalLikes() {
+            let total = 0;
+            document.querySelectorAll('.like-count').forEach(el => {
+                total += parseInt(el.textContent);
+            });
+            document.getElementById('totalLikes').textContent = total;
+        }
+        
+        function toggleLike(id, event) {
+            event.stopPropagation();
+            const likeBtn = event.currentTarget;
+            const likeCount = likeBtn.querySelector('.like-count');
+            let count = parseInt(likeCount.textContent);
+            
+            if (likedMemories.has(id)) {
+                likedMemories.delete(id);
+                likeBtn.querySelector('i').textContent = '🤍';
+                count--;
+            } else {
+                likedMemories.add(id);
+                likeBtn.querySelector('i').textContent = '❤️';
+                likeBtn.classList.add('liked');
+                count++;
+                
+                setTimeout(() => likeBtn.classList.remove('liked'), 500);
+            }
+            likeCount.textContent = count;
+            updateTotalLikes();
+        }
+        
+        function filterMemories(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.memory-card').forEach(card => {
+                if (filter === 'all') {
+                    card.style.display = 'block';
+                } else if (filter === 'favorite') {
+                    const id = parseInt(card.dataset.id);
+                    card.style.display = favoriteMemories.has(id) ? 'block' : 'none';
+                }
+            });
+            
+            document.querySelectorAll('.memory-control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`filter${filter.charAt(0).toUpperCase() + filter.slice(1)}`).classList.add('active');
+        }
+        
+        function toggleView() {
+            const grid = document.getElementById('memoryGrid');
+            const btn = document.getElementById('toggleViewBtn');
+            isGridView = !isGridView;
+            
+            if (isGridView) {
+                grid.classList.add('grid-view');
+                btn.innerHTML = '<i>📱</i> 列表视图';
+            } else {
+                grid.classList.remove('grid-view');
+                btn.innerHTML = '<i>🔲</i> 网格视图';
+            }
+        }
+        
+        function shuffleMemories() {
+            const grid = document.getElementById('memoryGrid');
+            const cards = Array.from(grid.children);
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                grid.insertBefore(cards[j], cards[i]);
+            }
+        }
+        
+        function shareMemory(id, event) {
+            event.stopPropagation();
+            const memoryDesc = document.querySelector(`[data-id="${id}"] .memory-card-desc`).textContent;
+            if (navigator.share) {
+                navigator.share({
+                    title: '我们的回忆',
+                    text: memoryDesc,
+                });
+            } else {
+                alert('📋 已复制回忆内容：' + memoryDesc.substring(0, 20) + '...');
+                navigator.clipboard?.writeText(memoryDesc);
+            }
+        }
+        
+        function showMemoryDetail(id, event) {
+            event.stopPropagation();
+            const card = document.querySelector(`[data-id="${id}"]`);
+            const year = card.querySelector('.memory-card-year').textContent;
+            const fullDesc = memoryDetails[id] || card.querySelector('.memory-card-desc').textContent;
+            const tags = Array.from(card.querySelectorAll('.memory-tag')).map(tag => tag.textContent).join(' · ');
+            
+            document.getElementById('memoryDetailTitle').textContent = year;
+            document.getElementById('memoryDetailContent').innerHTML = `
+                <p style="margin-bottom: 20px; font-size: 18px; line-height: 1.8;">${fullDesc}</p>
+                <p style="color: #ff8da1; font-size: 16px; margin-top: 15px;">${tags}</p>
+            `;
+            document.getElementById('memoryDetailModal').classList.add('show');
+            
+            createGlow(event);
+        }
+        
         window.goToMemory = function() {
             document.getElementById('cakePage').style.display = 'none';
             document.getElementById('memoryPage').style.display = 'flex';
             bgmCake.pause();
             playMusic(bgmMemory);
+            startViewTimer();
+            updateTotalLikes();
         };
         
         window.goBackToCake = function() {
@@ -1490,6 +2190,7 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
             document.getElementById('cakePage').style.display = 'flex';
             bgmMemory.pause();
             playMusic(bgmCake);
+            clearInterval(viewTimer);
         };
         
         window.goToMainFromMemory = function() {
@@ -1497,6 +2198,7 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
             document.getElementById('mainPage').style.display = 'block';
             bgmMemory.pause();
             playMusic(bgmMain);
+            clearInterval(viewTimer);
             
             clearInterval(heartsInterval);
             document.getElementById('hearts').style.display = 'none';
@@ -1514,9 +2216,7 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
                 setTimeout(() => span.remove(), 8000);
             }, 2000);
             
-            // 修改这里：不停止照片，让它们自然播放40秒
             setTimeout(() => {
-                // 40秒后停止图片，显示文字
                 document.querySelectorAll('.carousel-img').forEach(img => {
                     img.style.animation = 'none';
                     img.style.opacity = '0';
@@ -1525,7 +2225,7 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
                 typeContainer.classList.add('show');
                 typeWrite(birthdayWords);
                 textDisplayed = true;
-            }, 40000);
+            }, 2000); // 2秒后显示打字机
         };
 
         function createHearts() {
@@ -1549,6 +2249,17 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
                     heart.remove();
                 }, 8000);
             }, 250);
+            
+            setInterval(() => {
+                const note = document.createElement('div');
+                note.className = 'music-note';
+                note.innerHTML = ['♪', '♫', '♩', '♬'][Math.floor(Math.random() * 4)];
+                note.style.left = Math.random() * 100 + '%';
+                note.style.color = `hsl(${340 + Math.random() * 30}, 80%, 70%)`;
+                note.style.fontSize = (Math.random() * 15 + 20) + 'px';
+                document.body.appendChild(note);
+                setTimeout(() => note.remove(), 6000);
+            }, 800);
         }
 
         function createConfetti() {
@@ -1660,7 +2371,7 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
         }
 
         window.checkPwd = function() {
-            const user = document.getElementById('userInput').value.trim();
+            const user = document.getElementById('userInput').value.trim().toLowerCase();
             const pwd = document.getElementById('pwdInput').value.trim();
             
             if (user === 'fxy' && pwd === '20060329') {
@@ -1795,6 +2506,7 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
             velas.classList.remove('blown');
         };
 
+        // 修复后的打字机函数 - 确保最后一行完全可见并可滚动
         function typeWrite(str, i = 0) {
             clearTimeout(typeTimer);
             typeText.textContent = '';
@@ -1811,9 +2523,25 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
                     
                     typeTimer = setTimeout(run, delay);
                     
+                    // 每次添加字符后，滚动到底部，确保最新文字可见
                     setTimeout(() => {
-                        typeText.scrollTop = typeText.scrollHeight;
-                    }, 10);
+                        if (typewriterInner) {
+                            // 滚动到底部
+                            typewriterInner.scrollTop = typewriterInner.scrollHeight;
+                            
+                            // 额外滚动一点，确保最后一行完全显示（因为内边距可能会影响）
+                            setTimeout(() => {
+                                typewriterInner.scrollTop = typewriterInner.scrollHeight + 20;
+                            }, 5);
+                        }
+                    }, 5);
+                } else {
+                    // 文字输入完成后，再次确保滚动到底部
+                    setTimeout(() => {
+                        if (typewriterInner) {
+                            typewriterInner.scrollTop = typewriterInner.scrollHeight + 30;
+                        }
+                    }, 100);
                 }
             }
             run();
@@ -1841,17 +2569,21 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
                 typeContainer.classList.add('show');
                 typeWrite(birthdayWords);
                 textDisplayed = true;
-            }, 40000);
+            }, 2000);
         };
 
         window.openModal = function(which) {
             document.getElementById(which + 'Modal').classList.add('show');
         };
 
-        window.closeModal = function() {
-            document.querySelectorAll('.modal').forEach(m => {
-                m.classList.remove('show');
-            });
+        window.closeModal = function(modalId) {
+            if (modalId) {
+                document.getElementById(modalId).classList.remove('show');
+            } else {
+                document.querySelectorAll('.modal').forEach(m => {
+                    m.classList.remove('show');
+                });
+            }
         };
 
         window.onload = function() {
@@ -1859,6 +2591,25 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
                 document.getElementById('userInput').focus();
             }, 300);
         };
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkleFly {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(-50px) rotate(180deg); opacity: 0; }
+            }
+            .grid-view {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            .grid-view .memory-card-photo {
+                height: 150px !important;
+            }
+            .grid-view .memory-card-year {
+                font-size: 18px !important;
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
