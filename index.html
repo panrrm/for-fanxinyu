@@ -1414,7 +1414,7 @@
             inset: 0;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
-            z-index: 10002;
+            z-index: 99999;
             padding: 20px 15px 20px;
             overflow-y: auto;
             animation: galleryFadeIn 0.5s ease;
@@ -1523,7 +1523,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transition: 0.5s;
         }
         
@@ -1679,7 +1679,14 @@
             from { text-shadow: 0 0 8px #ffbfd5; }
             to { text-shadow: 0 0 25px #ff96b8; }
         }
+/* 图片放大弹窗 - 确保在最上层 */
+#imageZoomModal {
+    z-index: 200000 !important;
+}
 
+#imageZoomModal .modal-content {
+    z-index: 200001;
+}
         .modal {
             display: none;
             position: fixed;
@@ -1689,7 +1696,7 @@
             -webkit-backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
-            z-index: 10000;
+            z-index: 100000;
             padding: 20px;
         }
         
@@ -2226,22 +2233,23 @@
             overflow: hidden;
         }
         
-        .danmaku-item {
-            position: absolute;
-            white-space: nowrap;
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.5);
-            animation: danmakuMove linear forwards;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(5px);
-            padding: 8px 20px;
-            border-radius: 40px;
-            border: 1px solid rgba(255,255,255,0.3);
-            z-index: 10011;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
+.danmaku-item {
+    position: absolute;
+    white-space: nowrap;
+    color: #fff5f0;  /* 更亮的白色 */
+    font-size: 20px;  /* 字体稍微大一点 */
+    font-weight: 700;  /* 加粗 */
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 15px rgba(255,100,150,0.8);  /* 更明显的阴影 */
+    animation: danmakuMove linear forwards;
+    background: rgba(0,0,0,0.55);  /* 深色半透明背景，更易读 */
+    backdrop-filter: blur(8px);
+    padding: 10px 24px;  /* 内边距大一点 */
+    border-radius: 50px;
+    border: 1.5px solid rgba(255,200,220,0.8);  /* 粉色边框更醒目 */
+    z-index: 10011;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    letter-spacing: 1px;  /* 字间距稍大 */
+}
         
         @keyframes danmakuMove {
             from { transform: translateX(100vw); opacity: 1; }
@@ -2259,7 +2267,7 @@
             padding: 30px;
             max-width: 500px;
             width: 90%;
-            z-index: 10020;
+            z-index: 100020;
             opacity: 0;
             visibility: hidden;
             transition: 0.3s;
@@ -2289,6 +2297,7 @@
             width: 100%;
             font-size: 16px;
         }
+	
 
         @media (max-width: 480px) {
             .memory-card-photo { height: 280px; }
@@ -2338,12 +2347,12 @@
             
             <div class="input-group">
                 <label>账号</label>
-                <input type="text" id="userInput" class="form-input" placeholder="fxy">
+                <input type="text" id="userInput" class="form-input" placeholder="">
             </div>
             
             <div class="input-group">
                 <label>密码</label>
-                <input type="password" id="pwdInput" class="form-input" placeholder="20060329">
+                <input type="password" id="pwdInput" class="form-input" placeholder="">
             </div>
             
             <button onclick="checkPwd()">💫 开启生日惊喜</button>
@@ -2540,6 +2549,7 @@
             <button class="func-btn" onclick="openModal('wish')">🌟 未来期许</button>
             <button class="func-btn" onclick="restartCarousel()">🔄 重温照片</button>
             <button class="func-btn" onclick="createFireworks()">🎇 浪漫烟花</button>
+	    <button class="func-btn" onclick="goBackToMemoryFromMain()">📸 返回回忆之路</button>
         </div>
 
         <div class="footer-signature">💖 愿你永远做那个自由又耀眼的大魚 💖</div>
@@ -2564,7 +2574,7 @@
             <div class="gallery-item" onclick="playMedia(this)">
                 <div class="gallery-media-container">
                     <div class="video-container">
-                        <video class="gallery-media" poster="poster-sing.jpg" preload="metadata" loop>
+                        <video class="gallery-media" poster="poster-sing.jpg" preload="none" loop>
                             <source src="fxy-sing.mp4" type="video/mp4">
                             <source src="fxy-sing.webm" type="video/webm">
                             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#ffb0c0,#ff8da1); color:white; font-size:20px;">🎤 范鑫雨唱歌视频</div>
@@ -2583,7 +2593,7 @@
             <div class="gallery-item" onclick="playMedia(this)">
                 <div class="gallery-media-container">
                     <div class="video-container">
-                        <video class="gallery-media" poster="poster-netbar.jpg" preload="metadata" loop>
+                        <video class="gallery-media" poster="poster-netbar.jpg" preload="none" loop>
                             <source src="fxy-netbar.mp4" type="video/mp4">
                             <source src="fxy-netbar.webm" type="video/webm">
                             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#b0c0ff,#8da1ff); color:white; font-size:20px;">🎮 网吧开黑时刻</div>
@@ -2602,7 +2612,7 @@
             <div class="gallery-item" onclick="playMedia(this)">
                 <div class="gallery-media-container">
                     <div class="video-container">
-                        <video class="gallery-media" poster="poster-alien.jpg" preload="metadata" loop>
+                        <video class="gallery-media" poster="poster-alien.jpg" preload="none" loop>
                             <source src="fxy-alien.mp4" type="video/mp4">
                             <source src="fxy-alien.webm" type="video/webm">
                             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#c0ffb0,#a1ff8d); color:white; font-size:20px;">👽 外星人范鑫雨</div>
@@ -2621,7 +2631,7 @@
             <div class="gallery-item" onclick="playMedia(this)">
                 <div class="gallery-media-container">
                     <div class="video-container">
-                        <video class="gallery-media" poster="poster-airpods.jpg" preload="metadata" loop>
+                        <video class="gallery-media" poster="poster-airpods.jpg" preload="none" loop>
                             <source src="fxy-airpods.mp4" type="video/mp4">
                             <source src="fxy-airpods.webm" type="video/webm">
                             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#ffc0b0,#ffa18d); color:white; font-size:20px;">🎧 AirPods开箱</div>
@@ -2640,7 +2650,7 @@
             <div class="gallery-item" onclick="playMedia(this)">
                 <div class="gallery-media-container">
                     <div class="video-container">
-                        <video class="gallery-media" poster="poster-bigfish.jpg" preload="metadata" loop>
+                        <video class="gallery-media" poster="poster-bigfish.jpg" preload="none" loop>
                             <source src="fxy-bigfish.mp4" type="video/mp4">
                             <source src="fxy-bigfish.webm" type="video/webm">
                             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#ffb0f0,#ff8dd0); color:white; font-size:20px;">🐟 大鱼牛逼</div>
@@ -2659,7 +2669,7 @@
             <div class="gallery-item" onclick="playMedia(this)">
                 <div class="gallery-media-container">
                     <div class="video-container">
-                        <video class="gallery-media" poster="poster-drive.jpg" preload="metadata" loop>
+                        <video class="gallery-media" poster="poster-drive.jpg" preload="none" loop>
                             <source src="fxy-drive.mp4" type="video/mp4">
                             <source src="fxy-drive.webm" type="video/webm">
                             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#b0ffc0,#8dffa1); color:white; font-size:20px;">🚗 开车接我</div>
@@ -2673,7 +2683,81 @@
                     <small>“兄弟亲自开车来接，这排面！”</small>
                 </div>
             </div>
-            
+            <!-- 视频7 - 范鑫雨的吉他弹唱 -->
+<div class="gallery-item" onclick="playMedia(this)">
+    <div class="gallery-media-container">
+        <div class="video-container">
+            <video class="gallery-media" poster="poster-guitar.jpg" preload="none" loop>
+                <source src="fxy-guitar.mp4" type="video/mp4">
+                <source src="fxy-guitar.webm" type="video/webm">
+                <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#ffb0c0,#ff8da1); color:white; font-size:20px;">🎸 吉他弹唱</div>
+            </video>
+        </div>
+        <div class="gallery-badge">🎸 才艺展示</div>
+        <div class="play-hint">▶ 点击播放</div>
+    </div>
+    <div class="gallery-caption">
+        <i>🎵</i> 范鑫雨唱的rap<br>
+        <small>“rap唱的太帅了吧！”</small>
+    </div>
+</div>
+
+<!-- 视频8 - 范鑫雨的篮球时刻 -->
+<div class="gallery-item" onclick="playMedia(this)">
+    <div class="gallery-media-container">
+        <div class="video-container">
+            <video class="gallery-media" poster="poster-basketball.jpg" preload="none" loop>
+                <source src="fxy-basketball.mp4" type="video/mp4">
+                <source src="fxy-basketball.webm" type="video/webm">
+                <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#c0ffb0,#a1ff8d); color:white; font-size:20px;">🏀 篮球时刻</div>
+            </video>
+        </div>
+        <div class="gallery-badge">网吧战神</div>
+        <div class="play-hint">▶ 点击播放</div>
+    </div>
+    <div class="gallery-caption">
+        <i>🏀</i> 范鑫雨包完宿回家<br>
+        <small>“兄弟你游戏技术真夯爆了”</small>
+    </div>
+</div>
+
+<!-- 视频9 - 范鑫雨的学习日常 -->
+<div class="gallery-item" onclick="playMedia(this)">
+    <div class="gallery-media-container">
+        <div class="video-container">
+            <video class="gallery-media" poster="poster-study.jpg" preload="none" loop>
+                <source src="fxy-study.mp4" type="video/mp4">
+                <source src="fxy-study.webm" type="video/webm">
+                <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#b0c0ff,#8da1ff); color:white; font-size:20px;">📚 学霸日常</div>
+            </video>
+        </div>
+        <div class="gallery-badge">📚 985学霸</div>
+        <div class="play-hint">▶ 点击播放</div>
+    </div>
+    <div class="gallery-caption">
+        <i>📖</i> 范鑫雨的学习日常<br>
+        <small>“可恶每次学习我都没录视频，先用这个顶一下吧”</small>
+    </div>
+</div>
+
+<!-- 视频10 - 范鑫雨的搞笑日常 -->
+<div class="gallery-item" onclick="playMedia(this)">
+    <div class="gallery-media-container">
+        <div class="video-container">
+            <video class="gallery-media" poster="poster-funny.jpg" preload="none" loop>
+                <source src="fxy-funny.mp4" type="video/mp4">
+                <source src="fxy-funny.webm" type="video/webm">
+                <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#ffc0b0,#ffa18d); color:white; font-size:20px;">😄 搞笑瞬间</div>
+            </video>
+        </div>
+        <div class="gallery-badge">😄 开心一刻</div>
+        <div class="play-hint">▶ 点击播放</div>
+    </div>
+    <div class="gallery-caption">
+        <i>😂</i> 其他人的生日祝福<br>
+        <small>“20条祝福，祝你20岁快乐”</small>
+    </div>
+</div>
             <!-- 图集 - 所有保存的照片 -->
             <div class="gallery-item photo-album" onclick="openPhotoAlbum()">
                 <div class="gallery-media-container">
@@ -2831,39 +2915,40 @@
             '🍔 范鑫雨一起去吃麦当劳吧！',
             '🌟 范鑫雨永远闪耀！',
             '💖 范鑫雨友谊长存！',
-            '🎉 范鑫雨二十岁快乐！',
+            '🎉 范鑫雨长春麻将王！',
             '🔥 硬件王范鑫雨！',
-            '🎬 范鑫雨直播啦！',
+	    '💫 这颜值是真实存在的吗？',
+            '🎬 范鑫雨直播真的很好看！',
             '✨ 范鑫雨前程似锦！',
             '🌈 范鑫雨永远耀眼！',
             '⭐ 范鑫雨你真是最棒的！',
-            '🎵 范鑫雨天籁之音！',
+            '🎵 范鑫雨其实是个暖男',
             '🏆 范鑫雨怎么是个忧郁男神！',
-            '💫 范鑫雨生日快乐！',
-            '🎈 范鑫雨二十岁！',
+            '💫 范鑫雨真是瓦的主人',
+            '🎈 范鑫雨二十岁要更加自信啊！',
             '🎊 祝范鑫雨永远开心！',
             '🎁 范鑫雨礼物收不停！',
             '🎂 范鑫雨许愿都实现！',
             '🕯️ 范鑫雨祝你睡个好觉！',
-            '🍰 范鑫雨吃蛋糕！',
+            '🍰 范鑫雨你比想象的更优秀！',
             '🎸 范鑫雨吉大薛之谦！',
             '🏀 范鑫雨篮球高手！',
-            '🎯 范鑫雨百发百中！',
+            '🎯 范鑫雨永远做自己！',
             '🎲 范鑫雨运气爆棚！',
             '🎮 范鑫雨你凭啥游戏玩的都这么好！',
             '🎤 范鑫雨K歌之王！',
-            '👽 范鑫雨你是外星人！',
+            ' 😊范鑫雨少一点焦虑！',
             '🛸 范鑫雨你的性格真好！',
             '🚙 范鑫雨你真是小说男主！',
-            '🏃 范鑫雨体育生！',
-            '💪 范鑫雨肌肉男！',
+            '🏃 范鑫雨夯爆了哈哈哈！',
+            '💪 范鑫雨加油赶紧变成肌肉男！',
             '🧠 范鑫雨智商也太高了吧！',
             '💯 范鑫雨必须满分！',
             '🔥 范鑫雨的三角洲燃爆全场！',
-            '💥 范鑫雨炸场！',
+            '💥 范鑫雨简直吉大校草级别！',
             '⚡ 范鑫雨66666666！',
-            '👑 范鑫雨王者！',
-            '🎓 范鑫雨大骚福瑞！'
+            '👑 范鑫雨王者也很牛逼！',
+            '🎓 范鑫雨其实是个大骚福瑞！'
         ];
 
         const birthdayWords = `大魚，祝你20岁生日快乐！真的特别开心能成为你的朋友，也很荣幸可以陪你一起度过这个重要的生日。
@@ -2887,7 +2972,7 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
             12: '你终于20岁了！愿你永远自由、永远耀眼，做那个最棒的大魚！还有好多好多的经历，比如你开车接我，去网吧，你来大连玩我特意去找你，一起打桌游，但是篇幅有限放不进来了hhh，但我们的故事还在继续！'
         };
 
-        const TOTAL_PHOTOS = 24;
+        const TOTAL_PHOTOS = 48;
 
         // 初始化回忆卡片
         function initMemoryCards() {
@@ -3450,7 +3535,7 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
             document.getElementById('cakePage').style.display = 'none';
             document.getElementById('memoryPage').style.display = 'flex';
             bgmCake.pause();
-            playMusic(bgmMemory);
+            playMusicWithControl(bgmMemory);
             startViewTimer();
             updateTotalLikes();
         };
@@ -3459,7 +3544,7 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
             document.getElementById('memoryPage').style.display = 'none';
             document.getElementById('cakePage').style.display = 'flex';
             bgmMemory.pause();
-            playMusic(bgmCake);
+            playMusicWithControl(bgmCake);
             clearInterval(viewTimer);
         };
         
@@ -3467,7 +3552,7 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
             document.getElementById('memoryPage').style.display = 'none';
             document.getElementById('mainPage').style.display = 'block';
             bgmMemory.pause();
-            playMusic(bgmMain);
+            playMusicWithControl(bgmMain);
             clearInterval(viewTimer);
             
             clearInterval(heartsInterval);
@@ -3745,10 +3830,10 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
         };
 
         function checkWishAchievement() {
-            if (wishCount === 10) {
-                showSecretMessage('🎯 你已经许了10个愿望啦！贪心鬼～');
-            } else if (wishCount === 20) {
-                showSecretMessage('🌈 20个愿望！你的真诚感动上天啦！');
+            if (wishCount === 5) {
+                showSecretMessage('🎯 你已经许了5个愿望啦！贪心鬼～');
+            } else if (wishCount === 10) {
+                showSecretMessage('🌈 10个愿望！你的真诚感动上天啦！');
             }
         }
 
@@ -3864,24 +3949,42 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
             }
         };
 
-        window.playMedia = function(item) {
-            const video = item.querySelector('video');
-            if (video) {
-                if (video.paused) {
-                    document.querySelectorAll('.gallery-media video').forEach(v => {
-                        if (v !== video) v.pause();
-                    });
-                    video.play();
-                    video.controls = true;
-                    const hint = item.querySelector('.play-hint');
-                    if (hint) hint.innerHTML = '⏸ 点击暂停';
-                } else {
-                    video.pause();
-                    const hint = item.querySelector('.play-hint');
-                    if (hint) hint.innerHTML = '▶ 点击播放';
-                }
+// 视频播放函数 - 优化版（懒加载）
+window.playMedia = function(item) {
+    const video = item.querySelector('video');
+    if (video) {
+        // 懒加载：如果还没加载视频源，先加载
+        if (!video.hasAttribute('data-loaded')) {
+            const source = video.querySelector('source');
+            if (source && source.getAttribute('data-src')) {
+                source.setAttribute('src', source.getAttribute('data-src'));
+            } else if (source && !source.src && source.getAttribute('src')) {
+                // 已经设置过src则不用处理
+            } else if (source && source.src === '') {
+                // 尝试恢复原始src
+                const originalSrc = source.getAttribute('src') || video.getAttribute('data-original-src');
+                if (originalSrc) source.src = originalSrc;
             }
-        };
+            video.load();
+            video.setAttribute('data-loaded', 'true');
+        }
+        
+        if (video.paused) {
+            // 暂停其他所有视频
+            document.querySelectorAll('.gallery-media video').forEach(v => {
+                if (v !== video) v.pause();
+            });
+            video.play().catch(e => console.log('播放失败:', e));
+            video.controls = true;
+            const hint = item.querySelector('.play-hint');
+            if (hint) hint.innerHTML = '⏸ 点击暂停';
+        } else {
+            video.pause();
+            const hint = item.querySelector('.play-hint');
+            if (hint) hint.innerHTML = '▶ 点击播放';
+        }
+    }
+};
 
         window.openModal = function(which) {
             if (which === 'imageZoom') {
@@ -3902,6 +4005,58 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
                 });
             }
         };
+// 音乐控制变量
+let currentMusic = null;
+let currentSongIndex = 0;
+const songTitles = ['生日快乐歌', '回忆之路', '最终惊喜'];
+const musicList = [bgmCake, bgmMemory, bgmMain];
+// 音乐控制变量
+let isMusicPlaying = true;
+
+// 切换音乐播放/暂停
+function toggleMusic() {
+    const currentPage = getCurrentVisiblePage();
+    let currentAudio = null;
+    
+    if (currentPage === 'cake') {
+        currentAudio = bgmCake;
+    } else if (currentPage === 'memory') {
+        currentAudio = bgmMemory;
+    } else if (currentPage === 'main') {
+        currentAudio = bgmMain;
+    }
+    
+    if (currentAudio) {
+        if (isMusicPlaying) {
+            currentAudio.pause();
+            document.getElementById('musicIcon').innerHTML = '⏸️';
+            document.getElementById('musicStatus').innerHTML = '已暂停';
+            isMusicPlaying = false;
+        } else {
+            currentAudio.play().catch(() => {});
+            document.getElementById('musicIcon').innerHTML = '🎵';
+            document.getElementById('musicStatus').innerHTML = '播放中';
+            isMusicPlaying = true;
+        }
+    }
+}
+
+// 获取当前显示的页面
+function getCurrentVisiblePage() {
+    if (document.getElementById('pwdPage').style.display !== 'none') return null;
+    if (document.getElementById('cakePage').style.display === 'flex') return 'cake';
+    if (document.getElementById('memoryPage').style.display === 'flex') return 'memory';
+    if (document.getElementById('mainPage').style.display === 'block') return 'main';
+    return null;
+}
+
+// 修改 playMusic 函数，同步音乐状态
+function playMusicWithControl(audio) {
+    if (isMusicPlaying) {
+        audio.volume = 0.4;
+        audio.play().catch(() => {});
+    }
+}
 
         window.onload = function() {
             setTimeout(() => {
@@ -3930,6 +4085,27 @@ PS：这10张照片是你从小到大的哈哈哈哈哈，还有这是我第一�
                 if (secretCode.length > 20) secretCode = secretCode.slice(-20);
             });
         };
+// 从主页面返回回忆之路
+window.goBackToMemoryFromMain = function() {
+    document.getElementById('mainPage').style.display = 'none';
+    document.getElementById('memoryPage').style.display = 'flex';
+    
+    // 停止主页音乐，播放回忆之路音乐
+    bgmMain.pause();
+    playMusicWithControl(bgmMemory);
+    
+    // 重新开始计时（如果之前停了）
+    if (viewTimer) clearInterval(viewTimer);
+    startViewTimer();
+    
+    // 更新点赞总数
+    updateTotalLikes();
+};
     </script>
+<!-- 音乐控制按钮 -->
+<div style="position: fixed; bottom: 80px; right: 20px; z-index: 100000; background: rgba(255,255,255,0.9); border-radius: 50px; padding: 10px 18px; box-shadow: 0 5px 20px rgba(255,100,150,0.3); backdrop-filter: blur(10px); border: 2px solid #ffbfd5; cursor: pointer; display: flex; align-items: center; gap: 8px;" id="musicControl" onclick="toggleMusic()">
+    <span id="musicIcon">🎵</span>
+    <span id="musicStatus" style="font-size: 14px; color: #b34b70; font-weight: 500;">播放中</span>
+</div>
 </body>
 </html>
