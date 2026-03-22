@@ -5044,5 +5044,22 @@ document.addEventListener('click', function(e) {
     <span id="musicIcon">🎵</span>
     <span id="musicStatus" style="font-size: 14px; color: #b34b70; font-weight: 500;">播放中</span>
 </div>
+<!-- 抓鱼游戏弹窗 -->
+<div class="game-modal" id="fishGameModal">
+    <div class="game-modal-content">
+        <div class="game-modal-header">
+            <span>🐟 抓鱼游戏 · 收集祝福</span>
+            <span class="game-modal-close" onclick="closeFishGame()">✕</span>
+        </div>
+        <div class="fish-game-container" id="fishGame" onclick="catchFish(event)">
+            <div class="fish-score" id="fishScore">0/10</div>
+            <div class="fish-progress">
+                <div class="fish-progress-bar" id="fishProgress" style="width: 0%;"></div>
+            </div>
+            <div class="fish-message" id="fishMessage"></div>
+        </div>
+        <p style="color:white; text-align:center; margin-top:10px;">点击游动的小鱼，每条鱼一句祝福，10条解锁隐藏视频</p>
+    </div>
+</div>
 </body>
 </html>
