@@ -40,7 +40,7 @@
             pointer-events: none;
             z-index: -2;
         }
-        
+
         @keyframes spinGlow {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -267,25 +267,29 @@
             100% { opacity: 0.3; }
         }
         
-        #cakePage h1 {
-            font-size: clamp(32px, 8vw, 42px);
-            margin: 0 0 8px 0;
-            text-align: center;
-            background: linear-gradient(145deg, #ff6b9d, #ff9f7a, #ffd966, #ff9f7a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 150, 200, 0.5);
-            animation: titleGlow 3s infinite alternate;
-            position: relative;
-            line-height: 1.3;
-            z-index: 2;
-        }
-        
-        @keyframes titleGlow {
-            from { filter: drop-shadow(0 0 10px #ffb8d0); }
-            to { filter: drop-shadow(0 0 30px #ff9ec0); }
-        }
+#cakePage h1 {
+    font-size: clamp(32px, 8vw, 42px);
+    margin: 0 0 8px 0;
+    text-align: center;
+    background: linear-gradient(145deg, #ff6b9d, #ff9f7a, #ffd966, #ff9f7a);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleGlow 3s infinite alternate, titleWave 2s ease-in-out infinite;
+    position: relative;
+    line-height: 1.3;
+    z-index: 2;
+    display: inline-block;
+    width: 100%;
+    transform-origin: center;
+}
+
+/* 新增波浪动画 */
+@keyframes titleWave {
+    0%, 100% { transform: translateY(0px) scale(1); letter-spacing: 2px; }
+    50% { transform: translateY(-5px) scale(1.02); letter-spacing: 4px; }
+}
         
         #cakePage h1::before,
         #cakePage h1::after {
@@ -2661,485 +2665,24 @@
         padding: 15px;
     }
 }
-/* 双按钮容器 */
-.cake-action-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin: 25px 0 20px;
-    width: 100%;
-    max-width: 550px;
-    padding: 0 15px;
-}
-
-/* 动作按钮 - 精美版 */
-.action-btn {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 60px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    color: white;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-/* 按钮光效 */
-.action-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.6s ease;
-}
-
-.action-btn:hover::before {
-    left: 100%;
-}
-
-.action-btn:hover {
-    transform: translateY(-6px) scale(1.02);
-    filter: brightness(1.08);
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
-}
-
-.action-btn:active {
-    transform: translateY(-2px) scale(0.98);
-}
-
-/* 图标区域 */
-.action-btn i:first-child {
-    font-size: 28px;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-    transition: transform 0.3s ease;
-}
-
-.action-btn:hover i:first-child {
-    transform: scale(1.1) rotate(5deg);
-}
-
-/* 文字区域 */
-.action-btn span {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.action-btn small {
-    display: none;
-}
-
-/* 抓鱼按钮 - 海洋渐变 */
-.fish-btn {
-    background: linear-gradient(135deg, #1e5a8a, #2c7cb6, #3b9eff);
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 8px 20px rgba(30, 90, 138, 0.4);
-}
-
-.fish-btn:hover {
-    background: linear-gradient(135deg, #236b9e, #338bc9, #4ca8ff);
-    box-shadow: 0 12px 28px rgba(30, 90, 138, 0.6);
-}
-
-/* 回忆按钮 - 樱花渐变 */
-.memory-btn {
-    background: linear-gradient(135deg, #b83280, #d53f8c, #ed64a6);
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 8px 20px rgba(184, 50, 128, 0.4);
-}
-
-.memory-btn:hover {
-    background: linear-gradient(135deg, #c93d92, #e34f9f, #ff77b5);
-    box-shadow: 0 12px 28px rgba(184, 50, 128, 0.6);
-}
-
-/* 添加按钮内的装饰小点 */
-.action-btn::after {
-    content: '';
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 2px;
-    transition: width 0.3s ease;
-}
-
-.action-btn:hover::after {
-    width: 50px;
-    background: rgba(255, 255, 255, 0.9);
-}
-
-/* 响应式 */
-@media (max-width: 550px) {
-    .cake-action-buttons {
-        gap: 15px;
-        margin: 20px 0 15px;
+/* ========== 花瓣飘落动画 ========== */
+@keyframes petalFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
     }
-    
-    .action-btn {
-        padding: 12px 16px;
-        gap: 10px;
-    }
-    
-    .action-btn i:first-child {
-        font-size: 24px;
-    }
-    
-    .action-btn span {
-        font-size: 15px;
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
     }
 }
+/* 鼠标跟随光晕动画 */
+@keyframes cursorGlowFade {
+    0% { opacity: 0.6; transform: scale(0.5); }
+    100% { opacity: 0; transform: scale(2); }
+}
+/* 让所有主要标题都变成彩虹渐变文字 */
 
-@media (max-width: 450px) {
-    .action-btn {
-        padding: 10px 12px;
-    }
-    
-    .action-btn i:first-child {
-        font-size: 20px;
-    }
-    
-    .action-btn span {
-        font-size: 13px;
-    }
-}/* 菜单按钮 */
-.menu-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: linear-gradient(135deg, #ffaa77, #ff7aa8);
-    border: none;
-    border-radius: 60px;
-    padding: 12px 28px;
-    margin: 10px auto;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    width: fit-content;
-    box-shadow: 0 5px 15px rgba(255,100,150,0.3);
-    transition: all 0.3s;
-}
-
-.menu-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255,100,150,0.4);
-}
-/* 菜单按钮 */
-.menu-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: linear-gradient(135deg, #ffaa77, #ff7aa8);
-    border: none;
-    border-radius: 60px;
-    padding: 12px 28px;
-    margin: 10px auto;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    width: fit-content;
-    box-shadow: 0 5px 15px rgba(255,100,150,0.3);
-    transition: all 0.3s;
-}
-
-.menu-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255,100,150,0.4);
-}
-/* 功能菜单面板 - 左侧滑出 */
-/* 功能菜单面板 - 左侧滑出 美化版 */
-.cake-func-menu {
-    position: fixed;
-    top: 0;
-    left: -340px;
-    width: 320px;
-    height: 100vh;
-    background: linear-gradient(145deg, rgba(255, 248, 250, 0.98), rgba(255, 240, 245, 0.98));
-    backdrop-filter: blur(25px);
-    box-shadow: 8px 0 40px rgba(0, 0, 0, 0.15), -2px 0 0 rgba(255, 200, 220, 0.5) inset;
-    z-index: 10000;
-    transition: left 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    border-radius: 0 40px 40px 0;
-    border-right: 2px solid rgba(255, 200, 220, 0.6);
-}
-
-.cake-func-menu.show {
-    left: 0;
-}
-
-/* 自定义滚动条 */
-.cake-func-menu::-webkit-scrollbar {
-    width: 5px;
-}
-
-.cake-func-menu::-webkit-scrollbar-track {
-    background: #ffe2ed;
-    border-radius: 10px;
-}
-
-.cake-func-menu::-webkit-scrollbar-thumb {
-    background: #ff99bb;
-    border-radius: 10px;
-}
-
-/* 菜单头部 美化 */
-.menu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 22px;
-    border-bottom: 2px solid rgba(255, 200, 220, 0.8);
-    background: linear-gradient(135deg, rgba(255, 220, 235, 0.5), rgba(255, 200, 220, 0.3));
-    position: relative;
-}
-
-.menu-header::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 20px;
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(90deg, #ff8da1, #ffb0c0, transparent);
-    border-radius: 3px;
-}
-
-.menu-header h3 {
-    font-size: 22px;
-    color: #d43b70;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.menu-header h3::before {
-    content: '🎂';
-    font-size: 26px;
-    animation: menuIconBounce 2s ease-in-out infinite;
-}
-
-@keyframes menuIconBounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
-}
-
-.menu-close-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid #ffbfd5;
-    font-size: 18px;
-    color: #b34b70;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.menu-close-btn:hover {
-    background: #ff6b9d;
-    color: white;
-    transform: rotate(90deg) scale(1.05);
-    border-color: white;
-    box-shadow: 0 4px 12px rgba(255, 107, 157, 0.4);
-}
-
-/* 菜单网格 美化 */
-.menu-items-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    padding: 25px 20px;
-    flex: 1;
-}
-
-/* 菜单项卡片 美化 */
-.menu-func-item {
-    background: linear-gradient(135deg, #ffffff, #fffafc);
-    border-radius: 24px;
-    padding: 18px 12px;
-    text-align: center;
-    cursor: pointer;
-    border: 1px solid #ffd9e5;
-    transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.03);
-    position: relative;
-    overflow: hidden;
-}
-
-/* 卡片悬浮光效 */
-.menu-func-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 200, 220, 0.4), transparent);
-    transition: left 0.5s ease;
-}
-
-.menu-func-item:hover::before {
-    left: 100%;
-}
-
-.menu-func-item:hover {
-    transform: translateY(-6px);
-    border-color: #ffb0c0;
-    box-shadow: 0 15px 25px rgba(255, 100, 150, 0.2);
-    background: white;
-}
-
-.menu-func-item:active {
-    transform: translateY(-2px);
-}
-
-/* 图标区域 美化 */
-.func-icon {
-    font-size: 36px;
-    margin-bottom: 10px;
-    display: block;
-    transition: transform 0.3s ease;
-    filter: drop-shadow(0 2px 6px rgba(255, 100, 150, 0.2));
-}
-
-.menu-func-item:hover .func-icon {
-    transform: scale(1.1) rotate(5deg);
-}
-
-/* 文字区域 美化 */
-.func-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #d43b70;
-    letter-spacing: 0.5px;
-    position: relative;
-    display: inline-block;
-}
-
-.menu-func-item:hover .func-name {
-    color: #ff6b9d;
-}
-
-/* 菜单底部装饰 美化 */
-.menu-footer-decoration {
-    padding: 18px 20px 28px;
-    text-align: center;
-    border-top: 1px solid rgba(255, 200, 220, 0.6);
-    font-size: 12px;
-    color: #b35f80;
-    background: rgba(255, 240, 245, 0.5);
-    font-weight: 500;
-    letter-spacing: 1px;
-}
-
-.menu-footer-decoration::before {
-    content: '💝';
-    margin-right: 6px;
-    font-size: 14px;
-}
-
-.menu-footer-decoration::after {
-    content: '💝';
-    margin-left: 6px;
-    font-size: 14px;
-}
-
-/* 遮罩层 美化 */
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.menu-overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* 响应式 */
-@media (max-width: 480px) {
-    .cake-func-menu {
-        width: 280px;
-        left: -280px;
-    }
-    
-    .menu-items-grid {
-        gap: 12px;
-        padding: 20px 15px;
-    }
-    
-    .menu-func-item {
-        padding: 14px 8px;
-    }
-    
-    .func-icon {
-        font-size: 30px;
-    }
-    
-    .func-name {
-        font-size: 12px;
-    }
-    
-    .menu-header {
-        padding: 22px 18px;
-    }
-    
-    .menu-header h3 {
-        font-size: 18px;
-    }
-    
-    .menu-header h3::before {
-        font-size: 22px;
-    }
-    
-    .menu-close-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-    }
-    
-    .menu-footer-decoration {
-        padding: 15px 15px 22px;
-        font-size: 11px;
-    }
-}
     </style>
 </head>
 <body>
@@ -3176,121 +2719,108 @@
         </div>
     </div>
 
-<!-- 蛋糕页 -->
-<div id="cakePage">
-    <h1>🎂 祝范鑫雨生日快乐</h1>
-    <p class="cake-subtitle">愿你岁岁常欢愉，年年皆胜意</p>
-    
-    <div class="music-visualizer" id="musicVisualizer">
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-    </div>
-    
-    <div class="cake-container">
-        <svg id="cake" viewBox="0 0 200 400" onclick="cakeClick(event)">
-            <path fill="#b28b7d" d="M170,390 C120,400 80,400 30,390 C26,388 26,372 30,370 C80,380 120,380 170,370 C174,372 174,388 170,390Z"/>
-            <path fill="#ffb7c5" d="M160,320 C110,330 90,330 40,320 C36,318 36,302 40,300 C90,310 110,310 160,300 C164,302 164,318 160,320Z"/>
-            <path fill="#ffc2d0" d="M150,250 C100,260 100,260 50,250 C46,248 46,232 50,230 C100,240 100,240 150,230 C154,232 154,248 150,250Z"/>
-            <path fill="#ffcdda" d="M140,180 C90,190 110,190 60,180 C56,178 56,162 60,160 C110,170 90,170 140,160 C144,162 144,178 140,180Z"/>
-            <path fill="#fff2e0" d="M130,120 C80,130 120,130 70,120 C66,118 66,102 70,100 C120,110 80,110 130,100 C134,102 134,118 130,120Z"/>
-            <circle cx="100" cy="95" r="12" fill="#ffdb7c"/>
-            <circle cx="76" cy="110" r="9" fill="#ff8da1"/>
-            <circle cx="124" cy="110" r="9" fill="#ffaa7a"/>
-            <circle cx="60" cy="140" r="5" fill="#ffb08a"/>
-            <circle cx="140" cy="140" r="5" fill="#ffb08a"/>
-            <circle cx="50" cy="210" r="6" fill="#ffdb7c"/>
-            <circle cx="150" cy="210" r="6" fill="#ffdb7c"/>
-        </svg>
+    <!-- 蛋糕页（原功能 + 抓鱼游戏按钮）-->
+    <div id="cakePage">
+        <h1>🎂 祝范鑫雨生日快乐</h1>
+        <p class="cake-subtitle">愿你岁岁常欢愉，年年皆胜意</p>
         
-        <div class="velas" id="velas">
-            <div class="vela" onclick="candleClick(1, event)"><div class="fuego" id="fuego1"></div></div>
-            <div class="vela" onclick="candleClick(2, event)"><div class="fuego" id="fuego2"></div></div>
-            <div class="vela" onclick="candleClick(3, event)"><div class="fuego" id="fuego3"></div></div>
-            <div class="vela" onclick="candleClick(4, event)"><div class="fuego" id="fuego4"></div></div>
-            <div class="vela" onclick="candleClick(5, event)"><div class="fuego" id="fuego5"></div></div>
+        <div class="music-visualizer" id="musicVisualizer">
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
+            <div class="visualizer-bar"></div>
         </div>
         
-        <div class="cake-decoration">
-            <div class="cake-sparkle" style="top:20%; left:8%;"></div>
-            <div class="cake-sparkle" style="top:40%; left:88%;"></div>
-            <div class="cake-sparkle" style="top:60%; left:20%;"></div>
-            <div class="cake-sparkle" style="top:30%; left:78%;"></div>
-            <div class="cake-sparkle" style="top:70%; left:55%;"></div>
-            <div class="cake-sparkle" style="top:45%; left:35%;"></div>
+        <div class="cake-container">
+            <svg id="cake" viewBox="0 0 200 400" onclick="cakeClick(event)">
+                <path fill="#b28b7d" d="M170,390 C120,400 80,400 30,390 C26,388 26,372 30,370 C80,380 120,380 170,370 C174,372 174,388 170,390Z"/>
+                <path fill="#ffb7c5" d="M160,320 C110,330 90,330 40,320 C36,318 36,302 40,300 C90,310 110,310 160,300 C164,302 164,318 160,320Z"/>
+                <path fill="#ffc2d0" d="M150,250 C100,260 100,260 50,250 C46,248 46,232 50,230 C100,240 100,240 150,230 C154,232 154,248 150,250Z"/>
+                <path fill="#ffcdda" d="M140,180 C90,190 110,190 60,180 C56,178 56,162 60,160 C110,170 90,170 140,160 C144,162 144,178 140,180Z"/>
+                <path fill="#fff2e0" d="M130,120 C80,130 120,130 70,120 C66,118 66,102 70,100 C120,110 80,110 130,100 C134,102 134,118 130,120Z"/>
+                <circle cx="100" cy="95" r="12" fill="#ffdb7c"/>
+                <circle cx="76" cy="110" r="9" fill="#ff8da1"/>
+                <circle cx="124" cy="110" r="9" fill="#ffaa7a"/>
+                <circle cx="60" cy="140" r="5" fill="#ffb08a"/>
+                <circle cx="140" cy="140" r="5" fill="#ffb08a"/>
+                <circle cx="50" cy="210" r="6" fill="#ffdb7c"/>
+                <circle cx="150" cy="210" r="6" fill="#ffdb7c"/>
+            </svg>
+            
+            <div class="velas" id="velas">
+                <div class="vela" onclick="candleClick(1, event)"><div class="fuego" id="fuego1"></div></div>
+                <div class="vela" onclick="candleClick(2, event)"><div class="fuego" id="fuego2"></div></div>
+                <div class="vela" onclick="candleClick(3, event)"><div class="fuego" id="fuego3"></div></div>
+                <div class="vela" onclick="candleClick(4, event)"><div class="fuego" id="fuego4"></div></div>
+                <div class="vela" onclick="candleClick(5, event)"><div class="fuego" id="fuego5"></div></div>
+            </div>
+            
+            <div class="cake-decoration">
+                <div class="cake-sparkle" style="top:20%; left:8%;"></div>
+                <div class="cake-sparkle" style="top:40%; left:88%;"></div>
+                <div class="cake-sparkle" style="top:60%; left:20%;"></div>
+                <div class="cake-sparkle" style="top:30%; left:78%;"></div>
+                <div class="cake-sparkle" style="top:70%; left:55%;"></div>
+                <div class="cake-sparkle" style="top:45%; left:35%;"></div>
+            </div>
+            
+            <div class="wish-text" id="wishText">🎋 许个愿吧～</div>
         </div>
         
-        <div class="wish-text" id="wishText">🎋 许个愿吧～</div>
-    </div>
-    
-<!-- 双按钮容器 - 美化版 -->
-<div class="cake-action-buttons">
-    <button class="action-btn fish-btn" onclick="openFishGame()">
-        <div class="btn-icon-wrapper">
-            <i>🐟</i>
-            <i class="btn-sparkle">✨</i>
+        <!-- 抓鱼游戏按钮（10条解锁）-->
+        <button class="fish-game-btn" onclick="openFishGame()">
+            <i>🐟</i> 抓鱼游戏 · 抓10条解锁隐藏视频
+        </button>
+        
+        <div class="cake-enhanced-buttons">
+            <button class="cake-enhanced-btn" onclick="randomWish()">
+                <i>🎲</i> 随机祝福
+            </button>
+            <button class="cake-enhanced-btn" onclick="showCakeMessage()">
+                <i>💌</i> 蛋糕密语
+            </button>
+            <button class="cake-enhanced-btn" onclick="createSparkles()">
+                <i>✨</i> 撒星星
+            </button>
         </div>
-        <div class="btn-text">
-            <span class="btn-title">抓鱼游戏</span>
-            <span class="btn-badge"></span>
+        
+        <div class="cake-btn-group">
+            <button class="cake-func-btn" onclick="blowCandle()">🎈 吹蜡烛</button>
+            <button class="cake-func-btn" onclick="makeWish()">✨ 许愿</button>
+            <button class="cake-func-btn" onclick="changeCakeStyle()">🍰 换蛋糕</button>
+            <button class="cake-func-btn" onclick="createFireworks()">🎆 烟花</button>
         </div>
-        <div class="btn-arrow">→</div>
-    </button>
-    
-    <button class="action-btn memory-btn" onclick="goToMemory()">
-        <div class="btn-icon-wrapper">
-            <i>📸</i>
-            <i class="btn-sparkle">✨</i>
+        
+        <button class="main-btn" onclick="goToMemory()">📸 开启回忆之路</button>
+        
+        <div class="egg-hint" onclick="showEgg()">
+            🥚 发现彩蛋
         </div>
-        <div class="btn-text">
-            <span class="btn-title">回忆之路</span>
-            <span class="btn-badge"></span>
-        </div>
-        <div class="btn-arrow">→</div>
-    </button>
-</div>
-    <!-- 菜单按钮 -->
-<div class="menu-button" onclick="toggleCakeMenu()">
-    <span>🍰</span>
-    <span>生日功能菜单</span>
-    <span>▼</span>
-</div>
-    <!-- 功能菜单面板 - 左侧滑出 -->
-<div class="cake-func-menu" id="cakeFuncMenu">
-    <div class="menu-header">
-        <h3>生日功能菜单</h3>
-        <button class="menu-close-btn" onclick="toggleCakeMenu()">✕</button>
     </div>
-    <div class="menu-items-grid">
-        <div class="menu-func-item" onclick="randomWish(); toggleCakeMenu();"><div class="func-icon">🎲</div><div class="func-name">随机祝福</div></div>
-        <div class="menu-func-item" onclick="showCakeMessage(); toggleCakeMenu();"><div class="func-icon">💌</div><div class="func-name">蛋糕密语</div></div>
-        <div class="menu-func-item" onclick="createSparkles(); toggleCakeMenu();"><div class="func-icon">✨</div><div class="func-name">撒星星</div></div>
-        <div class="menu-func-item" onclick="blowCandle(); toggleCakeMenu();"><div class="func-icon">🎈</div><div class="func-name">吹蜡烛</div></div>
-        <div class="menu-func-item" onclick="makeWish(); toggleCakeMenu();"><div class="func-icon">✨</div><div class="func-name">许愿</div></div>
-        <div class="menu-func-item" onclick="changeCakeStyle(); toggleCakeMenu();"><div class="func-icon">🍰</div><div class="func-name">换蛋糕</div></div>
-        <div class="menu-func-item" onclick="createFireworks(); toggleCakeMenu();"><div class="func-icon">🎆</div><div class="func-name">烟花</div></div>
-        <div class="menu-func-item" onclick="openModal('birthday'); toggleCakeMenu();"><div class="func-icon">💖</div><div class="func-name">生日祝福</div></div>
-        <div class="menu-func-item" onclick="openModal('wish'); toggleCakeMenu();"><div class="func-icon">🌟</div><div class="func-name">未来期许</div></div>
-    </div>
-    <div class="menu-footer-decoration">
-        🎂 点击任意功能，为范鑫雨送上祝福 🎂
-    </div>
-</div>
 
-<!-- 菜单遮罩层 -->
-<div class="menu-overlay" id="menuOverlay" onclick="toggleCakeMenu()"></div>
-    
-    <div class="egg-hint" onclick="showEgg()">
-        🥚 发现彩蛋
+    <!-- 抓鱼游戏弹窗（10条解锁）-->
+    <div class="game-modal" id="fishGameModal">
+        <div class="game-modal-content">
+            <div class="game-modal-header">
+                <span>🐟 抓鱼游戏 · 收集祝福</span>
+                <span class="game-modal-close" onclick="closeFishGame()">✕</span>
+            </div>
+            <div class="fish-game-container" id="fishGame" onclick="catchFish(event)">
+                <div class="fish-score" id="fishScore">0/10</div>
+                <div class="fish-progress">
+                    <div class="fish-progress-bar" id="fishProgress" style="width: 0%;"></div>
+                </div>
+                <div class="fish-message" id="fishMessage"></div>
+            </div>
+            <p style="color:white; text-align:center; margin-top:10px;">点击游动的小鱼，每条鱼一句祝福，10条解锁隐藏视频</p>
+        </div>
     </div>
-</div>
 
     <!-- 回忆之路页面（原功能，无滑动条）-->
     <div id="memoryPage">
@@ -3735,51 +3265,60 @@
         let starInterval, rainInterval;
         
         // 弹幕 - 扩充到50条，全是范鑫雨相关
-        const danmakus = [
-            '🎂 范鑫雨二十岁生日快乐！',
-            '🐟 大魚牛逼克拉斯！',
-            '🎤 范鑫雨唱歌怎么这么好听，耳朵怀孕了！',
-            '💪 我去这个体育生怎么这么帅！',
-            '📚 985学霸范鑫雨！',
-            '🎮 阿瓦隆高手范鑫雨！',
-            '🍔 范鑫雨一起去吃麦当劳吧！',
-            '🌟 范鑫雨永远闪耀！',
-            '💖 范鑫雨友谊长存！',
-            '🎉 范鑫雨长春麻将王！',
-            '🔥 硬件王范鑫雨！',
-	    '💫 这颜值是真实存在的吗？',
-            '🎬 范鑫雨直播真的很好看！',
-            '✨ 范鑫雨前程似锦！',
-            '🌈 范鑫雨永远耀眼！',
-            '⭐ 范鑫雨你真是最棒的！',
-            '🎵 范鑫雨其实是个暖男',
-            '🏆 范鑫雨怎么是个忧郁男神！',
-            '💫 范鑫雨真是瓦的主人',
-            '🎈 范鑫雨二十岁要更加自信啊！',
-            '🎊 祝范鑫雨永远开心！',
-            '🎁 范鑫雨礼物收不停！',
-            '🎂 范鑫雨许愿都实现！',
-            '🕯️ 范鑫雨祝你睡个好觉！',
-            '🍰 范鑫雨你比想象的更优秀！',
-            '🎸 范鑫雨吉大薛之谦！',
-            '🏀 范鑫雨篮球高手！',
-            '🎯 范鑫雨永远做自己！',
-            '🎲 范鑫雨运气爆棚！',
-            '🎮 范鑫雨你凭啥游戏玩的都这么好！',
-            '🎤 范鑫雨K歌之王！',
-            ' 😊范鑫雨少一点焦虑！',
-            '🛸 范鑫雨你的性格真好！',
-            '🚙 范鑫雨你真是小说男主！',
-            '🏃 范鑫雨夯爆了哈哈哈！',
-            '💪 范鑫雨加油赶紧变成肌肉男！',
-            '🧠 范鑫雨智商也太高了吧！',
-            '💯 范鑫雨必须满分！',
-            '🔥 范鑫雨的三角洲燃爆全场！',
-            '💥 范鑫雨简直吉大校草级别！',
-            '⚡ 范鑫雨66666666！',
-            '👑 范鑫雨王者也很牛逼！',
-            '🎓 范鑫雨其实是个大骚福瑞！'
-        ];
+       const danmakus = [
+  '🎂 范鑫雨二十岁生日快乐！',
+  '🐟 大魚牛逼克拉斯！',
+  '🎤 范鑫雨唱歌怎么这么好听，耳朵怀孕了！',
+  '💪 我去这个体育生怎么这么帅！',
+  '📚 985超级大学霸范鑫雨！',
+  '🎮 阿瓦隆高手范鑫雨！',
+  '🍔 范鑫雨一起去吃麦当劳吧！',
+  '🌟 范鑫雨永远闪耀！',
+  '💖 范鑫雨友谊长存！',
+  '🎉 范鑫雨长春麻将王！',
+  '🔥 硬件王范鑫雨！',
+  '💫 这颜值是真实存在的吗？',
+  '🎬 范鑫雨直播真的炒鸡好看！',
+  '✨ 范鑫雨前程似锦！',
+  '🌈 范鑫雨永远耀眼！',
+  '⭐ 范鑫雨你真是最棒的！',
+  '🎵 范鑫雨其实是个暖男',
+  '🏆 范鑫雨怎么是个忧郁男神！',
+  '💫 范鑫雨真是瓦的主人',
+  '🎈 范鑫雨二十岁要更加自信啊！',
+  '🎊 祝范鑫雨永远开心！',
+  '🎁 范鑫雨礼物收不停！',
+  '🎂 范鑫雨许愿都实现！',
+  '🕯️ 范鑫雨祝你睡个好觉！',
+  '🍰 范鑫雨你比想象的更优秀！',
+  '🎸 范鑫雨吉大薛之谦！',
+  '🏀 范鑫雨篮球高手！',
+  '🎯 范鑫雨永远做自己！',
+  '🎲 范鑫雨运气爆棚！',
+  '🎮 范鑫雨你凭啥游戏玩的都这么好！',
+  '🎤 范鑫雨K歌之王！',
+  '😊 范鑫雨少一点焦虑！',
+  '🛸 范鑫雨你的性格真好！',
+  '🚙 范鑫雨你真是小说男主！',
+  '🏃 范鑫雨夯爆了哈哈哈！',
+  '💪 范鑫雨加油赶紧变成肌肉男！',
+  '🧠 范鑫雨智商也太高了吧！',
+  '💯 范鑫雨必须满分！',
+  '🔥 范鑫雨的三角洲燃爆全场！',
+  '💥 范鑫雨简直吉大校草级别！',
+  '⚡ 范鑫雨66666666！',
+  '👑 范鑫雨王者也很牛逼！',
+  '🎓 范鑫雨其实是个大骚福瑞！',
+  '🌸 范鑫雨陶喆本人没跑；！',
+  '⚡ 范鑫雨电竞男主本人吧！',
+  '🎨 范鑫雨这该死的艺术气质！',
+  '🍀 范鑫雨好运常伴左右！',
+  '🕹️ 范鑫雨游戏区你真的特别优秀！',
+  '💎 范鑫雨天生就该站在聚光灯下！',
+  '🌊 范鑫雨未来如星辰大海！',
+  '🎯 范鑫雨做什么都超有天赋！',
+  '🎉 范鑫雨二十岁，光芒万丈！'
+];
 
         const birthdayWords = `大魚，祝你20岁生日快乐！真的特别开心能成为你的朋友，也很荣幸可以陪你一起度过这个重要的生日。
 你身上有太多闪光点，聪明、帅气、优秀，这些大家都看在眼里。但我最欣赏、最心疼的，还是你的坚强与善良——很多不开心你都习惯自己扛、自己消化，总怕麻烦别人。
@@ -4240,7 +3779,6 @@ PS：这10张照片是你从小到大的嘻嘻，还有这是我第一次做网�
                 '🥚 吹灭蜡烛会有惊喜哦',
                 '🥚 许愿的时候要闭上眼睛',
                 '🥚 点击每根蜡烛，都有不同的祝福',
-                '🥚 回忆之路有12个站点，你都看了吗？',
                 '🥚 试试在蛋糕页连续点击10次？',
                 '🥚 密码是fxy和生日，你猜到了吗？',
                 '🥚 左下角的礼物按钮，点开有惊喜！',
@@ -4779,9 +4317,94 @@ PS：这10张照片是你从小到大的嘻嘻，还有这是我第一次做网�
             surpriseUnlocked = true;
         }
         
+        // 打开画廊后，等待一下再截取封面（确保DOM已渲染）
+        setTimeout(() => {
+            captureAllVideoPosters();
+        }, 500);
     }
 };
 
+// 截取视频封面的函数
+// 截取视频封面的函数（修复版）
+// 截取视频封面的函数（修复版 - 直接查找所有视频）
+function captureAllVideoPosters() {
+    // 直接查找页面中所有的 .gallery-media video
+    const videos = document.querySelectorAll('.gallery-media');
+    console.log('找到视频数量:', videos.length);
+    
+    if (videos.length === 0) {
+        console.log('没有找到视频，1秒后重试...');
+        setTimeout(() => {
+            captureAllVideoPosters();
+        }, 1000);
+        return;
+    }
+    
+    videos.forEach((video, idx) => {
+        // 如果已经有 poster 且是 data:image 格式，跳过
+        const currentPoster = video.getAttribute('poster');
+        if (currentPoster && currentPoster.startsWith('data:image')) {
+            console.log('视频', idx+1, '已有封面，跳过');
+            return;
+        }
+        
+        // 获取视频源地址
+        let videoSrc = '';
+        const source = video.querySelector('source');
+        if (source && source.src) {
+            videoSrc = source.src;
+        } else if (video.src) {
+            videoSrc = video.src;
+        }
+        
+        if (!videoSrc || videoSrc === '') {
+            console.log('视频', idx+1, '没有源地址');
+            return;
+        }
+        
+        console.log('截取封面:', videoSrc);
+        
+        // 创建离屏视频截取第一帧
+        const offscreenVideo = document.createElement('video');
+        offscreenVideo.muted = true;
+        offscreenVideo.preload = 'metadata';
+        offscreenVideo.src = videoSrc;
+        
+        const timeout = setTimeout(() => {
+            console.log('截取超时:', videoSrc);
+            offscreenVideo.src = '';
+        }, 8000);
+        
+        offscreenVideo.addEventListener('loadedmetadata', function() {
+            clearTimeout(timeout);
+            offscreenVideo.currentTime = 0.1;
+        });
+        
+        offscreenVideo.addEventListener('seeked', function() {
+            if (offscreenVideo.videoWidth > 0 && offscreenVideo.videoHeight > 0) {
+                const canvas = document.createElement('canvas');
+                canvas.width = offscreenVideo.videoWidth;
+                canvas.height = offscreenVideo.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(offscreenVideo, 0, 0, canvas.width, canvas.height);
+                video.setAttribute('poster', canvas.toDataURL('image/jpeg', 0.7));
+                console.log('封面截取成功:', videoSrc);
+            } else {
+                console.log('视频尺寸为0，可能文件有问题:', videoSrc);
+            }
+            offscreenVideo.src = '';
+            offscreenVideo.load();
+        });
+        
+        offscreenVideo.addEventListener('error', function(e) {
+            clearTimeout(timeout);
+            console.log('截取失败，文件可能不存在:', videoSrc);
+            offscreenVideo.src = '';
+        });
+        
+        offscreenVideo.load();
+    });
+}
 // 视频播放函数 - 优化版（懒加载）
 /// 视频播放函数 - 增强版（带超时和重试）
 // 视频播放函数 - 自动截取第一帧作为封面
@@ -4978,18 +4601,21 @@ function playMusicWithControl(audio) {
             }, 300);
             
             startAutoDanmaku();
-            
             document.addEventListener('keydown', function(e) {
                 secretCode += e.key;
-                if (secretCode.includes('happybirthday')) {
-                    showSecretMessage('🎉 隐藏彩蛋触发！你真是大神！');
+                if (secretCode.includes('happy')) {
+                    showSecretMessage('🎉 范鑫雨天天开心哦！');
                     createFireworks();
-                    toggleSurpriseGallery();
                     secretCode = '';
                 }
                 if (secretCode.includes('fxy')) {
                     showSecretMessage('🐟 大魚出現！');
                     createSparkles();
+                    secretCode = '';
+                }
+		       if (secretCode.includes('birthday')) {
+                    showSecretMessage(' 😘生日快乐fxy💕！');
+                    createFireworks();
                     secretCode = '';
                 }
                 if (secretCode.includes('surprise')) {
@@ -4998,7 +4624,46 @@ function playMusicWithControl(audio) {
                 }
                 if (secretCode.length > 20) secretCode = secretCode.slice(-20);
             });
+	// 鼠标跟随光晕特效
+document.addEventListener('mousemove', (e) => {
+    const glow = document.createElement('div');
+    glow.style.cssText = `
+        position: fixed;
+        left: ${e.clientX - 40}px;
+        top: ${e.clientY - 40}px;
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(circle, rgba(255,180,200,0.5) 0%, rgba(255,200,220,0.2) 50%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9997;
+        animation: cursorGlowFade 0.8s ease-out forwards;
+    `;
+    document.body.appendChild(glow);
+    setTimeout(() => glow.remove(), 800);
+});
         };
+// ========== 樱花/花瓣飘落特效 ==========
+function createPetals() {
+    const petals = ['🌸', '🌺', '🌷', '🌸', '🎀', '✨'];
+    setInterval(() => {
+        const petal = document.createElement('div');
+        petal.innerHTML = petals[Math.floor(Math.random() * petals.length)];
+        petal.style.cssText = `
+            position: fixed;
+            left: ${Math.random() * 100}%;
+            top: -30px;
+            font-size: ${20 + Math.random() * 20}px;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 9995;
+            animation: petalFall ${4 + Math.random() * 4}s linear forwards;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+        `;
+        document.body.appendChild(petal);
+        setTimeout(() => petal.remove(), 8000);
+    }, 300);
+}
 // 从主页面返回回忆之路
 window.goBackToMemoryFromMain = function() {
     document.getElementById('mainPage').style.display = 'none';
@@ -5015,51 +4680,11 @@ window.goBackToMemoryFromMain = function() {
     // 更新点赞总数
     updateTotalLikes();
 };
-// 菜单开关函数
-// 菜单开关函数
-function toggleCakeMenu() {
-    const menu = document.getElementById('cakeFuncMenu');
-    const overlay = document.getElementById('menuOverlay');
-    
-    if (menu) {
-        menu.classList.toggle('show');
-        if (overlay) {
-            overlay.classList.toggle('show');
-        }
-    }
-}
-// 点击其他地方关闭菜单
-document.addEventListener('click', function(e) {
-    const menu = document.getElementById('cakeFuncMenu');
-    const menuBtn = document.querySelector('.menu-button');
-    if (menu && menu.classList.contains('show')) {
-        if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
-            menu.classList.remove('show');
-        }
-    }
-});
     </script>
 <!-- 音乐控制按钮 -->
 <div style="position: fixed; bottom: 80px; right: 20px; z-index: 100000; background: rgba(255,255,255,0.9); border-radius: 50px; padding: 10px 18px; box-shadow: 0 5px 20px rgba(255,100,150,0.3); backdrop-filter: blur(10px); border: 2px solid #ffbfd5; cursor: pointer; display: flex; align-items: center; gap: 8px;" id="musicControl" onclick="toggleMusic()">
     <span id="musicIcon">🎵</span>
     <span id="musicStatus" style="font-size: 14px; color: #b34b70; font-weight: 500;">播放中</span>
-</div>
-<!-- 抓鱼游戏弹窗 -->
-<div class="game-modal" id="fishGameModal">
-    <div class="game-modal-content">
-        <div class="game-modal-header">
-            <span>🐟 抓鱼游戏 · 收集祝福</span>
-            <span class="game-modal-close" onclick="closeFishGame()">✕</span>
-        </div>
-        <div class="fish-game-container" id="fishGame" onclick="catchFish(event)">
-            <div class="fish-score" id="fishScore">0/10</div>
-            <div class="fish-progress">
-                <div class="fish-progress-bar" id="fishProgress" style="width: 0%;"></div>
-            </div>
-            <div class="fish-message" id="fishMessage"></div>
-        </div>
-        <p style="color:white; text-align:center; margin-top:10px;">点击游动的小鱼，每条鱼一句祝福，10条解锁隐藏视频</p>
-    </div>
 </div>
 </body>
 </html>
