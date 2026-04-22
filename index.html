@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#ff6b9d">
 <title>范鑫雨 · 专属时光站</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style id="ultra-beauty-upgrade">
 /* ============================================
    ROOT TOKENS — REFINED 2026
 ============================================ */
@@ -4161,11 +4161,1131 @@ body[data-theme="midnight"] .story-btn-inline{
   .lyric-quote-text{font-size:15px;line-height:1.9;}
 }
 
+
+
+/* ============================================
+   2026-04 DEEP VISUAL UPGRADE V3
+============================================ */
+
+/* 1. 液态玻璃背景 - 替代原有单一渐变 */
+.bg-liquid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+.bg-liquid .blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); opacity: 0.35; will-change: transform;
+}
+.bg-liquid .blob-1 {
+  width: 60vw; height: 60vw; left: -15vw; top: -20vw;
+  background: radial-gradient(circle, var(--pink) 0%, transparent 70%);
+  animation: blobFloat1 20s ease-in-out infinite;
+}
+.bg-liquid .blob-2 {
+  width: 50vw; height: 50vw; right: -10vw; top: 10vh;
+  background: radial-gradient(circle, var(--purple) 0%, transparent 70%);
+  animation: blobFloat2 25s ease-in-out infinite;
+}
+.bg-liquid .blob-3 {
+  width: 45vw; height: 45vw; left: 20vw; bottom: -15vh;
+  background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+  animation: blobFloat3 22s ease-in-out infinite;
+}
+.bg-liquid .blob-4 {
+  width: 35vw; height: 35vw; right: 25vw; bottom: 10vh;
+  background: radial-gradient(circle, var(--blue) 0%, transparent 70%);
+  animation: blobFloat1 18s ease-in-out infinite reverse;
+}
+@keyframes blobFloat1 {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(5vw,3vh) scale(1.1); }
+  66% { transform: translate(-3vw,5vh) scale(0.95); }
+}
+@keyframes blobFloat2 {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-6vw,4vh) scale(1.08); }
+}
+@keyframes blobFloat3 {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  40% { transform: translate(4vw,-5vh) scale(1.12); }
+  80% { transform: translate(-2vw,2vh) scale(0.92); }
+}
+
+/* 2. 全息卡片扫光 */
+.holo-sweep::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.12) 30%,
+    rgba(255,107,157,0.05) 35%, rgba(192,132,252,0.05) 40%,
+    rgba(96,165,250,0.05) 45%, transparent 55%);
+  opacity: 0; transition: opacity 0.5s ease; pointer-events: none;
+  mix-blend-mode: overlay; border-radius: inherit;
+}
+.holo-sweep:hover::after { opacity: 1; }
+
+/* 3. 渐变边框 hover 发光 */
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,107,157,0.45), rgba(192,132,252,0.3), rgba(255,209,102,0.3));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events: none; opacity: 0; transition: opacity 0.35s ease;
+}
+.glow-border:hover::before { opacity: 1; }
+
+/* 4. 粒子星座 Canvas */
+.particle-constellation {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+}
+.particle-constellation canvas { width: 100%; height: 100%; }
+
+/* 5. 心情浮标 */
+.mood-float {
+  position: fixed; bottom: 24px; right: 20px; z-index: 800;
+  display: flex; flex-direction: column; gap: 8px; align-items: flex-end;
+}
+.mood-pill {
+  padding: 8px 16px; border-radius: 999px;
+  background: var(--glass-strong); backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border); box-shadow: var(--shadow-soft);
+  font-size: 12px; color: var(--text-mid);
+  display: flex; align-items: center; gap: 6px;
+  animation: moodIn 0.5s var(--ease-out-back) both;
+  cursor: pointer; transition: all 0.3s ease;
+}
+.mood-pill:hover { transform: translateY(-2px) scale(1.03); }
+@keyframes moodIn {
+  from { opacity: 0; transform: translateX(20px) scale(0.9); }
+  to { opacity: 1; transform: none; }
+}
+.mood-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #34d399; box-shadow: 0 0 8px #34d399;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+/* 6. 迷你时间线 */
+.timeline-visual {
+  width: 100%; padding: 20px 24px;
+  border-radius: var(--radius-xl);
+  background: var(--card-bg); backdrop-filter: blur(28px);
+  border: 1px solid var(--card-border); box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+.timeline-track {
+  display: flex; align-items: center; gap: 0;
+  overflow-x: auto; padding: 16px 0; scrollbar-width: none;
+}
+.timeline-track::-webkit-scrollbar { display: none; }
+.timeline-node {
+  flex-shrink: 0; display: flex; flex-direction: column;
+  align-items: center; gap: 8px; cursor: pointer;
+  transition: all 0.3s var(--ease-out-expo); padding: 0 6px;
+}
+.timeline-node:hover { transform: translateY(-4px); }
+.timeline-dot-el {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--pink-light); border: 2px solid var(--pink);
+  box-shadow: 0 0 0 4px rgba(255,107,157,0.1);
+  transition: all 0.3s ease;
+}
+.timeline-node:hover .timeline-dot-el {
+  background: var(--pink);
+  box-shadow: 0 0 0 6px rgba(255,107,157,0.2), 0 0 16px rgba(255,107,157,0.3);
+}
+.timeline-label {
+  font-size: 9px; color: var(--text-soft);
+  font-weight: 600; white-space: nowrap;
+}
+.timeline-connector {
+  flex-shrink: 0; width: 24px; height: 2px;
+  background: linear-gradient(90deg, var(--pink-light), var(--pink));
+  border-radius: 999px; opacity: 0.4;
+}
+
+/* 7. 滚动进度条升级 - 彩虹流光 */
+.scroll-progress {
+  background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue), var(--cyan), var(--gold), var(--pink)) !important;
+  background-size: 400% 100% !important;
+  animation: progressRainbow 4s linear infinite !important;
+}
+@keyframes progressRainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+
+/* 8. 卡片按下反馈 */
+.btn-primary:active, .btn-ghost:active {
+  transform: translateY(0) scale(0.97) !important;
+  transition-duration: 0.1s !important;
+}
+.hero-link-btn:active {
+  transform: translateY(0) scale(0.95) !important;
+}
+
+/* 9. 英雄标题文字发光 */
+.hero-title {
+  filter: drop-shadow(0 4px 24px rgba(255,107,157,0.18)) !important;
+}
+
+/* 10. 全局 toast 弹跳动画 */
+.global-toast.show {
+  animation: toastBounceV3 0.5s var(--ease-out-back) !important;
+}
+@keyframes toastBounceV3 {
+  0% { transform: translateX(-50%) translateY(24px) scale(0.88); opacity: 0; }
+  60% { transform: translateX(-50%) translateY(-4px) scale(1.03); }
+  100% { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
+}
+
+/* 11. 节点点亮时爆发光环 */
+.node-point.lit::before {
+  box-shadow: 0 0 0 10px rgba(255,255,255,0.14), 0 0 34px rgba(255,107,157,0.42), 0 0 70px rgba(255,107,157,0.18) !important;
+}
+.node-point.lit::after {
+  animation: litRingV3 2s ease-in-out infinite !important;
+}
+@keyframes litRingV3 {
+  0%, 100% { transform: scale(1); opacity: 0.5; box-shadow: 0 0 0 0 rgba(255,107,157,0.3); }
+  50% { transform: scale(1.35); opacity: 0; box-shadow: 0 0 20px 4px rgba(255,107,157,0.1); }
+}
+
+/* 12. 记忆卡片入场动画升级 */
+.memory-card {
+  animation: cardInV3 0.6s var(--ease-out-expo) both !important;
+}
+@keyframes cardInV3 {
+  from { opacity: 0; transform: translateY(36px) scale(0.95) rotateX(4deg); filter: blur(5px); }
+  60% { transform: translateY(-3px) scale(1.005) rotateX(0); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+/* 13. 鱼缸水面波纹 */
+.fish-tank::before {
+  content: '' !important;
+  position: absolute !important; left: -10% !important; right: -10% !important; top: 0 !important;
+  height: 6px !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent, rgba(255,255,255,0.3), transparent) !important;
+  animation: waterRipple 3s ease-in-out infinite !important;
+  z-index: 5 !important;
+}
+@keyframes waterRipple {
+  0%, 100% { transform: translateX(-5%) scaleX(1); }
+  50% { transform: translateX(5%) scaleX(1.02); }
+}
+
+/* 14. 密码页彩虹旋转边框 */
+@property --pwd-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+.pwd-card::before {
+  content: '' !important; position: absolute !important; inset: -2px !important;
+  border-radius: 34px !important; z-index: -1 !important; pointer-events: none !important;
+  background: conic-gradient(from var(--pwd-angle), #ff6b9d, #ffd166, #c084fc, #60a5fa, #22d3ee, #34d399, #ff6b9d) !important;
+  animation: pwdBorderSpin 6s linear infinite !important;
+  filter: blur(10px) !important; opacity: 0.28 !important;
+}
+@keyframes pwdBorderSpin { to { --pwd-angle: 360deg; } }
+
+@media (max-width: 680px) {
+  .mood-float { bottom: 80px; right: 12px; }
+  .timeline-visual { padding: 14px 16px; }
+}
+/* ========== 成就系统增强样式 ========== */
+
+/* 成就弹窗 - 更醒目的设计 */
+.achievement-pop {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-120%);
+  background: linear-gradient(135deg, #2a1a3a 0%, #1a0a2a 100%);
+  backdrop-filter: blur(20px);
+  border-radius: 60px;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 10000;
+  transition: 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+  opacity: 0;
+  visibility: hidden;
+  border: 1px solid rgba(255,215,0,0.5);
+  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.4), 0 0 30px rgba(255,215,0,0.3);
+}
+
+.achievement-pop.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.ach-icon {
+  font-size: 42px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  animation: achIconBounce 0.5s ease-out;
+}
+
+@keyframes achIconBounce {
+  0% { transform: scale(0.5) rotate(-20deg); opacity: 0; }
+  50% { transform: scale(1.2) rotate(10deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.ach-info {
+  text-align: left;
+}
+
+.ach-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffd966;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.ach-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255,107,157,0.5);
+}
+
+.ach-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 2px;
+}
+
+/* 成就闪光特效 */
+.ach-sparkle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 40%, rgba(255,215,0,0.3), transparent 70%);
+  border-radius: 60px;
+  animation: achGlow 0.8s ease-out;
+}
+
+@keyframes achGlow {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+/* 3D 纪念册中的成就卡片 - 更精致 */
+.flip-front {
+  background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
+.flip-front:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.3);
+}
+
+.flip-badge {
+  background: linear-gradient(135deg, rgba(255,107,157,0.8), rgba(255,209,102,0.8));
+  padding: 6px 16px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  margin-top: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.flip-back {
+  background: linear-gradient(145deg, rgba(255,250,253,0.98), rgba(246,242,255,0.98));
+}
+
+.flip-back-title {
+  font-size: 18px;
+  border-bottom: 3px solid var(--pink);
+  display: inline-block;
+  padding-bottom: 6px;
+  margin-bottom: 14px;
+}
+
+.progress-fill-anim {
+  background: linear-gradient(90deg, #ff6b9d, #ffd166, #c084fc);
+  box-shadow: 0 0 8px rgba(255,107,157,0.5);
+}
+
+/* 成就汇总面板 */
+.album-achievement-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.album-achievement-card {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
+.album-achievement-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,215,0,0.4);
+}
+
+.album-achievement-card b {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+}
+
+.album-achievement-card span {
+  display: block;
+  font-size: 32px;
+  font-weight: 900;
+  font-family: var(--font-display);
+  color: #ffd966;
+  margin: 8px 0 4px;
+  text-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+/* 成就解锁时的烟花和屏幕闪光 */
+.screen-flash {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,215,0,0.3), transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  animation: flashFade 0.5s ease-out forwards;
+}
+
+@keyframes flashFade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 成就进度条美化 */
+.game-ach-strip {
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,245,250,0.8));
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 5px solid var(--pink);
+  transition: all 0.3s;
+}
+
+.game-ach-strip.done {
+  background: linear-gradient(135deg, rgba(255,241,200,0.95), rgba(255,230,210,0.9));
+  border-left-color: #ffd966;
+  box-shadow: 0 8px 20px -8px rgba(255,209,102,0.4);
+}
+
+.game-ach-title {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.game-ach-badge {
+  background: linear-gradient(135deg, #ff6b9d, #ffa575);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 40px;
+  font-weight: 700;
+}
+/* ===== 3D 卡片：未解锁 / 已解锁 两套状态 ===== */
+.flip-card.unlocked .flip-front{
+  position: relative;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.34), transparent 32%),
+    linear-gradient(145deg, rgba(255,230,160,0.28), rgba(255,107,157,0.16) 45%, rgba(192,132,252,0.16) 100%) !important;
+  border: 1px solid rgba(255,220,120,0.55);
+  box-shadow:
+    0 20px 55px -18px rgba(255,190,90,0.55),
+    0 0 0 1px rgba(255,255,255,0.18) inset,
+    0 0 28px rgba(255,215,120,0.28);
+}
+
+.flip-card.unlocked .flip-front::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.22) 18%, transparent 36%);
+  transform: translateX(-140%);
+  animation: unlockedSweep 3.8s linear infinite;
+  pointer-events:none;
+}
+
+.flip-card.unlocked .flip-icon{
+  filter: drop-shadow(0 0 18px rgba(255,215,120,0.55));
+  transform: scale(1.06);
+}
+
+.flip-card.unlocked .flip-title{
+  color:#fff7d6;
+  text-shadow: 0 0 16px rgba(255,215,120,0.28);
+}
+
+.flip-card.unlocked .flip-sub{
+  color: rgba(255,248,230,0.88);
+}
+
+.flip-card.unlocked .flip-badge{
+  background: linear-gradient(135deg, #ffd966, #ffb347, #ff7eb3);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.4);
+  box-shadow:
+    0 8px 24px rgba(255,190,90,0.32),
+    0 0 18px rgba(255,215,120,0.22);
+}
+
+.flip-card.unlocked::after{
+  content:'★ ACHIEVED';
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:3;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  color:#fff7da;
+  background: rgba(255,215,120,0.18);
+  border:1px solid rgba(255,220,140,0.35);
+  backdrop-filter: blur(10px);
+}
+
+.flip-card.locked .flip-front{
+  filter: grayscale(0.18) saturate(0.75) brightness(0.88);
+  opacity: 0.9;
+}
+
+.flip-card.locked .flip-icon{
+  opacity: 0.82;
+}
+
+@keyframes unlockedSweep{
+  from{ transform: translateX(-140%); }
+  to{ transform: translateX(160%); }
+}
+
+/* ===== 成就汇总卡：别再黑乎乎的 ===== */
+.album-achievement-card{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+  border: 1px solid rgba(255,230,170,0.22);
+  box-shadow:
+    0 16px 40px -18px rgba(255,180,90,0.24),
+    inset 0 1px 0 rgba(255,255,255,0.18);
+}
+
+.album-achievement-card:hover{
+  transform: translateY(-5px) scale(1.02);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0.12));
+  border-color: rgba(255,220,120,0.42);
+}
+
+.album-achievement-card span{
+  color:#ffe08a;
+  text-shadow:
+    0 0 14px rgba(255,215,90,0.35),
+    0 6px 22px rgba(0,0,0,0.16);
+}
+
+
+
+/* ╔══════════════════════════════════════╗
+   ║  1. 成就解锁弹窗 · 全新玻璃拟态设计  ║
+   ╚══════════════════════════════════════╝ */
+
+.achievement-pop {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-140%) scale(0.8);
+  z-index: 10000;
+
+  /* 玻璃拟态底板 */
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.92) 0%,
+    rgba(255,248,252,0.88) 40%,
+    rgba(255,240,245,0.85) 100%) !important;
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+
+  border-radius: 24px !important;
+  padding: 20px 28px 20px 22px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+
+  /* 多层漂浮阴影 */
+  box-shadow:
+    0 24px 80px -16px rgba(255,107,157,0.35),
+    0 8px 24px -8px rgba(200,60,100,0.15),
+    0 0 0 1px rgba(255,180,210,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.9) !important;
+
+  border: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+
+  transition:
+    transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.5s ease,
+    visibility 0.5s !important;
+
+  overflow: hidden !important;
+  white-space: normal !important;
+  max-width: 420px;
+}
+
+body[data-theme="midnight"] .achievement-pop {
+  background: linear-gradient(135deg,
+    rgba(30,22,55,0.94) 0%,
+    rgba(40,28,70,0.90) 50%,
+    rgba(25,18,48,0.92) 100%) !important;
+  box-shadow:
+    0 24px 80px -16px rgba(120,58,237,0.4),
+    0 8px 24px -8px rgba(0,0,0,0.3),
+    0 0 0 1px rgba(167,139,250,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.08) !important;
+}
+
+/* 顶部渐变装饰线 */
+.achievement-pop::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, #ff6b9d, #ffd166, #c084fc, #60a5fa, #ff6b9d) !important;
+  background-size: 200% 100% !important;
+  animation: achRainbowBar 3s linear infinite !important;
+  border-radius: 24px 24px 0 0 !important;
+  width: auto !important;
+  inset: auto !important;
+  filter: none !important;
+  opacity: 1 !important;
+  z-index: 1 !important;
+  transform: none !important;
+  pointer-events: none !important;
+}
+@keyframes achRainbowBar {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* 背景光晕 */
+.achievement-pop::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: -2px !important;
+  border-radius: 26px !important;
+  background: conic-gradient(from 0deg,
+    rgba(255,107,157,0.2),
+    rgba(255,209,102,0.15),
+    rgba(192,132,252,0.2),
+    rgba(96,165,250,0.15),
+    rgba(255,107,157,0.2)) !important;
+  z-index: -1 !important;
+  filter: blur(12px) !important;
+  opacity: 0 !important;
+  animation: achGlowPulse 2s ease-in-out infinite !important;
+  width: auto !important; height: auto !important;
+  transform: none !important;
+  pointer-events: none !important;
+}
+@keyframes achGlowPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.04); }
+}
+
+/* 弹出状态 */
+.achievement-pop.show {
+  transform: translateX(-50%) translateY(0) scale(1) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 图标 */
+.ach-icon {
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px;
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, rgba(255,107,157,0.12), rgba(255,209,102,0.10)) !important;
+  border: 1px solid rgba(255,180,210,0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 28px !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  animation: achIconEntry 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both !important;
+  box-shadow: 0 8px 20px -6px rgba(255,107,157,0.2) !important;
+  filter: none !important;
+  line-height: 1 !important;
+}
+body[data-theme="midnight"] .ach-icon {
+  background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(244,114,182,0.10)) !important;
+  border-color: rgba(167,139,250,0.2) !important;
+}
+@keyframes achIconEntry {
+  from { transform: scale(0.3) rotate(-30deg); opacity: 0; }
+  50% { transform: scale(1.15) rotate(8deg); }
+  to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* 图标光环 */
+.ach-icon::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: -6px !important;
+  border-radius: 22px !important;
+  border: 1.5px solid rgba(255,107,157,0.15) !important;
+  animation: achIconRing 2s ease-in-out infinite !important;
+  background: none !important;
+  width: auto !important; height: auto !important;
+  filter: none !important; opacity: 1 !important;
+  transform: none !important;
+}
+@keyframes achIconRing {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 0; }
+}
+
+/* 文字区 */
+.ach-info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  min-width: 0;
+  text-align: left !important;
+}
+
+.ach-label {
+  font-size: 10px !important;
+  letter-spacing: 2.5px !important;
+  text-transform: uppercase !important;
+  font-weight: 800 !important;
+  background: linear-gradient(90deg, #ff6b9d, #ffa575, #ffd166) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  line-height: 1.2 !important;
+  color: transparent !important;
+  margin-bottom: 1px !important;
+}
+body[data-theme="midnight"] .ach-label {
+  background: linear-gradient(90deg, #c084fc, #f472b6, #fbbf24) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+.ach-name {
+  font-family: var(--font-display) !important;
+  font-size: 17px !important;
+  font-weight: 900 !important;
+  color: var(--text-dark) !important;
+  -webkit-text-fill-color: initial !important;
+  line-height: 1.3 !important;
+  text-shadow: none !important;
+}
+
+.ach-desc {
+  font-size: 11px !important;
+  color: var(--text-soft) !important;
+  line-height: 1.4 !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+/* 屏幕闪光 */
+.screen-flash {
+  position: fixed !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at 50% 30%,
+    rgba(255,107,157,0.15),
+    rgba(255,209,102,0.06) 40%,
+    transparent 70%) !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+  animation: screenFlashV2 0.8s ease-out forwards !important;
+}
+@keyframes screenFlashV2 {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 闪光粒子 */
+.ach-sparkle {
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  background: none !important;
+  animation: none !important;
+  z-index: 2;
+}
+.ach-sparkle::before,
+.ach-sparkle::after {
+  content: '✦' !important;
+  position: absolute !important;
+  font-size: 10px !important;
+  color: rgba(255,209,102,0.6) !important;
+  animation: achSparkleFloat 1.5s ease-out forwards !important;
+}
+.ach-sparkle::before { left: 20% !important; top: 30% !important; }
+.ach-sparkle::after { right: 15% !important; bottom: 20% !important; animation-delay: 0.2s !important; }
+@keyframes achSparkleFloat {
+  0% { transform: translateY(0) scale(0); opacity: 0; }
+  30% { opacity: 1; transform: translateY(-8px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-24px) scale(0.6); }
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  2. 密码页卡片 · 通透玻璃感          ║
+   ╚══════════════════════════════════════╝ */
+
+.pwd-card {
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.78) 0%,
+    rgba(255,248,252,0.72) 50%,
+    rgba(255,240,248,0.68) 100%) !important;
+  box-shadow:
+    0 40px 100px -24px rgba(200,60,100,0.22),
+    0 12px 30px -10px rgba(255,107,157,0.14),
+    0 0 0 1px rgba(255,200,220,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.8) !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  3. 导航栏 · 精致毛玻璃              ║
+   ╚══════════════════════════════════════╝ */
+
+.nav-bar {
+  background: linear-gradient(180deg,
+    rgba(255,250,253,0.78) 0%,
+    rgba(255,245,250,0.68) 100%) !important;
+  box-shadow:
+    0 1px 0 rgba(255,180,210,0.1),
+    0 8px 32px -12px rgba(200,60,100,0.08) !important;
+}
+body[data-theme="midnight"] .nav-bar {
+  background: linear-gradient(180deg,
+    rgba(14,10,30,0.82) 0%,
+    rgba(20,14,38,0.78) 100%) !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  4. 按钮 · 渐变流动 hover            ║
+   ╚══════════════════════════════════════╝ */
+
+.btn-primary {
+  background: linear-gradient(135deg, #e8506a 0%, #ff8a7a 50%, #ffa575 100%) !important;
+  background-size: 200% auto !important;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1) !important;
+}
+.btn-primary:hover {
+  background-position: right center !important;
+  box-shadow:
+    0 16px 44px -8px rgba(255,107,157,0.45),
+    0 0 20px rgba(255,107,157,0.15) !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  5. 记忆卡片标题 · 渐变强调          ║
+   ╚══════════════════════════════════════╝ */
+
+.memory-title {
+  background: linear-gradient(135deg, var(--text-dark) 0%, var(--pink-deep) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  6. 标签 · 渐变底色 + hover          ║
+   ╚══════════════════════════════════════╝ */
+
+.tag {
+  background: linear-gradient(135deg,
+    rgba(255,107,157,0.08) 0%,
+    rgba(255,209,102,0.06) 100%) !important;
+  border: 1px solid rgba(255,107,157,0.12) !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+.tag:hover {
+  background: linear-gradient(135deg,
+    rgba(255,107,157,0.15) 0%,
+    rgba(255,209,102,0.12) 100%) !important;
+  transform: translateY(-1px);
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  7. 全局 toast 美化                  ║
+   ╚══════════════════════════════════════╝ */
+
+.global-toast {
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.92) 0%,
+    rgba(255,248,252,0.88) 100%) !important;
+  box-shadow:
+    0 16px 48px -12px rgba(255,107,157,0.25),
+    0 0 0 1px rgba(255,180,210,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.8) !important;
+  font-weight: 600 !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  8. 游戏选项按钮 · 更有层次          ║
+   ╚══════════════════════════════════════╝ */
+
+.game-option-btn {
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.85) 0%,
+    rgba(255,248,252,0.72) 100%) !important;
+  border: 1px solid rgba(255,200,220,0.3) !important;
+  box-shadow:
+    0 12px 32px -16px rgba(255,107,157,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.8) !important;
+}
+.game-option-btn:hover {
+  border-color: rgba(255,107,157,0.35) !important;
+  box-shadow:
+    0 20px 48px -12px rgba(255,107,157,0.25),
+    0 0 20px rgba(255,107,157,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.9) !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  9. 节点核心 · 多色流光              ║
+   ╚══════════════════════════════════════╝ */
+
+.node-center-core {
+  background: linear-gradient(135deg,
+    #ff6b9d 0%, #ff8a7a 25%,
+    #ffa575 50%, #c084fc 75%,
+    #ffd166 100%) !important;
+  background-size: 300% 300% !important;
+  animation: corePulse 3s ease-in-out infinite,
+             coreColorShiftV4 8s linear infinite !important;
+}
+@keyframes coreColorShiftV4 {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  10. 弹幕 · 更通透                   ║
+   ╚══════════════════════════════════════╝ */
+
+.ditem {
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.12) 0%,
+    rgba(255,107,157,0.08) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.15) !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  11. 心愿墙输入聚焦                  ║
+   ╚══════════════════════════════════════╝ */
+
+.wish-input:focus {
+  border-color: var(--pink) !important;
+  box-shadow:
+    0 0 0 4px rgba(255,107,157,0.08),
+    0 8px 24px -8px rgba(255,107,157,0.15) !important;
+  transform: translateY(-1px);
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  12. 日期胶囊 · 渐变底色             ║
+   ╚══════════════════════════════════════╝ */
+
+.memory-date-pill {
+  background: linear-gradient(90deg, rgba(255,107,157,0.08), rgba(255,209,102,0.06)) !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255,107,157,0.1) !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  13. 翻牌游戏 · 卡面渐变             ║
+   ╚══════════════════════════════════════╝ */
+
+.mem-card-front {
+  background: linear-gradient(135deg, #ff6b9d 0%, #ff8a7a 50%, #ffa575 100%) !important;
+  box-shadow:
+    0 6px 18px -4px rgba(255,107,157,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.2) !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  14. 3D纪念册 · 解锁卡闪光          ║
+   ╚══════════════════════════════════════╝ */
+
+.flip-card.unlocked .flip-front {
+  animation: unlockedShimmerV4 3s ease-in-out infinite !important;
+}
+@keyframes unlockedShimmerV4 {
+  0%, 100% {
+    box-shadow: 0 20px 55px -18px rgba(255,190,90,0.45), 0 0 28px rgba(255,215,120,0.2);
+  }
+  50% {
+    box-shadow: 0 24px 65px -16px rgba(255,190,90,0.55), 0 0 40px rgba(255,215,120,0.3);
+  }
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  15. 时间线节点发光                   ║
+   ╚══════════════════════════════════════╝ */
+
+.timeline-node:hover .timeline-dot-el {
+  background: var(--pink) !important;
+  box-shadow:
+    0 0 0 6px rgba(255,107,157,0.15),
+    0 0 20px rgba(255,107,157,0.25),
+    0 0 40px rgba(255,107,157,0.1) !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  16. 图片加载过渡                     ║
+   ╚══════════════════════════════════════╝ */
+
+.memory-thumb img.loaded {
+  animation: imgRevealV4 0.6s ease both !important;
+}
+@keyframes imgRevealV4 {
+  from { opacity: 0; filter: blur(8px) saturate(0.5); transform: scale(1.05); }
+  to { opacity: 1; filter: none; transform: scale(1); }
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  17. FAB按钮升级                      ║
+   ╚══════════════════════════════════════╝ */
+
+.fab {
+  background: linear-gradient(135deg, #ff8da1 0%, #ff6b9d 50%, #e8506a 100%) !important;
+  box-shadow:
+    0 12px 36px -6px rgba(255,107,157,0.45),
+    0 0 20px rgba(255,107,157,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.3) !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  18. 模态框 · 更细腻                  ║
+   ╚══════════════════════════════════════╝ */
+
+.modal-box {
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.96) 0%,
+    rgba(255,248,252,0.94) 100%) !important;
+  box-shadow:
+    0 40px 100px -20px rgba(80,16,48,0.25),
+    0 0 0 1px rgba(255,180,210,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.8) !important;
+}
+body[data-theme="midnight"] .modal-box {
+  background: linear-gradient(180deg,
+    rgba(30,22,55,0.97) 0%,
+    rgba(22,16,48,0.95) 100%) !important;
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  19. 搜索高亮动画                     ║
+   ╚══════════════════════════════════════╝ */
+
+.memory-card-focus {
+  animation: focusPulseV4 1.8s ease !important;
+}
+@keyframes focusPulseV4 {
+  0% {
+    transform: translateY(-4px) scale(0.98);
+    box-shadow: 0 0 0 3px rgba(255,107,157,0.4);
+  }
+  30% {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 0 0 4px rgba(255,107,157,0.3), 0 30px 60px -20px rgba(255,107,157,0.3);
+  }
+  100% {
+    transform: none;
+    box-shadow: var(--shadow-card);
+  }
+}
+
+
+/* ╔══════════════════════════════════════╗
+   ║  20. 成就进度条 · 多色渐变            ║
+   ╚══════════════════════════════════════╝ */
+
+.game-ach-progress i {
+  background: linear-gradient(90deg,
+    #ff6b9d 0%, #ffa575 35%,
+    #ffd166 65%, #c084fc 100%) !important;
+  box-shadow: 0 0 12px rgba(255,107,157,0.3) !important;
+}
+
+.game-ach-strip {
+  border-left: 4px solid transparent !important;
+  border-image: linear-gradient(180deg, #ff6b9d, #ffd166) 1 !important;
+}
+.game-ach-strip.done {
+  border-image: linear-gradient(180deg, #ffd166, #34d399) 1 !important;
+}
+
 </style>
 </head>
 <body>
 
 <!-- Atmosphere layers -->
+<!-- 液态玻璃背景 -->
+<div class="bg-liquid">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+<!-- 粒子星座Canvas -->
+<div class="particle-constellation" id="particleConst" aria-hidden="true">
+  <canvas id="constellationCanvas"></canvas>
+</div>
 <div class="bg-canvas"></div>
 <div class="aurora-ribbons" aria-hidden="true"></div>
 <div class="sparkle-field" id="sparkleField" aria-hidden="true"></div>
@@ -4189,10 +5309,11 @@ body[data-theme="midnight"] .story-btn-inline{
 
 <!-- Achievement Toast -->
 <div class="achievement-pop" id="achPop">
-  <span class="ach-icon" id="achIcon">🏆</span>
-  <div>
+  <div class="ach-icon" id="achIcon">🏆</div>
+  <div class="ach-info">
     <div class="ach-label">成就解锁</div>
     <div class="ach-name" id="achName"></div>
+    <div class="ach-desc" id="achDesc"></div>
   </div>
 </div>
 
@@ -4208,6 +5329,7 @@ body[data-theme="midnight"] .story-btn-inline{
   <div class="nav-actions">
     <button class="nav-btn" id="navPageBtn" onclick="handleNavBtn()">📸 回忆</button>
     <button class="nav-btn nav-icon-btn" id="themeBtn" onclick="cycleTheme()" title="切换主题">🌸</button>
+     
     <button class="nav-btn nav-icon-btn" id="danmakuBtn" onclick="toggleDanmaku()" title="弹幕">💬</button>
         <button class="nav-btn music-btn" id="musicToggleBtn" onclick="toggleMusic()" title="音乐">
       <div class="music-bars" id="musicBars">
@@ -4226,6 +5348,16 @@ body[data-theme="midnight"] .story-btn-inline{
      PAGE 1 · PASSWORD
 ========================================== -->
 <div class="page active" id="pwdPage" style="padding:20px">
+<button onclick="resetAllProgress()" 
+          style="position: fixed; top: 20px; right: 20px; z-index: 1000;
+                 background: rgba(255,255,255,0.6); backdrop-filter: blur(10px);
+                 border: 1px solid rgba(255,107,157,0.3); border-radius: 40px;
+                 padding: 8px 16px; font-size: 12px; cursor: pointer;
+                 color: var(--text-soft); transition: 0.2s; font-family: inherit;"
+          onmouseover="this.style.background='rgba(255,107,157,0.15)'; this.style.borderColor='var(--pink)'; this.style.color='var(--pink)';"
+          onmouseout="this.style.background='rgba(255,255,255,0.6)'; this.style.borderColor='rgba(255,107,157,0.3)'; this.style.color='var(--text-soft)';">
+    ♻️ 重置
+  </button>
   <div class="pwd-card">
     <div class="pwd-logo">
       <div class="logo-ring">🐟</div>
@@ -4255,6 +5387,12 @@ body[data-theme="midnight"] .story-btn-inline{
       <div class="hero-title">给魚留的秘密基地</div>
       <div class="hero-sub">大魚，点开这里的时候，希望你能少一点烦恼，你永远都是the best</div>
     </div>
+
+<!-- 迷你时间线 -->
+<div class="timeline-visual reveal-up">
+  <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-soft);font-weight:700;margin-bottom:6px">JOURNEY TIMELINE · 13 STATIONS</div>
+  <div class="timeline-track" id="timelineTrack"></div>
+</div>
 
     <!-- Hero Monument — streamlined -->
     <div class="hero-monument tiltable">
@@ -4802,6 +5940,8 @@ const NODE_TIMELINE=[
 // INIT
 // ==========================================
 window.addEventListener('load',()=>{
+  initConstellationCanvas();
+  initTimeline();
   loadState();initGallery();initAlbumGrid();initWishWallDefaults();initAlbum3d();createParticles();createSparkles();createMeteors();createPetals();createAlbumStars();syncEnhancementUI();updateHeroMonument();refreshSeasonBoard();initAtmosphereFX();updateNodePanel(currentNodeIdx);refreshNodeProgress();
   document.getElementById('userInput').focus();
   document.addEventListener('keydown',e=>{
@@ -4940,7 +6080,7 @@ function goToPage(id){
   pg.style.animation=dir+' 0.55s var(--ease-out-expo)';
   pg.classList.add('active');currentPage=id;
   const nav=document.getElementById('navBar'),fab=document.getElementById('fabBtn');
-  if(id==='pwdPage'){nav.classList.remove('visible');fab.style.display='none';document.getElementById('cursorAura')?.classList.remove('show')}else{nav.classList.add('visible');fab.style.display='flex'}
+  if(id==='pwdPage'){nav.classList.remove('visible');fab.style.display='none';document.getElementById('cursorAura')?.classList.remove('show')}else{nav.classList.add('visible');fab.style.display='flex';showMoodFloat()}
   stopMusic();
   if(id==='cakePage')playMusic('bgmCake');
   else if(id==='memoryPage')playMusic('bgmMemory');
@@ -5365,9 +6505,60 @@ const GUESS_QUESTIONS=[
 function startGuessGame(c){let idx=0,score=0;const render=()=>{const q=GUESS_QUESTIONS[idx];if(!q){setGameBest('guessBest',score);c.innerHTML=`${renderGameAchievement('guess',score,GUESS_QUESTIONS.length,'3 题全中，就能点亮「默契命中」')}<div class="game-result-card"><div class="quiz-result-score">${score}/${GUESS_QUESTIONS.length}</div><div class="game-result-sub">${score===GUESS_QUESTIONS.length?'默契值直接拉满，这轮真是稳稳命中。':'差一点点就三连中了，再猜一轮基本就有了。'}</div><button class="btn btn-primary" onclick="startGuessGame(document.getElementById('gameContent'))">🔄 再猜一次</button></div>`;checkAchievement('guess',()=>score>=GUESS_QUESTIONS.length);if(score===GUESS_QUESTIONS.length)createFireworks(50,50);return;}c.innerHTML=`${renderGameAchievement('guess',Math.max(score,gameStats.guessBest||0),GUESS_QUESTIONS.length,'3 题全对解锁专属成就')}<div class="quiz-q">${q.q}</div><div class="quiz-opts">${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="pickGuess(${i},this)">${o}</button>`).join('')}</div>`};const pickGuess=(i,btn)=>{const q=GUESS_QUESTIONS[idx];document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);btn.classList.add(i===q.a?'correct':'wrong');if(i===q.a)score++;showToast(q.tip);idx++;setTimeout(render,850)};window.pickGuess=pickGuess;render()}
 
 // Fish
-function startFishGame(c){fishCount=0;fishGameActive=true;c.innerHTML=`${renderGameAchievement('fish',Math.max(fishBest,fishCount),10,'捕到 10 条祝福小鱼，就能拿下「捕鱼达人」')}<div class="fish-tank" id="fishTank"><div class="fish-score-hud" id="fishHud">0 / 10 🐟</div><div style="position:absolute;top:10px;left:10px;font-size:11px;color:rgba(255,255,255,0.8);background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:999px;backdrop-filter:blur(6px);z-index:3">点击小鱼</div><div class="fish-progress-bar-wrap"><div class="fish-progress-fill" id="fishFill"></div></div><div class="fish-msg" id="fishMsg"></div></div><p style="text-align:center;color:var(--text-soft);font-size:13px;margin-top:10px">捕获 10 条祝福小鱼，就能直接解锁成就。</p>`;if(fishInterval)clearInterval(fishInterval);fishInterval=setInterval(()=>spawnFish(),reducedMotion?1000:700)}
-function spawnFish(){const t=document.getElementById('fishTank');if(!t||!fishGameActive)return;const f=document.createElement('div');f.className='fish-entity';const types=['🐟','🐠','🐡','🎏'];f.textContent=types[Math.floor(Math.random()*types.length)];const top=20+Math.random()*270,dur=4+Math.random()*4;f.style.cssText=`top:${top}px;left:-50px;animation:fishSwim ${dur}s linear forwards;font-size:${26+Math.random()*10}px`;f.onclick=e=>{e.stopPropagation();catchFish(f)};t.appendChild(f);if(!document.getElementById('fishSwimKF')){const s=document.createElement('style');s.id='fishSwimKF';s.textContent='@keyframes fishSwim{from{transform:translateX(-50px)}to{transform:translateX(calc(100vw + 80px))}}';document.head.appendChild(s)}setTimeout(()=>f.remove(),dur*1000+100)}
-function catchFish(el){if(!el)return;el.style.transform='scale(1.4) rotate(12deg)';el.style.transition='0.2s';setTimeout(()=>el.remove(),180);fishCount++;fishBest=Math.max(fishBest,fishCount);document.getElementById('fishHud').textContent=`${fishCount} / 10 🐟`;document.getElementById('fishFill').style.width=(fishCount*10)+'%';const m=FISH_MSGS[Math.floor(Math.random()*FISH_MSGS.length)];const msg=document.getElementById('fishMsg');msg.textContent=m;msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),1400);createHeartsBurst(window.innerWidth/2,window.innerHeight/2);updateStats();saveState();if(fishCount>=10){fishGameActive=false;clearInterval(fishInterval);fishInterval=null;checkAchievement('fish',()=>fishCount>=10);setTimeout(()=>{document.getElementById('gameModal').classList.remove('show');showModal('🎉 恭喜','抓到 10 条啦，去看看时光胶囊吧。');openGallery()},700)}}
+function startFishGame(c){fishCount=0;fishGameActive=true;c.innerHTML=`${renderGameAchievement('fish',Math.max(fishBest,fishCount),10,'捕到 10 条祝福小鱼，就能拿下「捕鱼达人」')}<div class="fish-tank" id="fishTank"><div class="fish-score-hud" id="fishHud">0 / 10 🐟</div><div style="position:absolute;top:10px;left:10px;font-size:11px;color:rgba(255,255,255,0.8);background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:999px;backdrop-filter:blur(6px);z-index:3">点击小鱼</div><div class="fish-progress-bar-wrap"><div class="fish-progress-fill" id="fishFill"></div></div><div class="fish-msg" id="fishMsg"></div></div><p style="text-align:center;color:var(--text-soft);font-size:13px;margin-top:10px">捕获 10 条祝福小鱼，就能直接解锁成就。</p>`;const tank=document.getElementById('fishTank');if(tank&&!tank.dataset.bound){const handler=e=>{const target=e.target.closest('.fish-entity');if(!target)return;e.preventDefault();e.stopPropagation();catchFish(target)};tank.addEventListener('pointerdown',handler);tank.addEventListener('click',handler);tank.dataset.bound='1'}if(fishInterval)clearInterval(fishInterval);fishInterval=setInterval(()=>spawnFish(),reducedMotion?1000:700)}
+function spawnFish() {
+  const t = document.getElementById('fishTank');
+  if (!t || !fishGameActive) return;
+  const f = document.createElement('button');
+  f.type = 'button';
+  f.className = 'fish-entity';
+  const types = ['🐟', '🐠', '🐡', '🎏'];
+  f.textContent = types[Math.floor(Math.random() * types.length)];
+  const top = 20 + Math.random() * 270;
+  
+  // ========== 速度改进方案 ==========
+  // 方案1：捕获越多，鱼游得越快（动态难度）
+  let catchBonus = Math.min(2.5, fishCount / 12);  // 每抓12条鱼，速度提升约2.5秒
+  let randomOffset = (Math.random() - 0.5) * 1.2;   // 随机波动 ±0.6秒
+  let dur = 10 - catchBonus + randomOffset;       // 基础5秒，逐渐变快
+  
+  // 限制速度范围：最快1.8秒，最慢6.5秒
+  dur = Math.min(10, Math.max(1.8, dur));
+  
+  // 可选：根据鱼的类型微调速度（大鱼慢小鱼快）
+  if (f.textContent === '🐡') dur += 0.8;      // 河豚游得慢
+  if (f.textContent === '🐠') dur -= 0.5;      // 热带鱼游得快
+  // ==================================
+  
+  f.style.cssText = `top:${top}px;left:-50px;animation:fishSwim ${dur}s linear forwards;font-size:${26 + Math.random() * 10}px;z-index:6;pointer-events:auto;background:none;border:none;padding:0;`;
+  
+  const quickCatch = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    catchFish(f);
+  };
+  f.addEventListener('pointerdown', quickCatch, { passive: false });
+  f.addEventListener('click', quickCatch, { passive: false });
+  t.appendChild(f);
+  
+  if (!document.getElementById('fishSwimKF')) {
+    const s = document.createElement('style');
+    s.id = 'fishSwimKF';
+    s.textContent = '@keyframes fishSwim{from{transform:translateX(-50px)}to{transform:translateX(calc(100vw + 80px))}}';
+    document.head.appendChild(s);
+  }
+  setTimeout(() => f.remove(), dur * 1000 + 100);
+}
+function catchFish(el){if(!el||el.dataset.caught==='1'||!fishGameActive)return;el.dataset.caught='1';el.style.transform='scale(1.4) rotate(12deg)';el.style.transition='0.2s';el.style.pointerEvents='none';setTimeout(()=>el.remove(),180);fishCount++;fishBest=Math.max(fishBest,fishCount);document.getElementById('fishHud').textContent=`${fishCount} / 10 🐟`;document.getElementById('fishFill').style.width=(fishCount*10)+'%';const m=FISH_MSGS[Math.floor(Math.random()*FISH_MSGS.length)];const msg=document.getElementById('fishMsg');msg.textContent=m;msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),1400);createHeartsBurst(window.innerWidth/2,window.innerHeight/2);updateStats();saveState();if(fishCount>=10){
+  fishGameActive=false;
+  clearInterval(fishInterval);
+  fishInterval=null;
+  checkAchievement('fish',()=>fishCount>=10);
+  setTimeout(()=>{
+    document.getElementById('gameModal').classList.remove('show');
+    showModal('🎉 恭喜','抓到 10 条啦，捕鱼达人成就已点亮～');
+  },700);
+}}
 
 // Memory card
 const CARD_EMOJIS=['🌸','🎮','🐟','🎤','🍔','📚','✨','🎧'];
@@ -5403,8 +6594,49 @@ function openModal(id){document.getElementById(id).classList.add('show')}
 // ACHIEVEMENTS / STATS
 // ==========================================
 function checkAchievement(id,cond){const a=ACHIEVEMENTS.find(x=>x.id===id);if(!a||a.unlocked)return;if(cond()){a.unlocked=true;showAchievementPop(a);updateStats();initAlbum3d();saveState()}}
-function showAchievementPop(a){const p=document.getElementById('achPop');document.getElementById('achIcon').textContent=a.icon;document.getElementById('achName').textContent=a.name;p.classList.add('show');createFireworks(50,30);setTimeout(()=>p.classList.remove('show'),3800)}
-
+function showAchievementPop(a) {
+  const pop = document.getElementById('achPop');
+  if (!pop) return;
+  
+  document.getElementById('achIcon').textContent = a.icon;
+  document.getElementById('achName').textContent = a.name;
+  const descEl = document.getElementById('achDesc');
+  if (descEl) descEl.textContent = a.desc || '';
+  
+  pop.querySelectorAll('.ach-sparkle').forEach(el => el.remove());
+  
+  const sparkle = document.createElement('div');
+  sparkle.className = 'ach-sparkle';
+  pop.appendChild(sparkle);
+  
+  document.querySelectorAll('.screen-flash').forEach(el => el.remove());
+  const flash = document.createElement('div');
+  flash.className = 'screen-flash';
+  document.body.appendChild(flash);
+  
+  pop.classList.add('show');
+  
+  createFireworks(50, 35);
+  setTimeout(() => createFireworks(30, 45), 300);
+  setTimeout(() => createFireworks(70, 40), 500);
+  
+  for (let i = 0; i < 12; i++) {
+    setTimeout(() => {
+      createHeartsBurst(
+        window.innerWidth / 2 + (Math.random() - 0.5) * 180,
+        window.innerHeight * 0.3 + (Math.random() - 0.5) * 100
+      );
+    }, i * 80);
+  }
+  
+  setTimeout(() => {
+    pop.classList.remove('show');
+    setTimeout(() => {
+      sparkle.remove();
+      flash.remove();
+    }, 600);
+  }, 4500);
+}
 function updateAlbumAchievementSummary(){
   const unlocked=ACHIEVEMENTS.filter(a=>a.unlocked).length;
   const gameTotal=10;
@@ -5431,7 +6663,10 @@ function createFireworks(cx=50,cy=50){
     setTimeout(()=>{for(let t=0;t<8;t++){const angle=Math.random()*Math.PI*2;const dist=20+Math.random()*30;const spark=document.createElement('div');spark.className='firework-dot';spark.style.cssText=`left:${bx}px;top:${by}px;background:#fff;width:3px;height:3px;box-shadow:0 0 6px #fff;animation-duration:0.6s`;l.appendChild(spark);requestAnimationFrame(()=>{spark.style.transform=`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`;spark.style.opacity='0'});setTimeout(()=>spark.remove(),600)}},200);
   },b*180)}
 }
-
+function resetAllProgress(){
+  localStorage.removeItem(STATE_KEY);
+  location.reload();
+}
 
 function launchFireworksBurst(){for(let i=0;i<3;i++)setTimeout(()=>createFireworks(Math.random()*80+10,Math.random()*50+20),i*350)}
 function createMeteor(){
@@ -5526,6 +6761,11 @@ function refreshPremiumEffects(){
   document.querySelectorAll(sel).forEach((el,i)=>{
     if(!el.dataset.revealBound){el.dataset.revealBound='1';el.classList.add('reveal-up');el.style.transitionDelay=Math.min(i*0.03,0.2)+'s';premiumRevealObserver&&premiumRevealObserver.observe(el)}
   });
+  // 给所有卡片加全息扫光和发光边框
+  document.querySelectorAll('.hero-monument,.glass-card,.memory-card,.season-card,.stat-pill,.game-option-btn,.archive-feature-card,.archive-overview-card,.hero-meaning-card,.hero-data-item,.node-panel,.quiz-opt,.lyric-quote-box').forEach(el => {
+    if (!el.classList.contains('holo-sweep')) el.classList.add('holo-sweep');
+    if (!el.classList.contains('glow-border')) el.classList.add('glow-border');
+  });
 }
 
 function initPremiumEffects(){
@@ -5566,11 +6806,105 @@ function initPremiumEffects(){
     });
   },{passive:true});}
 }
+// 迷你时间线
+function initTimeline() {
+  const track = document.getElementById('timelineTrack');
+  if (!track) return;
+  track.innerHTML = '';
+  MEMORIES.forEach((m, i) => {
+    if (i > 0) {
+      const conn = document.createElement('div');
+      conn.className = 'timeline-connector';
+      track.appendChild(conn);
+    }
+    const node = document.createElement('div');
+    node.className = 'timeline-node';
+    node.innerHTML = '<div class="timeline-dot-el"></div><div class="timeline-label">' + m.date + '</div>';
+    node.onclick = () => { goToPage('memoryPage'); setTimeout(() => quickJumpStation(m.id), 300); };
+    track.appendChild(node);
+  });
+}
+
+// 心情浮标显示
+function showMoodFloat() {
+  const el = document.getElementById('moodFloat');
+  if (!el) return;
+  el.style.display = 'flex';
+  const moods = ['在线 · 一切都好','闪闪发光中 ✨','今日状态满格 💪','最棒的朋友在线 🐟','陪你看星星 🌙'];
+  const t = document.getElementById('moodText');
+  if (t) t.textContent = moods[Math.floor(Math.random() * moods.length)];
+}
+
+// ==========================================
+// 粒子星座 Canvas
+// ==========================================
+function initConstellationCanvas() {
+  const canvas = document.getElementById('constellationCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width, height, particles = [];
+  const COUNT = window.innerWidth < 600 ? 25 : 50;
+  const DIST = 110;
+
+  function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  for (let i = 0; i < COUNT; i++) {
+    particles.push({
+      x: Math.random() * width, y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+      size: 1.5 + Math.random() * 2, opacity: 0.2 + Math.random() * 0.35
+    });
+  }
+
+  let mx = -999, my = -999;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+
+  function animate() {
+    if (document.hidden || currentPage === 'pwdPage') { requestAnimationFrame(animate); return; }
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+      const dx = mx - p.x, dy = my - p.y, d = Math.sqrt(dx*dx+dy*dy);
+      if (d < 180) { p.x -= dx * 0.004; p.y -= dy * 0.004; }
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+        const d = Math.sqrt(dx*dx+dy*dy);
+        if (d < DIST) {
+          ctx.strokeStyle = `rgba(255,107,157,${(1-d/DIST)*0.12})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+        }
+      }
+    }
+    particles.forEach(p => {
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(255,255,255,${p.opacity})`; ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size*2, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(255,107,157,${p.opacity*0.12})`; ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
+
 document.addEventListener('visibilitychange',()=>{if(document.hidden){document.body.classList.add('reduce-motion');stopSongPreview();}else{document.body.classList.remove('reduce-motion')}});
 
 // Secret codes
 let secretBuf='';
 document.addEventListener('keydown',e=>{secretBuf+=e.key;if(secretBuf.length>20)secretBuf=secretBuf.slice(-20);if(secretBuf.includes('happy')){showToast('🎉 范鑫雨天天开心！');createFireworks(50,50);secretBuf=''}if(secretBuf.includes('fxy')){showToast('🐟 大魚出没！');createHeartsBurst(window.innerWidth/2,window.innerHeight/2);secretBuf=''}if(secretBuf.includes('bigfish')){showToast('🐟🐟🐟 大魚状态拉满！');launchFireworksBurst();secretBuf=''}});
 </script>
+<!-- 心情浮标 -->
+<div class="mood-float" id="moodFloat" style="display:none">
+  <div class="mood-pill" onclick="showToast(FISH_MSGS[Math.floor(Math.random()*FISH_MSGS.length)])">
+    <span class="mood-dot"></span>
+    <span id="moodText">在线 · 一切都好</span>
+  </div>
+</div>
 </body>
 </html>
