@@ -7254,6 +7254,7 @@ function goToPage(id){
   if(id==='pwdPage'){nav.classList.remove('visible');fab.style.display='none';document.getElementById('cursorAura')?.classList.remove('show')}else{nav.classList.add('visible');fab.style.display='flex';showMoodFloat()}
   
   // 切换页面时播放对应页面的音乐（会从上次进度继续，不会重置）
+  stopMusic();
   if(id==='cakePage') playMusic('bgmCake');
   else if(id==='memoryPage') playMusic('bgmMemory');
   else if(id==='mainPage') playMusic('bgmMain');
