@@ -6332,7 +6332,7 @@ body.fxy-memory-entering #memoryPage .memory-meta{
 <audio id="bgmMemory" loop src="music3.mp3" preload="none"></audio>
 <audio id="bgmMain" loop src="music2.mp3" preload="none"></audio>
 <audio id="bgmAlbum" loop src="music4.mp3" preload="none"></audio>
-
+<audio id="bgmExtra" loop src="bgmExtra.mp3" preload="none"></audio>
 <div class="fx-container" id="fxLayer"></div>
 
 <div class="achievement-pop" id="achPop">
@@ -7087,6 +7087,14 @@ const GALLERY_ITEMS=[
 // ==========================================
 let currentPage='pwdPage',musicPlaying=false,currentMusic=null,wishCount=0,nodesLit=0,fishCount=0,fishBest=0,likedIds=new Set(),currentFilter='all',currentTag='all',memorySortMode='earliest',isGridView=false,danmakuOn=false,danmakuEnabled=true,danmakuTimer=null,typeTimer=null,currentTheme='rose',reducedMotion=false,visitCount=0,currentZoomList=[],currentZoomIndex=0,quizScore=0,quizIdx=0,wishMessages=[],lastViewedMemoryId=0,fishGameActive=false,fishInterval=null,shellGameState=null,rpsState=null;
 let gameStats={memoryWins:0,quizBest:0,scratchWins:0,shellBest:0,rpsBest:0,songBest:0,adventureBest:0,recallBest:0,guessBest:0};
+  // 每首歌的独立播放进度（秒数）
+const musicProgress = {
+  bgmCake: 0,
+  bgmMemory: 0,
+  bgmMain: 0,
+  bgmAlbum: 0,
+  bgmExtra: 0   // 快捷舱专用
+};
 const TOTAL_PHOTOS=68,STATE_KEY='fxy_site_state_v10';
 const DANMAKU_PAGES=new Set(['mainPage','albumPage']);
 let nodesLitArr=[false,false,false,false,false];
@@ -7250,7 +7258,7 @@ function goToPage(id){
   else if(id==='memoryPage') playMusic('bgmMemory');
   else if(id==='mainPage') playMusic('bgmMain');
   else if(id==='albumPage') playMusic('bgmAlbum');
-  else if(['planetPage','radioPage','posterPage','ariesPage'].includes(id)) playMusic('bgmMain');
+ else if(['planetPage','radioPage','posterPage','ariesPage'].includes(id)) playMusic('bgmExtra');
   
   if(id==='memoryPage')initMemoryGrid();
   if(id==='cakePage'){refreshSeasonBoard();updateHeroMonument();if(visitCount<=3)setTimeout(()=>showToast(`🐟 大魚第 ${visitCount} 次来，欢迎回来`),800)}
