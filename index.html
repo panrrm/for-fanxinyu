@@ -7276,7 +7276,11 @@ function openAlbumPage(){goToPage('albumPage')}
 function stopMusic(){
   if(currentMusic){
     const a = document.getElementById(currentMusic);
-    if(a) a.pause();
+    if(a && !a.paused){
+      // 记住当前播放进度
+      musicProgress[currentMusic] = a.currentTime;
+      a.pause();
+    }
   }
   musicPlaying = false;
   updateMusicUI();
@@ -7285,6 +7289,12 @@ function playMusic(id){
   const a = document.getElementById(id);
   if(!a) return;
   if(currentMusic === id && musicPlaying) return;
+  
+  // 如果之前播放过这首歌，从上次进度继续
+  if(musicProgress[id] > 0 && a.currentTime === 0) {
+    a.currentTime = musicProgress[id];
+  }
+  
   a.volume = 0.4;
   a.play().then(()=>{
     currentMusic = id;
