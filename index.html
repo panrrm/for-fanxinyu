@@ -2452,14 +2452,20 @@ body[data-theme="midnight"] .game-preview-pill {
   position: fixed; top: 56px; left: 0; right: 0;
   height: 220px; pointer-events: none; z-index: 800; overflow: hidden;
 }
-.ditem {
-  position: absolute; white-space: nowrap;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255, 255, 255, 0.88);
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(6px);
-  padding: 7px 16px; border-radius: 999px;
-  border: 1px solid rgba(255, 176, 200, 0.25);
+.ditem{
+  position: absolute;
+  white-space: nowrap;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #e8506a, #ff6b9d, #c084fc) !important;
+  backdrop-filter: none !important;
+  padding: 10px 22px !important;
+  border-radius: 40px !important;
+  border: 2px solid rgba(255,255,255,0.7) !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 20px rgba(255,107,157,0.6) !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4) !important;
+  letter-spacing: 1px;
   animation: dmove linear forwards;
 }
 @keyframes dmove {
@@ -7238,12 +7244,14 @@ function goToPage(id){
   pg.classList.add('active');currentPage=id;window.currentPage=id;document.body.dataset.page=id;
   const nav=document.getElementById('navBar'),fab=document.getElementById('fabBtn');
   if(id==='pwdPage'){nav.classList.remove('visible');fab.style.display='none';document.getElementById('cursorAura')?.classList.remove('show')}else{nav.classList.add('visible');fab.style.display='flex';showMoodFloat()}
-  stopMusic();
-  if(id==='cakePage')playMusic('bgmCake');
-  else if(id==='memoryPage')playMusic('bgmMemory');
-  else if(id==='mainPage'){playMusic('bgmMain');launchFireworksBurst()}
-  else if(id==='albumPage'){playMusic('bgmAlbum');initAlbum3d()}
-  else if(['planetPage','radioPage','posterPage','ariesPage'].includes(id))playMusic('bgmMain');
+  
+  // 切换页面时播放对应页面的音乐（会从上次进度继续，不会重置）
+  if(id==='cakePage') playMusic('bgmCake');
+  else if(id==='memoryPage') playMusic('bgmMemory');
+  else if(id==='mainPage') playMusic('bgmMain');
+  else if(id==='albumPage') playMusic('bgmAlbum');
+  else if(['planetPage','radioPage','posterPage','ariesPage'].includes(id)) playMusic('bgmMain');
+  
   if(id==='memoryPage')initMemoryGrid();
   if(id==='cakePage'){refreshSeasonBoard();updateHeroMonument();if(visitCount<=3)setTimeout(()=>showToast(`🐟 大魚第 ${visitCount} 次来，欢迎回来`),800)}
   syncDanmakuForPage();
@@ -7257,8 +7265,29 @@ function openAlbumPage(){goToPage('albumPage')}
 // ==========================================
 // MUSIC
 // ==========================================
-function stopMusic(){['bgmCake','bgmMemory','bgmMain','bgmAlbum'].forEach(id=>{const a=document.getElementById(id);if(a){a.pause();a.currentTime=0}});musicPlaying=false;currentMusic=null;updateMusicUI()}
-function playMusic(id){const a=document.getElementById(id);if(!a)return;a.volume=0.4;a.play().then(()=>{currentMusic=id;musicPlaying=true;updateMusicUI()}).catch(()=>{currentMusic=id;musicPlaying=false;updateMusicUI()})}
+function stopMusic(){
+  if(currentMusic){
+    const a = document.getElementById(currentMusic);
+    if(a) a.pause();
+  }
+  musicPlaying = false;
+  updateMusicUI();
+}
+function playMusic(id){
+  const a = document.getElementById(id);
+  if(!a) return;
+  if(currentMusic === id && musicPlaying) return;
+  a.volume = 0.4;
+  a.play().then(()=>{
+    currentMusic = id;
+    musicPlaying = true;
+    updateMusicUI();
+  }).catch(()=>{
+    currentMusic = id;
+    musicPlaying = false;
+    updateMusicUI();
+  });
+}
 function toggleMusic(){if(!currentMusic){if(currentPage==='cakePage')playMusic('bgmCake');else if(currentPage==='memoryPage')playMusic('bgmMemory');else if(currentPage==='mainPage')playMusic('bgmMain');else if(currentPage==='albumPage')playMusic('bgmAlbum');return}const a=document.getElementById(currentMusic);if(musicPlaying){a.pause();musicPlaying=false}else{a.play().catch(()=>{});musicPlaying=true}updateMusicUI()}
 function updateMusicUI(){document.querySelectorAll('.music-bar').forEach(b=>b.classList.toggle('paused',!musicPlaying))}
 
