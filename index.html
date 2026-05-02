@@ -13465,6 +13465,1295 @@ body[data-theme="midnight"] .ditem{
   -webkit-text-fill-color:rgba(255,255,255,.88) !important;
 }
 </style>
+<!-- ===========================================================
+     ✦ FXY v17 · 终极美感 + 内容升级补丁 ✦
+     直接粘贴到 </body> 之前；不删除任何原有功能
+     升级范围：
+       1) 星轨快捷舱 4 个页面（扭蛋 / 电台 / 荣耀 / 默契实验室）
+       2) 写给大魚的 13 站回忆
+       3) 时光胶囊（影像）
+     双重升级：视觉美化 + 文案/内容/结构强化
+     =========================================================== -->
 
+<style id="fxy-v17-ultimate-style">
+/* =====================================================
+   v17 · 共用 token & 工具类
+   ===================================================== */
+:root{
+  --v17-radius: 26px;
+  --v17-spring: cubic-bezier(.34,1.56,.64,1);
+  --v17-smooth: cubic-bezier(.16,1,.3,1);
+  --v17-glow-pink: 0 18px 40px -22px rgba(255,107,157,.45);
+  --v17-glow-gold: 0 18px 42px -22px rgba(255,209,102,.50);
+  --v17-glow-blue: 0 18px 42px -22px rgba(96,165,250,.45);
+  --v17-glow-purple: 0 18px 42px -22px rgba(192,132,252,.45);
+}
+@property --v17-angle{ syntax:'<angle>'; initial-value:0deg; inherits:false; }
+
+/* 全局：让 4 个 extra-stage 内部更有层次 */
+.extra-stage{
+  isolation:isolate;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,247,253,.72)),
+    radial-gradient(circle at 12% 14%, rgba(255,213,128,.16), transparent 32%),
+    radial-gradient(circle at 88% 18%, rgba(255,107,157,.14), transparent 30%),
+    radial-gradient(circle at 50% 100%, rgba(192,132,252,.14), transparent 40%) !important;
+  box-shadow:
+    0 36px 96px -38px rgba(180,82,128,.28),
+    0 14px 38px -22px rgba(96,165,250,.18),
+    inset 0 1px 0 rgba(255,255,255,.78) !important;
+}
+.extra-stage::after{
+  content:'';
+  position:absolute;
+  inset:-1.5px;
+  border-radius:inherit;
+  padding:1.5px;
+  background:conic-gradient(from var(--v17-angle),
+    rgba(255,213,128,.55), rgba(255,107,157,.42),
+    rgba(192,132,252,.42), rgba(96,165,250,.45),
+    rgba(255,213,128,.55));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.42;
+  pointer-events:none;
+  animation:v17BorderSpin 14s linear infinite;
+}
+@keyframes v17BorderSpin{ to{ --v17-angle:360deg; } }
+body[data-theme="midnight"] .extra-stage{
+  background:
+    linear-gradient(180deg, rgba(28,20,50,.92), rgba(16,12,32,.84)),
+    radial-gradient(circle at 88% 18%, rgba(96,165,250,.10), transparent 30%) !important;
+}
+
+/* 入场气泡 */
+.v17-fade-in{
+  opacity:0;
+  transform:translateY(22px) scale(.985);
+  filter:blur(5px);
+  animation:v17FadeIn .82s var(--v17-smooth) forwards;
+}
+.v17-fade-in.d1{ animation-delay:.06s; }
+.v17-fade-in.d2{ animation-delay:.14s; }
+.v17-fade-in.d3{ animation-delay:.22s; }
+.v17-fade-in.d4{ animation-delay:.30s; }
+@keyframes v17FadeIn{ to{ opacity:1; transform:none; filter:none; } }
+
+/* =====================================================
+   ① 星轨快捷舱 · 入口卡片 升级
+   ===================================================== */
+.node-room-board{
+  position:relative;
+  overflow:hidden;
+}
+.node-room-board::before{
+  content:'';
+  position:absolute;
+  inset:-30%;
+  background:conic-gradient(from 0deg, transparent, rgba(255,107,157,.10), transparent 30%, rgba(96,165,250,.08), transparent 60%, rgba(255,213,128,.10), transparent 90%);
+  animation:v17BorderSpin 24s linear infinite;
+  pointer-events:none;
+  z-index:0;
+}
+.node-room-head, .node-room-grid{ position:relative; z-index:1; }
+.node-room-card{
+  isolation:isolate;
+  transition:.4s var(--v17-spring);
+}
+.node-room-card .node-room-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  margin-bottom:14px;
+  background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,238,247,.72));
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 10px 22px -14px rgba(255,107,157,.42), inset 0 1px 0 rgba(255,255,255,.96);
+  font-size:24px !important;
+  filter:drop-shadow(0 4px 8px rgba(255,107,157,.18));
+}
+.node-room-card:nth-child(1) .node-room-icon{ background:linear-gradient(135deg, #ffeef6, #ffd2e3); }
+.node-room-card:nth-child(2) .node-room-icon{ background:linear-gradient(135deg, #f3ebff, #ddd0ff); }
+.node-room-card:nth-child(3) .node-room-icon{ background:linear-gradient(135deg, #fff7da, #ffe6a8); }
+.node-room-card:nth-child(4) .node-room-icon{ background:linear-gradient(135deg, #e6f3ff, #c9e0ff); }
+.node-room-card:hover{
+  transform:translateY(-9px) scale(1.025);
+  box-shadow:0 30px 56px -28px rgba(255,107,157,.44), 0 0 28px rgba(255,213,128,.18) !important;
+}
+
+/* =====================================================
+   ② 宇宙扭蛋机
+   ===================================================== */
+/* 顶部统计条 */
+#planetPage .capsule-stat-bar .capsule-stat{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,247,251,.72)) !important;
+  border:1px solid rgba(255,255,255,.88) !important;
+  transition:.36s var(--v17-spring);
+}
+#planetPage .capsule-stat::before{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  padding:1.2px;
+  background:linear-gradient(135deg, rgba(255,213,128,.5), rgba(255,107,157,.36), rgba(192,132,252,.32));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.45;
+  pointer-events:none;
+}
+#planetPage .capsule-stat:hover{
+  transform:translateY(-4px) scale(1.025);
+  box-shadow:0 24px 46px -28px rgba(255,107,157,.42), 0 0 22px rgba(255,213,128,.18);
+}
+#planetPage .capsule-stat:hover::before{ opacity:.95; }
+#planetPage .capsule-stat b{
+  background:linear-gradient(135deg, #ff6b9d, #ffa575, #ffd166);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 6px rgba(255,107,157,.18));
+  font-size:22px !important;
+}
+
+/* 扭蛋机主体强化 */
+#planetPage .capsule-machine-box{ margin-top:18px; }
+#planetPage .capsule-machine-glass{
+  position:relative !important;
+  background:
+    radial-gradient(circle at 30% 22%, #ffffff 0%, rgba(255,255,255,.88) 26%, rgba(255,222,237,.6) 55%, rgba(255,180,213,.20) 82%) !important;
+  border:6px solid rgba(255,255,255,.78) !important;
+  box-shadow:
+    0 0 0 4px rgba(255,213,128,.22),
+    0 36px 72px -28px rgba(255,107,157,.55),
+    inset 0 8px 20px rgba(255,255,255,.78),
+    inset 0 -12px 28px rgba(255,107,157,.18) !important;
+  animation:v17CapsuleFloat 4.6s ease-in-out infinite alternate !important;
+}
+@keyframes v17CapsuleFloat{
+  to{ transform:translateY(-7px) rotate(1.5deg); }
+}
+#planetPage .capsule-machine-glass::after{
+  content:'';
+  position:absolute;
+  inset:-14px;
+  border-radius:50%;
+  border:1.6px dashed rgba(255,107,157,.30);
+  pointer-events:none;
+  animation:v17BorderSpin 18s linear infinite;
+}
+#planetPage .capsule-orbit-ball{
+  filter:drop-shadow(0 4px 10px rgba(255,107,157,.36)) !important;
+}
+#planetPage .bottle-core{
+  background:linear-gradient(135deg, #ff6b9d, #ffa575, #ffd166) !important;
+  background-size:240% 240% !important;
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,.36),
+    0 0 36px rgba(255,107,157,.42),
+    0 0 80px rgba(255,213,128,.32),
+    inset 0 2px 8px rgba(255,255,255,.45) !important;
+  animation:v17CoreShine 3s ease-in-out infinite, v17GradMove 7s linear infinite !important;
+}
+@keyframes v17CoreShine{
+  0%,100%{ transform:scale(1); }
+  50%{ transform:scale(1.06); }
+}
+@keyframes v17GradMove{
+  0%{ background-position:0% 50%; }
+  50%{ background-position:100% 50%; }
+  100%{ background-position:0% 50%; }
+}
+#planetPage .capsule-machine-slot{
+  background:linear-gradient(180deg, rgba(216,58,107,.92), rgba(255,107,157,.62)) !important;
+  box-shadow:inset 0 5px 10px rgba(0,0,0,.28), 0 6px 14px -6px rgba(216,58,107,.35) !important;
+}
+
+/* 奖励详情盒（用 honor-title-box 改造） */
+#planetPage .honor-title-box.capsule-result-box{
+  margin-top:18px !important;
+  padding:22px 24px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,243,251,.74)) !important;
+  border:1px solid rgba(255,255,255,.88) !important;
+  box-shadow:0 22px 48px -28px rgba(255,107,157,.30), inset 0 1px 0 rgba(255,255,255,.92) !important;
+  position:relative !important;
+  overflow:hidden !important;
+}
+#planetPage .honor-title-box.capsule-result-box::before{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  padding:1.5px;
+  background:conic-gradient(from var(--v17-angle), #ffd166, #ff6b9d, #c084fc, #60a5fa, #ffd166);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.55;
+  pointer-events:none;
+  animation:v17BorderSpin 12s linear infinite;
+}
+#planetPage .honor-title-box.capsule-result-box b#capsuleTitle{
+  background:linear-gradient(135deg, #ff6b9d 0%, #ffa575 38%, #ffd166 72%, #c084fc 100%) !important;
+  -webkit-background-clip:text !important; background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  font-size:24px !important;
+  letter-spacing:.5px !important;
+}
+#planetPage .capsule-rarity-row i.on{
+  background:linear-gradient(90deg, #ffd166, #ff6b9d) !important;
+  box-shadow:0 0 8px rgba(255,107,157,.6) !important;
+}
+
+/* 扭蛋图鉴 */
+#planetPage .capsule-dex .dex-cell{
+  position:relative;
+  border-radius:14px !important;
+  background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,243,250,.62)) !important;
+  border:1px solid rgba(255,255,255,.85) !important;
+  box-shadow:0 8px 18px -14px rgba(255,107,157,.30), inset 0 1px 0 rgba(255,255,255,.92);
+  transition:.32s var(--v17-spring);
+}
+#planetPage .capsule-dex .dex-cell.locked{
+  filter:grayscale(.6) opacity(.55) !important;
+}
+#planetPage .capsule-dex .dex-cell.unlocked{
+  background:linear-gradient(140deg, rgba(255,213,128,.40), rgba(255,107,157,.26)) !important;
+  border-color:rgba(255,213,128,.65) !important;
+  box-shadow:0 10px 22px -10px rgba(255,107,157,.42), 0 0 14px rgba(255,213,128,.32) !important;
+}
+#planetPage .capsule-dex .dex-cell:hover{
+  transform:translateY(-4px) scale(1.08);
+  box-shadow:0 16px 28px -14px rgba(255,107,157,.45), 0 0 18px rgba(255,213,128,.35) !important;
+}
+
+/* =====================================================
+   ③ 大魚电台 · 视觉升级
+   ===================================================== */
+#radioPage .radio-status-bar{
+  background:
+    linear-gradient(135deg, rgba(255,107,157,.14), rgba(192,132,252,.10)),
+    linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,247,255,.66)) !important;
+  border:1px solid rgba(255,255,255,.88) !important;
+  box-shadow:0 16px 36px -24px rgba(255,107,157,.30), inset 0 1px 0 rgba(255,255,255,.94) !important;
+  font-size:13px !important;
+}
+#radioPage .radio-status-item b{
+  background:linear-gradient(135deg, #d83a6b, #ff6b9d);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+#radioPage .radio-status-dot{
+  background:#ef4444 !important;
+  box-shadow:0 0 12px #ef4444, 0 0 22px rgba(239,68,68,.6) !important;
+}
+
+/* 主播频道卡片 */
+#radioPage .radio-card{
+  position:relative !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,247,253,.74)),
+    radial-gradient(circle at 20% 18%, rgba(255,213,128,.16), transparent 32%) !important;
+  border:1px solid rgba(255,255,255,.92) !important;
+  box-shadow:0 28px 60px -34px rgba(255,107,157,.36), inset 0 1px 0 rgba(255,255,255,.95) !important;
+  overflow:hidden !important;
+}
+#radioPage .radio-card::after{
+  content:'';
+  position:absolute;
+  inset:-1.4px;
+  border-radius:inherit;
+  padding:1.4px;
+  background:conic-gradient(from var(--v17-angle), #ff6b9d, #ffd166, #c084fc, #60a5fa, #ff6b9d);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.5;
+  pointer-events:none;
+  animation:v17BorderSpin 10s linear infinite;
+}
+#radioPage .radio-title{
+  background:linear-gradient(135deg, #d83a6b, #ff6b9d 38%, #ffa575 70%, #ffd166 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size:28px !important;
+  filter:drop-shadow(0 2px 8px rgba(255,107,157,.20));
+}
+#radioPage .radio-line{
+  font-family:var(--font-display) !important;
+  font-style:italic;
+  position:relative;
+  padding:14px 18px !important;
+  border-radius:18px !important;
+  background:linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,243,250,.42)) !important;
+  border:1px dashed rgba(255,107,157,.28) !important;
+}
+#radioPage .radio-wave{
+  height:64px !important;
+  margin-top:18px !important;
+}
+#radioPage .radio-wave i{
+  background:linear-gradient(180deg, #ff6b9d 0%, #ffa575 50%, #ffd166 100%) !important;
+  box-shadow:0 0 16px rgba(255,107,157,.32), 0 0 28px rgba(255,213,128,.22) !important;
+}
+
+/* 心情按钮组 */
+#radioPage .radio-mood-grid-pro .radio-mood{
+  position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,247,253,.66)) !important;
+  border:1px solid rgba(255,255,255,.86) !important;
+  box-shadow:0 10px 22px -16px rgba(255,107,157,.32), inset 0 1px 0 rgba(255,255,255,.92);
+  transition:.34s var(--v17-spring);
+}
+#radioPage .radio-mood-grid-pro .radio-mood:hover{
+  transform:translateY(-5px) scale(1.025);
+  border-color:var(--pink) !important;
+  box-shadow:0 18px 34px -18px rgba(255,107,157,.45), 0 0 18px rgba(255,213,128,.22) !important;
+}
+#radioPage .radio-mood-grid-pro .radio-mood.lit{
+  background:linear-gradient(135deg, rgba(255,107,157,.32), rgba(255,213,128,.24)) !important;
+  border-color:rgba(255,107,157,.65) !important;
+  box-shadow:0 14px 32px -10px rgba(255,107,157,.50), 0 0 22px rgba(255,213,128,.36) !important;
+}
+#radioPage .radio-mood span{
+  filter:drop-shadow(0 2px 4px rgba(255,107,157,.20));
+}
+
+#radioPage .radio-extra-panel{
+  background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,247,253,.72)) !important;
+  border:1px solid rgba(255,255,255,.92) !important;
+  box-shadow:0 18px 38px -28px rgba(255,107,157,.32), inset 0 1px 0 rgba(255,255,255,.95) !important;
+}
+#radioPage .radio-schedule li{
+  position:relative;
+  background:linear-gradient(135deg, rgba(255,107,157,.10), rgba(255,213,128,.08)) !important;
+  border-left:3px solid var(--pink) !important;
+  transition:.3s;
+}
+#radioPage .radio-schedule li:hover{
+  transform:translateX(4px);
+  background:linear-gradient(135deg, rgba(255,107,157,.18), rgba(255,213,128,.12)) !important;
+}
+#radioPage .radio-dj-line{
+  background:linear-gradient(135deg, rgba(255,213,128,.24), rgba(255,107,157,.16)) !important;
+  border:1px dashed rgba(255,107,157,.42) !important;
+  font-family:var(--font-display) !important;
+  position:relative;
+  padding-left:34px !important;
+}
+#radioPage .radio-dj-line::before{
+  content:'"';
+  position:absolute;
+  left:10px;
+  top:-8px;
+  font-size:48px;
+  font-family:var(--font-display);
+  color:var(--pink);
+  opacity:.5;
+  line-height:1;
+}
+
+/* =====================================================
+   ④ 荣耀资料馆
+   ===================================================== */
+#posterPage .honor-pill{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(255,213,128,.32), rgba(255,107,157,.18)) !important;
+  border:1px solid rgba(255,213,128,.65) !important;
+  box-shadow:0 14px 28px -18px rgba(255,209,102,.45), inset 0 1px 0 rgba(255,255,255,.92);
+  transition:.36s var(--v17-spring);
+}
+#posterPage .honor-pill::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%);
+  transform:translateX(-130%);
+  transition:transform .9s var(--v17-smooth);
+  pointer-events:none;
+}
+#posterPage .honor-pill:hover{
+  transform:translateY(-4px) scale(1.04);
+  box-shadow:0 20px 38px -16px rgba(255,209,102,.55) !important;
+}
+#posterPage .honor-pill:hover::before{ transform:translateX(135%); }
+#posterPage .honor-pill b{
+  font-size:22px !important;
+  background:linear-gradient(135deg, #c79100, #ff6b9d, #ffa575);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 6px rgba(199,145,0,.28));
+}
+#posterPage .honor-tab{
+  background:linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,247,251,.62)) !important;
+  border:1px solid rgba(255,255,255,.92) !important;
+  box-shadow:0 8px 18px -16px rgba(255,107,157,.32);
+  transition:.3s;
+}
+#posterPage .honor-tab.active{
+  background:linear-gradient(135deg, #ff6b9d, #ffa575, #ffd166) !important;
+  box-shadow:0 12px 24px -10px rgba(255,107,157,.55), 0 0 18px rgba(255,213,128,.32) !important;
+}
+
+/* 荣耀卡片群 */
+#posterPage .honor-card{
+  position:relative;
+  isolation:isolate;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,247,253,.74)) !important;
+  border:1px solid rgba(255,255,255,.88) !important;
+  box-shadow:0 22px 48px -28px rgba(255,107,157,.32), inset 0 1px 0 rgba(255,255,255,.95) !important;
+  overflow:hidden;
+}
+#posterPage .honor-card.honor-rare::after{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  padding:1.5px;
+  background:conic-gradient(from 0deg, #ff6b9d, #ffd166, #c084fc, #ff6b9d);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.78;
+  pointer-events:none;
+  animation:v17BorderSpin 8s linear infinite;
+}
+#posterPage .honor-card.honor-sr::after{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  padding:1.4px;
+  background:conic-gradient(from 0deg, #ffd166, #ffa575, #ffd166);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.65;
+  pointer-events:none;
+  animation:v17BorderSpin 12s linear infinite;
+}
+#posterPage .honor-rare-mark{
+  box-shadow:0 4px 12px -3px rgba(0,0,0,.3) !important;
+  letter-spacing:.18em !important;
+}
+#posterPage .honor-icon{
+  font-size:36px !important;
+  filter:drop-shadow(0 6px 12px rgba(255,107,157,.32));
+  transition:.4s var(--v17-spring);
+}
+#posterPage .honor-card:hover .honor-icon{
+  transform:scale(1.18) rotate(-6deg);
+}
+#posterPage .honor-card .honor-name{
+  background:linear-gradient(135deg, #1a0a14, #d83a6b);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size:19px !important;
+}
+
+/* 雷达图 */
+#posterPage .honor-radar-card{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,247,253,.74)),
+    radial-gradient(circle at 18% 12%, rgba(255,213,128,.14), transparent 32%) !important;
+  border:1px solid rgba(255,255,255,.92) !important;
+  box-shadow:0 24px 52px -32px rgba(255,107,157,.32), inset 0 1px 0 rgba(255,255,255,.95) !important;
+}
+#posterPage .honor-radar-shape{
+  filter:drop-shadow(0 0 16px rgba(255,107,157,.55)) drop-shadow(0 0 24px rgba(255,213,128,.32)) !important;
+}
+#posterPage .honor-radar-meta b{
+  font-size:22px !important;
+  background:linear-gradient(135deg, #d83a6b, #ff6b9d, #ffa575);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* 名言盒 */
+#posterPage .honor-quote-box{
+  position:relative !important;
+  background:
+    linear-gradient(135deg, rgba(255,213,128,.22), rgba(255,107,157,.14)) !important;
+  border:1px dashed rgba(255,107,157,.42) !important;
+  box-shadow:0 18px 36px -24px rgba(255,107,157,.34) !important;
+}
+#posterPage .honor-quote-mark{
+  font-size:72px !important;
+  background:linear-gradient(135deg, #ff6b9d, #ffd166);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  opacity:.65 !important;
+}
+#posterPage .honor-quote-text{
+  font-size:16px !important;
+  font-family:var(--font-display) !important;
+  color:#3a1a28 !important;
+  line-height:1.85 !important;
+}
+
+/* 头衔盒 */
+#posterPage .honor-title-box{
+  background:linear-gradient(135deg, rgba(255,107,157,.14), rgba(255,213,128,.18)) !important;
+  border:1px solid rgba(255,213,128,.45) !important;
+  box-shadow:0 22px 44px -28px rgba(255,209,102,.42), inset 0 1px 0 rgba(255,255,255,.92) !important;
+}
+#posterPage .honor-title-box b{
+  font-size:clamp(22px,3.6vw,30px) !important;
+  background:linear-gradient(135deg, #ff6b9d 0%, #ffa575 50%, #ffd166 100%) !important;
+  -webkit-background-clip:text !important; background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  filter:drop-shadow(0 3px 10px rgba(255,107,157,.28));
+}
+
+/* =====================================================
+   ⑤ 默契实验室
+   ===================================================== */
+#ariesPage .lab-stat{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(192,132,252,.18), rgba(255,107,157,.10)) !important;
+  border:1px solid rgba(192,132,252,.36) !important;
+  box-shadow:0 14px 30px -20px rgba(192,132,252,.45), inset 0 1px 0 rgba(255,255,255,.85);
+  transition:.36s var(--v17-spring);
+}
+#ariesPage .lab-stat:hover{
+  transform:translateY(-4px) scale(1.025);
+  box-shadow:0 22px 42px -18px rgba(192,132,252,.55), 0 0 18px rgba(255,107,157,.22) !important;
+}
+#ariesPage .lab-stat b{
+  background:linear-gradient(135deg, #7c3aed, #ff6b9d);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size:22px !important;
+}
+
+#ariesPage .lab-scene-grid .radio-mood{
+  background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(245,237,255,.66)) !important;
+  border:1px solid rgba(255,255,255,.86) !important;
+  box-shadow:0 10px 22px -16px rgba(192,132,252,.36), inset 0 1px 0 rgba(255,255,255,.92);
+  transition:.34s var(--v17-spring);
+}
+#ariesPage .lab-scene-grid .radio-mood.active{
+  background:linear-gradient(135deg, rgba(192,132,252,.34), rgba(255,107,157,.24)) !important;
+  border-color:rgba(192,132,252,.65) !important;
+  box-shadow:0 14px 32px -10px rgba(192,132,252,.50), 0 0 18px rgba(255,107,157,.28) !important;
+  transform:translateY(-3px);
+}
+
+/* 默契值仪表 */
+#ariesPage .lab-meter{
+  height:18px !important;
+  background:linear-gradient(180deg, rgba(192,132,252,.10), rgba(255,255,255,.5)) !important;
+  border:1px solid rgba(192,132,252,.22) !important;
+  box-shadow:inset 0 2px 6px rgba(192,132,252,.12), inset 0 0 0 1px rgba(255,255,255,.55) !important;
+  border-radius:999px !important;
+  overflow:hidden !important;
+}
+#ariesPage .lab-fill{
+  background:linear-gradient(90deg, #60a5fa 0%, #c084fc 38%, #ff6b9d 72%, #ffd166 100%) !important;
+  background-size:240% 100% !important;
+  box-shadow:0 0 18px rgba(192,132,252,.45), 0 0 28px rgba(255,107,157,.28) !important;
+  animation:v17GradMove 4.5s linear infinite !important;
+  position:relative;
+}
+#ariesPage .lab-fill::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+  animation:v17ShimmerSlide 2.4s ease-in-out infinite;
+}
+@keyframes v17ShimmerSlide{
+  0%{ transform:translateX(-100%); }
+  100%{ transform:translateX(100%); }
+}
+#ariesPage .lab-meta b{
+  font-size:22px !important;
+  background:linear-gradient(135deg, #7c3aed, #ff6b9d);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+#ariesPage .lab-history{
+  background:linear-gradient(135deg, rgba(192,132,252,.10), rgba(255,255,255,.6)) !important;
+  border:1px solid rgba(192,132,252,.20) !important;
+}
+#ariesPage .lab-history-track .lh-bar{
+  background:linear-gradient(180deg, #c084fc, #ff6b9d, #ffd166) !important;
+  box-shadow:0 0 8px rgba(192,132,252,.32) !important;
+}
+
+/* 兄弟徽章墙 */
+#ariesPage .bro-badge{
+  background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(245,237,255,.66)) !important;
+  border:1px solid rgba(255,255,255,.92) !important;
+  box-shadow:0 12px 26px -16px rgba(192,132,252,.36), inset 0 1px 0 rgba(255,255,255,.95) !important;
+  transition:.36s var(--v17-spring);
+}
+#ariesPage .bro-badge:hover{
+  transform:translateY(-5px) scale(1.06) rotate(-2deg);
+  box-shadow:0 20px 36px -14px rgba(192,132,252,.50), 0 0 18px rgba(255,107,157,.24) !important;
+}
+#ariesPage .bro-badge span{
+  font-size:32px !important;
+  filter:drop-shadow(0 6px 10px rgba(192,132,252,.42));
+}
+#ariesPage .bro-badge b{
+  background:linear-gradient(135deg, #1a0a14, #7c3aed);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* 实验结论 */
+#ariesPage .lab-verdict-box{
+  position:relative !important;
+  background:linear-gradient(135deg, #ff6b9d 0%, #c084fc 50%, #7c3aed 100%) !important;
+  background-size:240% 240% !important;
+  animation:v17GradMove 8s linear infinite !important;
+  box-shadow:0 26px 56px -22px rgba(124,58,237,.55), 0 0 28px rgba(255,107,157,.32) !important;
+  overflow:hidden !important;
+}
+#ariesPage .lab-verdict-box::before{
+  content:'';
+  position:absolute;
+  inset:-50%;
+  background:conic-gradient(from 0deg, transparent, rgba(255,255,255,.18), transparent 30%);
+  animation:v17BorderSpin 6s linear infinite;
+  pointer-events:none;
+}
+#ariesPage .lab-verdict-title{
+  font-size:24px !important;
+  text-shadow:0 2px 10px rgba(0,0,0,.28), 0 0 22px rgba(255,255,255,.32) !important;
+  position:relative;
+  z-index:1;
+}
+
+/* =====================================================
+   ⑥ 写给大魚的 13 站回忆 · 升级
+   ===================================================== */
+/* 顶部 hero */
+#memoryPage .hero{
+  position:relative;
+  isolation:isolate;
+}
+#memoryPage .hero-title{
+  position:relative;
+  filter:drop-shadow(0 6px 22px rgba(255,107,157,.18));
+}
+#memoryPage .hero-title::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  bottom:-12px;
+  transform:translateX(-50%);
+  width:120px;
+  height:3px;
+  border-radius:999px;
+  background:linear-gradient(90deg, transparent, #ff6b9d, #ffd166, transparent);
+  animation:v17ShimmerSlide 3.4s ease-in-out infinite;
+}
+
+/* 工具区 */
+.archive-toolbar-card{
+  position:relative;
+  isolation:isolate;
+}
+.archive-toolbar-card::after{
+  content:'';
+  position:absolute;
+  inset:-1.5px;
+  border-radius:inherit;
+  padding:1.4px;
+  background:conic-gradient(from var(--v17-angle), rgba(255,107,157,.50), rgba(255,213,128,.42), rgba(192,132,252,.42), rgba(255,107,157,.50));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.34;
+  pointer-events:none;
+  animation:v17BorderSpin 16s linear infinite;
+}
+.archive-overview-card{
+  transition:.4s var(--v17-spring) !important;
+}
+.archive-overview-card strong{
+  background:linear-gradient(135deg, #d83a6b 0%, #ff6b9d 38%, #ffa575 70%, #ffd166 100%) !important;
+  -webkit-background-clip:text !important; background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  filter:drop-shadow(0 3px 10px rgba(255,107,157,.22));
+}
+
+/* 13站卡片 · 终极强化 */
+#memoryPage .memory-card{
+  isolation:isolate;
+  border-radius:30px !important;
+  position:relative;
+}
+#memoryPage .memory-card::after{
+  content:attr(data-order);
+  position:absolute;
+  right:18px;
+  top:14px;
+  font-family:var(--font-display);
+  font-size:78px;
+  font-weight:900;
+  background:linear-gradient(180deg, rgba(255,107,157,.10), rgba(255,213,128,.06));
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  line-height:1;
+  pointer-events:none;
+  z-index:0;
+}
+#memoryPage .memory-card.memory-list-card{
+  grid-template-columns:260px minmax(0,1fr) !important;
+}
+#memoryPage .memory-thumb{
+  background:linear-gradient(135deg, #ffe6f0 0%, #fff3e7 50%, #f3ebff 100%) !important;
+  position:relative !important;
+  overflow:hidden !important;
+}
+#memoryPage .memory-thumb::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, transparent 50%, rgba(20,10,16,.45) 100%);
+  pointer-events:none;
+  z-index:1;
+}
+#memoryPage .memory-thumb img{
+  transition:transform 1.4s var(--v17-smooth), filter .6s !important;
+}
+#memoryPage .memory-card:hover .memory-thumb img{
+  transform:scale(1.10) !important;
+  filter:saturate(1.10) contrast(1.06) brightness(1.04) !important;
+}
+#memoryPage .memory-station-badge{
+  background:linear-gradient(135deg, rgba(216,58,107,.85), rgba(255,107,157,.65)) !important;
+  border:1px solid rgba(255,255,255,.55) !important;
+  letter-spacing:1.4px !important;
+  font-size:11px !important;
+  padding:6px 12px !important;
+  box-shadow:0 6px 16px -6px rgba(216,58,107,.55), 0 0 16px rgba(255,107,157,.38) !important;
+  text-shadow:0 1px 2px rgba(0,0,0,.25) !important;
+}
+#memoryPage .memory-main{
+  padding:24px !important;
+  position:relative;
+  z-index:1;
+}
+#memoryPage .memory-date-pill{
+  background:linear-gradient(135deg, rgba(255,107,157,.14), rgba(255,213,128,.10)) !important;
+  padding:5px 12px !important;
+  border-radius:999px !important;
+  border:1px solid rgba(255,107,157,.22) !important;
+  letter-spacing:1.4px !important;
+}
+#memoryPage .memory-title{
+  background:linear-gradient(135deg, #1a0a14 0%, #d83a6b 100%) !important;
+  -webkit-background-clip:text !important; background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  font-size:21px !important;
+  letter-spacing:.4px !important;
+  filter:drop-shadow(0 2px 6px rgba(216,58,107,.18));
+}
+#memoryPage .memory-excerpt{
+  background:linear-gradient(135deg, rgba(255,255,255,.42), rgba(255,247,251,.20)) !important;
+  border:1px solid rgba(255,255,255,.65) !important;
+  border-radius:18px !important;
+  padding:14px 18px !important;
+  font-size:14px !important;
+  line-height:1.95 !important;
+  color:#5a3045 !important;
+  position:relative;
+}
+#memoryPage .memory-excerpt::before{
+  display:none !important;
+}
+#memoryPage .memory-tags .tag{
+  background:linear-gradient(135deg, rgba(255,107,157,.14), rgba(255,213,128,.10)) !important;
+  border:1px solid rgba(255,107,157,.22) !important;
+  font-weight:700 !important;
+  transition:.3s;
+}
+#memoryPage .memory-tags .tag:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(135deg, rgba(255,107,157,.26), rgba(255,213,128,.20)) !important;
+}
+#memoryPage .like-btn{
+  font-size:13px !important;
+  font-weight:700 !important;
+  padding:6px 14px !important;
+  background:rgba(255,255,255,.5) !important;
+  border:1px solid rgba(255,107,157,.22) !important;
+  border-radius:999px !important;
+  transition:.3s !important;
+}
+#memoryPage .like-btn:hover{
+  background:linear-gradient(135deg, rgba(255,107,157,.20), rgba(255,213,128,.14)) !important;
+  border-color:var(--pink) !important;
+  transform:translateY(-2px);
+}
+#memoryPage .like-btn.liked{
+  background:linear-gradient(135deg, rgba(255,107,157,.22), rgba(255,182,213,.18)) !important;
+  border-color:var(--pink) !important;
+  color:var(--pink-deep) !important;
+}
+#memoryPage .story-btn-inline{
+  background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,243,250,.78)) !important;
+  border:1px solid rgba(255,107,157,.28) !important;
+  box-shadow:0 12px 26px -16px rgba(255,107,157,.45), inset 0 1px 0 rgba(255,255,255,.95) !important;
+  transition:.34s var(--v17-spring) !important;
+}
+#memoryPage .story-btn-inline:hover{
+  transform:translateY(-3px) scale(1.04);
+  background:linear-gradient(135deg, #ff6b9d, #ffa575) !important;
+  color:#fff !important;
+  border-color:transparent !important;
+  box-shadow:0 18px 32px -12px rgba(255,107,157,.55) !important;
+}
+
+/* 时间筛选条 */
+#memoryPage .archive-year-chip{
+  background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,247,253,.66)) !important;
+  border:1px solid rgba(255,255,255,.92) !important;
+  box-shadow:0 8px 18px -14px rgba(255,107,157,.36), inset 0 1px 0 rgba(255,255,255,.95) !important;
+  transition:.32s var(--v17-spring) !important;
+}
+#memoryPage .archive-year-chip:hover{
+  transform:translateY(-3px) scale(1.05);
+  background:linear-gradient(135deg, rgba(255,107,157,.18), rgba(255,213,128,.14)) !important;
+  border-color:rgba(255,107,157,.45) !important;
+  color:var(--pink-deep) !important;
+  box-shadow:0 14px 26px -12px rgba(255,107,157,.45) !important;
+}
+
+/* =====================================================
+   ⑦ 时光胶囊（Gallery）二次升级
+   补在 v13 之后，让卡片更高级
+   ===================================================== */
+.gallery-backdrop{
+  background:
+    radial-gradient(circle at 18% 8%, rgba(96,165,250,.34), transparent 26%),
+    radial-gradient(circle at 82% 12%, rgba(244,114,182,.28), transparent 28%),
+    radial-gradient(circle at 50% 86%, rgba(255,209,102,.18), transparent 32%),
+    linear-gradient(180deg, #02050f 0%, #06122a 50%, #160520 100%) !important;
+}
+.gallery-hero-card{
+  position:relative !important;
+  overflow:hidden !important;
+}
+.gallery-hero-card::after{
+  content:'';
+  position:absolute;
+  inset:-1.5px;
+  border-radius:inherit;
+  padding:1.5px;
+  background:conic-gradient(from var(--v17-angle),
+    rgba(96,165,250,.55), rgba(244,114,182,.45),
+    rgba(255,209,102,.45), rgba(192,132,252,.45),
+    rgba(96,165,250,.55));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.55;
+  pointer-events:none;
+  animation:v17BorderSpin 12s linear infinite;
+}
+.gallery-hero-title{
+  background:linear-gradient(135deg, #ffffff 0%, #bfdbfe 25%, #f9a8d4 55%, #fde68a 100%) !important;
+  -webkit-background-clip:text !important; background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  filter:drop-shadow(0 4px 18px rgba(147,197,253,.34));
+}
+.gallery-stat{
+  position:relative;
+  overflow:hidden;
+  transition:.34s var(--v17-spring) !important;
+}
+.gallery-stat::before{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  padding:1.2px;
+  background:linear-gradient(135deg, rgba(255,209,102,.55), rgba(147,197,253,.42), rgba(244,114,182,.42));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.45;
+  pointer-events:none;
+}
+.gallery-stat:hover{
+  transform:translateY(-5px) scale(1.045);
+  background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.10)) !important;
+  box-shadow:0 22px 44px -22px rgba(96,165,250,.55), 0 0 22px rgba(255,209,102,.32) !important;
+}
+.gallery-stat:hover::before{ opacity:1; }
+.gallery-item.v13-video-card{
+  transition:.42s var(--v17-spring) !important;
+}
+.gallery-item.v13-video-card:hover{
+  transform:translateY(-7px) scale(1.012);
+  border-color:rgba(255,209,102,.55) !important;
+  box-shadow:0 30px 64px -28px rgba(244,114,182,.55), 0 0 28px rgba(147,197,253,.32) !important;
+}
+.v13-index-chip{
+  background:linear-gradient(135deg, #2563eb, #9333ea) !important;
+  border-color:rgba(255,255,255,.55) !important;
+  box-shadow:0 0 18px rgba(147,197,253,.45) !important;
+}
+.g-play{
+  background:linear-gradient(135deg, #ff6b9d, #c084fc, #2563eb) !important;
+  background-size:240% 240% !important;
+  animation:v17GradMove 5s linear infinite !important;
+  border:2px solid rgba(255,255,255,.85) !important;
+  box-shadow:0 0 0 8px rgba(255,255,255,.18), 0 0 38px rgba(192,132,252,.65), 0 0 60px rgba(255,107,157,.32) !important;
+}
+
+/* 滚动条主题化 */
+.gallery-grid-v13{
+  scroll-behavior:smooth;
+}
+
+/* =====================================================
+   响应式微调
+   ===================================================== */
+@media(max-width:768px){
+  #memoryPage .memory-card.memory-list-card{ grid-template-columns:1fr !important; }
+  #memoryPage .memory-card::after{ font-size:60px; }
+  #posterPage .honor-radar-wrap{ grid-template-columns:1fr !important; }
+}
+@media(max-width:480px){
+  .extra-stage::after{ display:none; }
+  #memoryPage .memory-card::after{ font-size:48px; right:12px; top:8px; }
+}
+</style>
+
+
+<script id="fxy-v17-content-upgrade-script">
+(function(){
+  if(window.__fxyV17ContentUpgrade) return;
+  window.__fxyV17ContentUpgrade = true;
+
+  // =================================================================
+  // 内容升级 1：宇宙扭蛋机 — 把奖池扩展，每张签都更走心
+  // =================================================================
+  const V17_CAPSULES = [
+    { icon:'⚾', title:'棒球主角签', tag:'今日掉落 · 球场高光',
+      text:'你今天上球场，会比平常更稳。教练看你一眼,会忽然觉得"这小子状态来了"。' },
+    { icon:'📚', title:'吉大高分签', tag:'今日掉落 · 学业运',
+      text:'今天的题目不会绕。一道一道做下去,会发现进度比预期快。' },
+    { icon:'🎮', title:'乱杀通行证', tag:'今日掉落 · 游戏运',
+      text:'阿瓦隆当梅林必跳成,三角洲手感稳到队友以为你开挂。' },
+    { icon:'🎤', title:'K歌加成签', tag:'今日掉落 · 唱歌运',
+      text:'高音轻松上去,转音漂亮。开口就让人闭麦的程度。' },
+    { icon:'🌈', title:'快乐补给签', tag:'今日掉落 · 心情运',
+      text:'今天的烦心事会比想象中少。多笑两次,世界对你也会温柔一点。' },
+    { icon:'✨', title:'偏爱隐藏签', tag:'隐藏掉落 · SSR',
+      text:'你本来就值得被认真喜欢。范鑫雨这三个字,足够当一份自信。' },
+    { icon:'🏆', title:'全能称号签', tag:'今日掉落 · 万能 BUFF',
+      text:'学业、运动、状态、心情，今天通通拉满。这一天就是你的主场。' },
+    { icon:'🍀', title:'幸运四叶签', tag:'今日掉落 · 幸运指数',
+      text:'今天会遇到一两件让你笑出声的小巧合。请记得截屏。' },
+    { icon:'🌙', title:'晚安守护签', tag:'隐藏掉落 · 安心',
+      text:'今晚一定睡得很好。明天醒来精神满格,头发也乖。' },
+    { icon:'🚀', title:'冲刺加速签', tag:'今日掉落 · 行动力',
+      text:'拖延会自动消失 30%。开始做的事会比想象中容易完成。' },
+    { icon:'💎', title:'闪耀凝视签', tag:'隐藏掉落 · 颜值',
+      text:'今天颜值在线,镜头怎么拍都好看。怎么穿都对。' },
+    { icon:'🛡️', title:'兄弟力挺签', tag:'今日掉落 · 关系运',
+      text:'有人正在心里悄悄夸你,你不知道。但你确实在被偏爱。' }
+  ];
+  // 替换全局奖池（如果存在则覆盖）
+  try{ if(typeof window.capsulePrizes !== 'undefined'){ window.capsulePrizes.length = 0; V17_CAPSULES.forEach(c => window.capsulePrizes.push(c)); } }catch(e){}
+
+  // =================================================================
+  // 内容升级 2：电台 — 频道台词更走心更长
+  // =================================================================
+  const V17_RADIO = {
+    shine:[ '发光频道',
+      '今天也别低估自己,你随便走出去都让人想多看两眼。',
+      '范鑫雨的存在本身就是一种亮度,不需要刻意发挥。',
+      '别人努力是想发光,你是不发都难。这就是天赋。',
+      '今晚的你,值得被全场最亮的灯打在身上。',
+      '主角光环不是你装出来的,是你这个人本来就这样。'
+    ],
+    study:[ '学习频道',
+      '不用一直绷着,稳稳地学,效率反而更高。',
+      '能考上吉大本身就证明你有底子,不要怀疑自己。',
+      '今天的难题,明天回头看可能就是个简单题。',
+      '学不进去的时候允许自己放空 10 分钟,不丢人。',
+      '吉大的灯光下,你已经走得比很多人远了。'
+    ],
+    game:[ '乱杀频道',
+      '今晚开黑必赢,队友看到你 ID 都会安心。',
+      '游戏里你是 carry,生活里你也很 carry。',
+      '阿瓦隆派你梅林,我闭眼支持。',
+      '三角洲手感在线,皮肤也亮,全场最靓。',
+      '你打游戏时那个状态,真挺让人羡慕的。'
+    ],
+    night:[ '晚安频道',
+      '夜深了,把烦的事先放下,明天再说。',
+      '不用什么都自己扛,有时候说一声"我累了"也没什么。',
+      '今晚的月亮想替你喘口气,你也允许自己歇会儿。',
+      '愿你睡前不刷烦心的消息,梦里都是好画面。',
+      '明早醒来,一切都会比今晚轻一点。'
+    ],
+    rain:[ '下雨频道',
+      '下雨天最适合什么都不做,就发一会儿呆。',
+      '雨声里其实藏着挺多温柔,慢慢听。',
+      '雨天别着凉,别淋到自己的心情。',
+      '有些情绪在雨里会变小,不是消失,是被冲淡。',
+      '今天就允许自己慢一点点,世界等得起你。'
+    ],
+    road:[ '公路频道',
+      '把烦的事放副驾,开远一点,看看路尽头是什么。',
+      '长大就是这样:偶尔出走,偶尔再回来。',
+      '远方不一定治愈,但移动本身就有疗愈感。',
+      '车窗外的风,会带走一部分你不想要的情绪。',
+      '今晚就当是在自己的公路片里,做一回主角。'
+    ],
+    cheer:[ '庆祝频道',
+      '你已经做到很多事了,该给自己一个小奖励。',
+      '不用大事才庆祝,小事一样值得举杯。',
+      '今天值得开心,就尽情开心,没人觉得你过分。',
+      '把刚刚那个小成就,认真留个记号给自己。',
+      '为范鑫雨的今天,提前干一杯。'
+    ],
+    hug:[ '抱抱频道',
+      '什么都不做,你也已经很棒了。',
+      '别再硬扛了,允许自己累的时候就累一会儿。',
+      '远程抱抱,身后一直有人。',
+      '不开心就说出来,我都听。',
+      '你不是非要每天都很坚强,情绪也可以是软的。'
+    ]
+  };
+  try{ if(typeof window.radioData !== 'undefined'){ Object.keys(V17_RADIO).forEach(k => window.radioData[k] = V17_RADIO[k]); }}catch(e){}
+  try{
+    if(typeof window.radioExtData !== 'undefined'){
+      ['rain','road','cheer','hug'].forEach(k => window.radioExtData[k] = V17_RADIO[k]);
+    }
+  }catch(e){}
+
+  // 节目单内容
+  const V17_SCHEDULE = [
+    {time:'20:00', title:'开场白：今天也想让你被偏爱'},
+    {time:'20:18', title:'主打：发光频道 · 写给大魚的一段话'},
+    {time:'20:42', title:'插播：兄弟连线小剧场 · 默契实测'},
+    {time:'21:10', title:'压轴：晚安频道 · 慢慢说,慢慢睡'},
+    {time:'21:35', title:'返场：庆祝频道 · 今天的小高光'}
+  ];
+  function refreshSchedule(){
+    const ol = document.querySelector('#radioSchedule');
+    if(!ol) return;
+    ol.innerHTML = V17_SCHEDULE.map(s=>`<li><span>${s.time}</span><b>${s.title}</b></li>`).join('');
+  }
+
+  // DJ 留言
+  const V17_DJ_LINES = [
+    '"今晚的频段比较温柔,你也可以慢慢来。"',
+    '"信号收到了:范鑫雨今天看起来不错,继续这样。"',
+    '"如果哪里不对劲,先停一下,不用硬撑。"',
+    '"我把这首留给你,希望你听完。"',
+    '"听众席里那个最特别的,是你。"',
+    '"夜深了,把吵的关掉,这个频段留给你。"',
+    '"你不开口的时候,我就替你说几句吧。"',
+    '"今晚的主播只有一个听众:范鑫雨。"',
+    '"如果你正在听,记得给自己一个晚安。"'
+  ];
+  try{ if(typeof window.djLines !== 'undefined'){ window.djLines.length = 0; V17_DJ_LINES.forEach(l => window.djLines.push(l)); }}catch(e){}
+
+  // =================================================================
+  // 内容升级 3：荣耀馆 — 头衔 / 名言 库扩充
+  // =================================================================
+  const V17_HONOR_TITLES = [
+    '今日称号:吉大最会发光的大魚',
+    '今日称号:棒球场上的主角先生',
+    '今日称号:阿瓦隆隐藏梅林王',
+    '今日称号:三角洲乱杀首席选手',
+    '今日称号:吉大薛之谦陶喆方大同合体版',
+    '今日称号:985 全能少年范鑫雨',
+    '今日称号:让朋友安心的可靠兄弟',
+    '今日称号:开口就闭麦的现场歌手',
+    '今日称号:体能与颜值双在线',
+    '今日称号:智商情商都满格的范鑫雨',
+    '今日称号:今晚最被偏爱的人',
+    '今日称号:范鑫范鑫雨 · 主角认证'
+  ];
+  const V17_HONOR_QUOTES = [
+    '这不是夸张,是我认真看你这么多年的结论。',
+    '你身上有一种"不会熄灭"的劲儿,很难得。',
+    '别人是发光,你是会让旁边的人也跟着亮起来。',
+    '稳、准、狠,但又不刺人,这就是你的魅力。',
+    '认识你之后才知道,"靠谱"可以这么具象。',
+    '你不是没情绪,是把情绪处理得比大多数人都好。',
+    '能跟你做朋友,是我自己也很骄傲的事。',
+    '你随便站着,也比很多人努力过的样子好看。',
+    '范鑫雨这三个字,本身就值一份偏爱。',
+    '你是那种,不需要解释自己,光待着就让人放心的人。'
+  ];
+  try{
+    if(typeof window.honorTitles !== 'undefined'){ window.honorTitles.length=0; V17_HONOR_TITLES.forEach(t=>window.honorTitles.push(t)); }
+    if(typeof window.honorQuotes !== 'undefined'){ window.honorQuotes.length=0; V17_HONOR_QUOTES.forEach(q=>window.honorQuotes.push(q)); }
+  }catch(e){}
+
+  // =================================================================
+  // 内容升级 4：默契实验室 — 场景描述更细腻
+  // =================================================================
+  const V17_LAB_SCENES = [
+    { title:'默契场景:球场模式',
+      text:'你今天上球场,主角感会很强。我对你的判断只有一个:状态不可能差。',
+      score:90 },
+    { title:'默契场景:K歌模式',
+      text:'你一开口,旁边的人会自动安静下来——这种画面,我已经见过很多次了。',
+      score:93 },
+    { title:'默契场景:开黑模式',
+      text:'你上线那一刻,队伍气氛就变了。这是属于范鑫雨的"主角进场效果"。',
+      score:95 },
+    { title:'默契场景:深夜模式',
+      text:'凌晨两点的兄弟连线,你不用逞强,有什么烦的都可以慢慢说。',
+      score:96 },
+    { title:'默契场景:学习模式',
+      text:'按你自己的节奏来,你本来就不是会轻易拉垮的人。今天的进度,稳。',
+      score:91 },
+    { title:'默契场景:未来模式',
+      text:'把镜头放到三年以后,你大概率会越来越好,越来越耀眼。这是真心话。',
+      score:98 },
+    { title:'默契场景:夜宵模式',
+      text:'凌晨突然想吃点什么,你就是那种会陪我说"走,吃去"的人。',
+      score:94 },
+    { title:'默契场景:看片模式',
+      text:'看同一部片,我们能笑同一个梗、安静同一个段落。这种默契挺难得。',
+      score:92 }
+  ];
+  try{
+    if(typeof window.labScenes !== 'undefined'){
+      window.labScenes.length = 0;
+      V17_LAB_SCENES.forEach(s => window.labScenes.push(s));
+    }
+  }catch(e){}
+
+  // =================================================================
+  // 内容升级 5：13 站回忆 — 给每段加 "更细的小注脚 / 现在的话"
+  // (不动主体描述,只补一行更走心的旁白,显示在卡片底部)
+  // =================================================================
+  const V17_MEMORY_NOTES = {
+    1:'回头看才发现,这就是故事的第 1 帧。',
+    2:'感谢那份糟糕的作业,让我们没擦肩而过。',
+    3:'后来这张照片,我自己也存了一份。',
+    4:'梅林这个外号,从那一晚开始就跟你绑定了。',
+    5:'乱归乱,但里面有个版本叫"和你一起"。',
+    6:'最普通的日子,反而最经得起回看。',
+    7:'你硬件 90+ 那天,我比自己拿到分还开心。',
+    8:'那块蛋糕的甜,我现在还记得。',
+    9:'代码再苦,有人陪你吃甜品就还能继续。',
+    10:'麦麦见证过我们好几次"想说的话"。',
+    11:'那年新年礼物,送出去的时候我自己也开心。',
+    12:'10 级粉丝团,认证一下:我是真粉。',
+    13:'故事先到这里,新章节我们继续写。'
+  };
+
+  function injectMemoryNotes(){
+    const cards = document.querySelectorAll('#memoryPage .memory-card');
+    cards.forEach(card => {
+      const id = parseInt(card.dataset.memoryId, 10);
+      if(!id || !V17_MEMORY_NOTES[id]) return;
+      if(card.querySelector('.v17-memory-note')) return;
+      const main = card.querySelector('.memory-main > div:first-child') || card.querySelector('.memory-main');
+      if(!main) return;
+      const note = document.createElement('div');
+      note.className = 'v17-memory-note';
+      note.style.cssText = 'margin-top:10px;font-size:12px;color:var(--text-soft);font-style:italic;font-family:var(--font-display);padding:8px 12px;background:linear-gradient(135deg,rgba(255,213,128,.10),rgba(255,107,157,.06));border-left:2px solid rgba(255,107,157,.35);border-radius:0 12px 12px 0;letter-spacing:.3px;';
+      note.textContent = '— ' + V17_MEMORY_NOTES[id];
+      main.appendChild(note);
+    });
+  }
+
+  // 重写 initMemoryGrid 后注入笔记
+  if(typeof window.initMemoryGrid === 'function' && !window.initMemoryGrid.__v17NotesWrap){
+    const oldInit = window.initMemoryGrid;
+    window.initMemoryGrid = function(){
+      const r = oldInit.apply(this, arguments);
+      requestAnimationFrame(injectMemoryNotes);
+      setTimeout(injectMemoryNotes, 160);
+      return r;
+    };
+    window.initMemoryGrid.__v17NotesWrap = 1;
+  }
+
+  // =================================================================
+  // 内容升级 6：时光胶囊 hero 文案润色
+  // =================================================================
+  function upgradeGalleryHero(){
+    const grid = document.getElementById('galleryGrid');
+    if(!grid) return;
+    const hero = grid.querySelector('.gallery-hero-card');
+    if(!hero) return;
+    const kicker = hero.querySelector('.gallery-hero-kicker');
+    const title = hero.querySelector('.gallery-hero-title');
+    const copy = hero.querySelector('.gallery-hero-copy');
+    if(kicker) kicker.textContent = 'FXY CINEMATIC ARCHIVE · 影像档案馆';
+    if(title) title.textContent = '把范鑫雨的高光时刻，剪成一部专属电影。';
+    if(copy) copy.textContent = '这里收的不是普通视频，是属于大魚的现场感片段：唱歌、开黑、出行、开箱、学习、生活。每一帧都被认真留下，等以后哪天想念，可以一段一段重新看。';
+  }
+  if(typeof window.openGallery === 'function' && !window.openGallery.__v17HeroWrap){
+    const oldOpen = window.openGallery;
+    window.openGallery = function(){
+      const r = oldOpen.apply(this, arguments);
+      setTimeout(upgradeGalleryHero, 80);
+      return r;
+    };
+    window.openGallery.__v17HeroWrap = 1;
+  }
+
+  // =================================================================
+  // 视觉同步：给目标页面加入场动画 + 刷新节目单
+  // =================================================================
+  function applyEnterAnimations(pageId){
+    const page = document.getElementById(pageId);
+    if(!page) return;
+    const targets = page.querySelectorAll('.hero, .extra-stage, .archive-toolbar-card, .lab-history, .lab-verdict-box, .honor-radar-card, .honor-quote-box, .capsule-stat-bar, .honor-pill-row, .lab-stat-bar, .radio-status-bar, .radio-board, .honor-board-pro');
+    targets.forEach((el, i) => {
+      el.classList.remove('v17-fade-in','d1','d2','d3','d4');
+      void el.offsetWidth;
+      el.classList.add('v17-fade-in', 'd' + Math.min(4, i+1));
+    });
+  }
+
+  if(typeof window.goToPage === 'function' && !window.goToPage.__v17EnterWrap){
+    const oldGo = window.goToPage;
+    window.goToPage = function(id){
+      const r = oldGo.apply(this, arguments);
+      setTimeout(()=>{
+        if(['planetPage','radioPage','posterPage','ariesPage','memoryPage'].includes(id)){
+          applyEnterAnimations(id);
+        }
+        if(id === 'radioPage') refreshSchedule();
+        if(id === 'memoryPage') injectMemoryNotes();
+      }, 60);
+      return r;
+    };
+    window.goToPage.__v17EnterWrap = 1;
+  }
+
+  // 立即应用一次
+  document.addEventListener('DOMContentLoaded', ()=>{
+    refreshSchedule();
+    setTimeout(injectMemoryNotes, 400);
+  });
+  if(document.readyState !== 'loading'){
+    refreshSchedule();
+    setTimeout(injectMemoryNotes, 400);
+  }
+
+})();
+</script>
 </body>
 </html>
